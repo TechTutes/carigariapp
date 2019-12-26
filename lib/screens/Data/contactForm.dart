@@ -68,7 +68,21 @@ class _ContactFormState extends State<ContactForm> {
           
           // resizeToAvoidBottomPadding: false,
                   appBar: AppBar(
-                    title: Text("Contact Form"),
+                    title: 
+                     Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 
+               Text("Contact Form"),
+                   Image.asset(
+                 'images/logo.png',
+                  fit: BoxFit.fill,
+                  height:SizeConfig.blockSizeVertical * 4.5,
+                  
+              ),
+            ],
+
+          ),
                      backgroundColor: Colors.cyan[300],
                   ),
                   drawer: theDrawer(context),

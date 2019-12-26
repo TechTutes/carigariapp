@@ -18,7 +18,20 @@ class _AboutState extends State<About> {
     return Scaffold(
       appBar: AppBar(
          backgroundColor: Colors.cyan[300],
-        title: Text("About"),
+        title:Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 
+               Text("About"),
+                   Image.asset(
+                 'images/logo.png',
+                  fit: BoxFit.fill,
+                  height:SizeConfig.blockSizeVertical * 4.5,
+                  
+              ),
+            ],
+
+          ), 
       ),
     bottomNavigationBar: bottomnavigation(context, 1),
     drawer: theDrawer(context),

@@ -202,7 +202,9 @@ class _SubCategoryState extends State<SubCategory> {
                           // global.vari
                           global.selected.add(global.TempIndex);
                           global.touch=1;
-
+                          // int tem = int.parse(global.category[global.TempIndex].data['price']);
+                          // print(tem);
+                          // global.totalamount = global.totalamount + tem;
                           print("${global.touch}touch is selected ");
                           // print(selected);
                           // global.selected.add(12);

@@ -18,7 +18,20 @@ class _NotificationState extends State<Notification> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Notifications",style: TextStyle(color: Colors.black),),
+          title:Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 
+               Text("Notifications",style: TextStyle(color: Colors.black),),
+                   Image.asset(
+                 'images/logo.png',
+                  fit: BoxFit.fill,
+                  height:SizeConfig.blockSizeVertical * 4.5,
+                  
+              ),
+            ],
+
+          ), 
           backgroundColor: Colors.cyan[300],
         ),
         bottomNavigationBar: bottomnavigation(context,1),

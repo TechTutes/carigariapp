@@ -98,7 +98,38 @@ class _CartState extends State<Cart> {
        child:Center(
         child:Column(children:<Widget>
         [
-          // children: <Widget>[
+          // Card(
+          //   margin: EdgeInsets.all(15),
+          //   child: Padding(
+          //     padding: EdgeInsets.all(8),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: <Widget>[
+          //         Text(
+          //           'Total',
+          //           style: TextStyle(fontSize: 20),
+          //         ),
+          //         Spacer(),
+          //         Chip(
+          //           label: Text(
+          //             '\$${cart.totalAmount}',
+          //             style: TextStyle(
+          //               color: Theme.of(context).primaryTextTheme.title.color,
+          //             ),
+          //           ),
+          //           backgroundColor: Theme.of(context).primaryColor,
+          //         ),
+          //         FlatButton(
+          //           child: Text('ORDER NOW'),
+          //           onPressed: () {},
+          //           textColor: Theme.of(context).primaryColor,
+          //         )
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          
+          // // children: <Widget>[
           //   // Text(global.cart);
           //   SizedBox( height: MediaQuery.of(context).size.height/25,
           // width: MediaQuery.of(context).size.width/1.5,
@@ -127,7 +158,7 @@ class _CartState extends State<Cart> {
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                             fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-                      subtitle: Text(" Price  ₹ "+global.category[index].data['price']),
+                      subtitle: Text(" Price  ₹ "+global.cart[index].data['price']),
                       // dense: true,
                       onTap: (){
                         // Navigator.pushNamed(context,"ContactUs");
