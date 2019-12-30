@@ -1,3 +1,4 @@
+// import 'dart:html';
 import 'dart:io';
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/screens/Data/Category.dart';
@@ -62,10 +63,12 @@ class _HomeScreenState extends State<HomeScreen>
 
     // }
     QuerySnapshot qp;
-    qp=await Firestore.instance.collection("category").getDocuments();
-    global.category.isEmpty?global.category.addAll(qp.documents):null;
+    qp=await Firestore.instance.collection("categories").getDocuments();
+    global.categories.isEmpty?global.categories.addAll(qp.documents):null;
     // :SizedBox();
-    print(global.category[0].data['a']);
+  var dem=global.categories[11].data["subcat2"];
+    print(dem["IMAGE"]);
+    print("categories");
     // print("hai at end");
     // callTest();
     setState(() {
@@ -242,111 +245,108 @@ class _HomeScreenState extends State<HomeScreen>
                               fontSize: SizeConfig.blockSizeVertical * 3.5,)),
             ),
             Expanded(
-              child: global.category.length == 0
+              child: global.categories.length == 0
                   ? Center(
                       child: Text('loading'),
                    )
-                    : Container(
-                      color:Color.fromRGBO(255,216,180,.6),
-                      child: ListView.builder(
-                      // controller: _scrollController,
-                      itemCount: global.category.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          color:Colors.cyan[100],
-                          child:ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(global.category[index].data['image']),
-                          ),
-                          // contentPadding: EdgeInsets.all(5),
-                          title: Text(global.category[index].data['a'],style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-                          subtitle: Text("Price Starts from ₹ "+global.category[index].data['price']),
-                          // dense: true,
-                          onTap: (){
-                            // Navigator.pushNamed(context,"ContactUs");
-                            Navigator.pushNamed(context, "SubCategory");
-                            // SubCategory(index);
-                            global.TempIndex=index;
+                    : GridView.builder(
+                    padding: const EdgeInsets.all(10.0),
+                    itemCount: global.categories.length,
+                    itemBuilder: (ctx, i) {
+                      return Container(
+                                 height:MediaQuery.of(context).size.height* 0.30,
 
-                            print("clicked"+global.category[index].data['a']+global.TempIndex.toString());
-                          },
-                          // onLongPress: (){
-                          //   //  CategoryData(index);
-                          //   Navigator.pushNamed(context, "ContactForm");
-                          // },
-                          // onTap: (){
-                          //   print("clicked"+category[index].data['a']);
-                          //   // CategoryData();
-                          //   // Navigator.pushNamed(context,"CategoryData");
-                          //   // CategoryData(index);
-                          //   Navigator.pushNamed(context,"Account");
-                          //   print("clicked 2 nd tinem  "+category[index].data['a']);
-                            
-                          // },
-                          // onTap:(){
-                          //   print("clicked"+category[index].data['a']);
-                          //   msg=category[index].data['a'];
-                          //   // SubCategory(msg
-                          //   //   );
+                     child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                             elevation: 4.0,
 
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => SubCategory(msg
-                          //             )
-                          //             )
-                          //             );
-                           
-                          //   },
-                          // e=category[index].data['a'],
-                          // onTap: SubCategory(category[index].data['a'],index),
-                          // subtitle: Text(category[index].data['short_desc']),
-                        ));
-                      },
-                  ),
+                                             child: ClipRRect(
+                         borderRadius: BorderRadius.circular(20),
+                         child: GridTile(
+                           child: GestureDetector(
+                             onTap: () {
+                               Navigator.pushNamed(context, "Product",arguments:i);
+                              
+                             },
+                             child: Hero(
+                               tag: global.categories[i],
+                               child: Image.network(global.categories[i].data['image'],
+                                 fit: BoxFit.fill,
+                               
+                             ),
+                           ),),
+                           footer: GestureDetector(
+                              onTap: () {
+                               Navigator.pushNamed(context, "Product",arguments:i);
+                              
+                             },
+                                                           child: GridTileBar(
+                       backgroundColor: Colors.black38,
+                               // leading: Consumer<Product>(
+                               //   builder: (ctx, product, _) => IconButton(
+                               //         icon: Icon(
+                               //           product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                               //         ),
+                               //         color: Theme.of(context).accentColor,
+                               //         onPressed: () {
+                               //           product.toggleFavoriteStatus(
+                               //             authData.token,
+                               //             authData.userId,
+                               //           );
+                               //         },
+                               //       ),
+                               // ),
+                               title: Text(
+                                 global.categories[i].data['name'],
+                                 // style:TextStyle(color: Colors.black),
+                                 textAlign: TextAlign.center,
+                               ),
+                               // trailing: IconButton(
+                               //   icon: Icon(
+                               //     Icons.shopping_cart,
+                               //   ),
+                               // onPressed: () {
+                               //   cart.addItem(product.id, product.price, product.title);
+                               //   Scaffold.of(context).hideCurrentSnackBar();
+                               //   Scaffold.of(context).showSnackBar(
+                               //     SnackBar(
+                               //       content: Text(
+                               //         'Added item to cart!',
+                               //       ),
+                               //       duration: Duration(seconds: 2),
+                               //       action: SnackBarAction(
+                               //         label: 'UNDO',
+                               //         onPressed: () {
+                               //           cart.removeSingleItem(product.id);
+                               //         },
+                               //       ),
+                               //     ),
+                               //   );
+                               // },
+
+                               // ),
+                             ),
+                           ),
+                         ),
+                       ),
+                     ),
+                      );
+                    },
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 92 / 100,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
                     ),
-          ),
+                  ),),
           isLoading
               ? Container(
                 child: Text("Loading"),
-                  // width: MediaQuery.of(context).size.width,
-                  // padding: EdgeInsets.all(5),
-                  // color: Colors.yellowAccent,
-                  // child: Text(
-                  //   'Loading',
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyle(
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
                 )
               : Container()
-
-            
-          //   Column(children:<Widget>
-          //   [
-          //     Expanded(child:category.length==0?
-          //     Center(
-          //       child:Text("data"),
-          //     )
-          //     :
-          //     ListView.builder(
-          //       itemCount: category.length,
-          //       itemBuilder: (context,index){
-          //         return ListTile(
-          //           title: Text(category[index].data['a']),
-          //         );
-          //       },
-          //     ),
-          //     // isLoading?Text("Loading"):Container()
-          //     ),
-          //   ]
-          // ),
-   
-          ]
+               ]
           ),
         ),
       ), 
@@ -355,6 +355,114 @@ class _HomeScreenState extends State<HomeScreen>
    }
 
 }
+                  //     color:Color.fromRGBO(255,216,180,.6),
+                  //     child: ListView.builder(
+                  //     // controller: _scrollController,
+                  //     itemCount: global.category.length,
+                  //     itemBuilder: (context, index) {
+                  //       return Card(
+                  //         color:Colors.cyan[100],
+                  //         child:ListTile(
+                  //         leading: CircleAvatar(
+                  //           backgroundImage: NetworkImage(global.category[index].data['image']),
+                  //         ),
+                  //         // contentPadding: EdgeInsets.all(5),
+                  //         title: Text(global.category[index].data['a'],style: TextStyle(
+                  //               color: Colors.black,
+                  //               fontWeight: FontWeight.w600,
+                  //               fontSize: SizeConfig.blockSizeVertical * 2.9,)),
+                  //         subtitle: Text("Price Starts from ₹ "+global.category[index].data['price']),
+                  //         // dense: true,
+                  //         onTap: (){
+                  //           // Navigator.pushNamed(context,"ContactUs");
+                  //           Navigator.pushNamed(context, "SubCategory");
+                  //           // SubCategory(index);
+                  //           global.TempIndex=index;
+
+                  //           print("clicked"+global.category[index].data['a']+global.TempIndex.toString());
+                  //         },
+                  //         // onLongPress: (){
+                  //         //   //  CategoryData(index);
+                  //         //   Navigator.pushNamed(context, "ContactForm");
+                  //         // },
+                  //         // onTap: (){
+                  //         //   print("clicked"+category[index].data['a']);
+                  //         //   // CategoryData();
+                  //         //   // Navigator.pushNamed(context,"CategoryData");
+                  //         //   // CategoryData(index);
+                  //         //   Navigator.pushNamed(context,"Account");
+                  //         //   print("clicked 2 nd tinem  "+category[index].data['a']);
+                            
+                  //         // },
+                  //         // onTap:(){
+                  //         //   print("clicked"+category[index].data['a']);
+                  //         //   msg=category[index].data['a'];
+                  //         //   // SubCategory(msg
+                  //         //   //   );
+
+                  //         //   Navigator.push(
+                  //         //     context,
+                  //         //     MaterialPageRoute(
+                  //         //         builder: (context) => SubCategory(msg
+                  //         //             )
+                  //         //             )
+                  //         //             );
+                           
+                  //         //   },
+                  //         // e=category[index].data['a'],
+                  //         // onTap: SubCategory(category[index].data['a'],index),
+                  //         // subtitle: Text(category[index].data['short_desc']),
+                  //       ));
+                  //     },
+                  // ),
+                  //   ),
+//           ),
+//           isLoading
+//               ? Container(
+//                 child: Text("Loading"),
+//                   // width: MediaQuery.of(context).size.width,
+//                   // padding: EdgeInsets.all(5),
+//                   // color: Colors.yellowAccent,
+//                   // child: Text(
+//                   //   'Loading',
+//                   //   textAlign: TextAlign.center,
+//                   //   style: TextStyle(
+//                   //     fontWeight: FontWeight.bold,
+//                   //   ),
+//                   // ),
+//                 )
+//               : Container()
+
+            
+//           //   Column(children:<Widget>
+//           //   [
+//           //     Expanded(child:category.length==0?
+//           //     Center(
+//           //       child:Text("data"),
+//           //     )
+//           //     :
+//           //     ListView.builder(
+//           //       itemCount: category.length,
+//           //       itemBuilder: (context,index){
+//           //         return ListTile(
+//           //           title: Text(category[index].data['a']),
+//           //         );
+//           //       },
+//           //     ),
+//           //     // isLoading?Text("Loading"):Container()
+//           //     ),
+//           //   ]
+//           // ),
+   
+//           ]
+//           ),
+//         ),
+//       ), 
+//     ),
+//     );
+//    }
+
+// }
 
 
 
