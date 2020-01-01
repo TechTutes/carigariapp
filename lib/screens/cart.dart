@@ -176,6 +176,14 @@ class _CartState extends State<Cart> {
                                     });
 
                                     global.cart.remove(global.cart[num]);
+                                 
+                                        global.totalamount = 0;
+                                    for (int i = 0;
+                                        i < global.cart.length;
+                                        i++) {
+                                      global.totalamount +=
+                                          global.cart[i].data["price"];
+                                    }
                                   },
                                 ),
                                 leading: CircleAvatar(
