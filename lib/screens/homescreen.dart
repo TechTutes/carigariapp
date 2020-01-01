@@ -66,8 +66,8 @@ class _HomeScreenState extends State<HomeScreen>
     qp=await Firestore.instance.collection("categories").getDocuments();
     global.categories.isEmpty?global.categories.addAll(qp.documents):null;
     // :SizedBox();
-  var dem=global.categories[11].data["subcat2"];
-    print(dem["IMAGE"]);
+  // var dem=global.categories[10].data["name"];
+    // print(dem["name"]);
     print("categories");
     // print("hai at end");
     // callTest();
@@ -184,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen>
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                  
-               Text('Carigari Furnitures'),
+               Text('Carigari'),
                    Image.asset(
                  'images/logo.png',
                   fit: BoxFit.fill,

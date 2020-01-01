@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart'as global;
+import 'homescreen.dart';
 // import '../Arrangements/variables.dart';
 
 class SubCategory extends StatefulWidget{
@@ -20,8 +21,25 @@ class SubCategory extends StatefulWidget{
 class _SubCategoryState extends State<SubCategory> {
 
   
-  
+  QuerySnapshot qs;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+ void initState() {
+    print("in init state");
+    super.initState();
+    getCategoryList();
+  }
+
+
+  getCategoryList() async {
+    // setState(() {
+    //   isLoading = true;
+    // });
+    
+    qs = await Firestore.instance.collection("category").getDocuments();
+    global.category.isEmpty ? global.category.addAll(qs.documents) : null;
+    print(global.category[0].data['a']);
+    // +-
+  }
 
   void callSnackBar(String me)
   {
@@ -114,12 +132,13 @@ class _SubCategoryState extends State<SubCategory> {
       ),
       drawer: theDrawer(context),
       bottomNavigationBar: bottomnavigation(context, 2),
-      body: WillPopScope(
-        onWillPop: ()
-        {
-          Navigator.pushNamed(context,"HomeScreen");
-        },
-        child:
+      body: 
+      // WillPopScope(
+      //   onWillPop: ()
+      //   {
+      //     Navigator.pushNamed(context,"Product",arguments: );
+      //   },
+      //   child:
             // Text(global.category[0].data['a']),
             // Text("\n"),
             Padding(
@@ -196,11 +215,11 @@ class _SubCategoryState extends State<SubCategory> {
                           onPressed: ()async{
                             print("clilcked to  add");
 
-
-
-                          // List a=[];
-                          // global.vari
-                          global.selected.add(global.TempIndex);
+print(global.category[global.TempIndex]);
+// var te=global.selected[i];
+    global.cart.add(qs.documents[global.TempIndex]);
+                        
+                          // global.cart.add(global.TempIndex);
                           global.touch=1;
                           // int tem = int.parse(global.category[global.TempIndex].data['price']);
                           // print(tem);
@@ -269,7 +288,8 @@ class _SubCategoryState extends State<SubCategory> {
             ),
           ],
           // child: Text(global.category[0].data['a']),
-        ),),
+        ),
+        // ),
       ),
     );
   }
