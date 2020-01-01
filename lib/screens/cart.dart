@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../Arrangements/variables.dart' as global;
+import 'subcategory.dart' as local;
 
 class Cart extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _CartState extends State<Cart> {
   int num;
   DocumentSnapshot docID;
   QuerySnapshot qp;
-  @override
+
   del() {
     global.cart.remove(global.cart[num]);
   }
@@ -26,6 +27,7 @@ class _CartState extends State<Cart> {
   @override
   void initState() {
     print("in init state");
+
     super.initState();
     getSelectedList();
   }
@@ -78,46 +80,43 @@ class _CartState extends State<Cart> {
             child: Center(
                 child: Column(
               children: <Widget>[
-                // Card(
-                //   margin: EdgeInsets.all(15),
-                //   child: Padding(
-                //     padding: EdgeInsets.all(8),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //       children: <Widget>[
-                //         Text(
-                //           'Total',
-                //           style: TextStyle(fontSize: 20),
-                //         ),
-                //         Spacer(),
-                //         Chip(
-                //           label: Text(
-                //             '\$${cart.totalAmount}',
-                //             style: TextStyle(
-                //               color: Theme.of(context).primaryTextTheme.title.color,
-                //             ),
-                //           ),
-                //           backgroundColor: Theme.of(context).primaryColor,
-                //         ),
-                //         FlatButton(
-                //           child: Text('ORDER NOW'),
-                //           onPressed: () {},
-                //           textColor: Theme.of(context).primaryColor,
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // ),
-
-                // // children: <Widget>[
-                //   // Text(global.cart);
-                //   SizedBox( height: MediaQuery.of(context).size.height/25,
-                // width: MediaQuery.of(context).size.width/1.5,
-                // child:Text("Select by Category",style: TextStyle(
-                //                   color: Colors.brown,
-                //                   fontWeight: FontWeight.w600,
-                //                   fontSize: SizeConfig.blockSizeVertical * 3.5,)),
-                // ),
+                Card(
+                  margin: EdgeInsets.all(15),
+                  child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Total',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Spacer(),
+                        Chip(
+                          label: Text(
+                            ' ₹  ${global.totalamount}',
+                            style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.2, 
+                              color: Theme.of(context)
+                                  .primaryTextTheme
+                                  .title
+                                  .color,
+                            ),
+                          ),
+                          backgroundColor: Theme.of(context).primaryColor,
+                        ),
+                        FlatButton(
+                          child: Text('ORDER NOW',style:TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.2, )),
+                          onPressed: () {
+                            Navigator.pushNamed(context, "OrderConfirm");
+                          },
+                          textColor: Theme.of(context).primaryColor,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+             
                 Expanded(
                   child: global.cart.length == 0
                       ? Center(
@@ -146,13 +145,22 @@ class _CartState extends State<Cart> {
                               ),
                               direction: DismissDirection.endToStart,
                               onDismissed: (direction) {
-                                setState(() {
-                                  num = index;
-                                });
-                                del();
-                                //  global.cart.remove(global.cart[num]) ;
+                                setState(
+                                  () {
+                                    num = index;
+                                    global.cart.remove(global.cart[num]);
+
+                                    global.totalamount = 0;
+                                    for (int i = 0;
+                                        i < global.cart.length;
+                                        i++) {
+                                      global.totalamount +=
+                                          global.cart[i].data["price"];
+                                    }
+
+                                  },
+                                );
                               },
-                              // global.cart.remove(global.cart[num]) ;
 
                               child: Card(
                                   child: ListTile(
@@ -185,8 +193,8 @@ class _CartState extends State<Cart> {
                                       fontSize:
                                           SizeConfig.blockSizeVertical * 2.9,
                                     )),
-                                subtitle: Text(" Price  ₹ " +
-                                    global.cart[index].data['price']),
+                                subtitle: Text(
+                                    " Price  ₹  ${global.cart[index].data['price']} "),
                                 // dense: true,
 
                                 onTap: () {

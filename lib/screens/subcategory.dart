@@ -20,7 +20,7 @@ class SubCategory extends StatefulWidget{
 
 class _SubCategoryState extends State<SubCategory> {
 
-  
+ 
   QuerySnapshot qs;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
  void initState() {
@@ -160,7 +160,7 @@ class _SubCategoryState extends State<SubCategory> {
               child: Image.network(global.category[global.TempIndex].data['image']),
             ),Divider(),
             // Image.network(global.category[0].data['image']),
-            Text("\t\t\tPrice:  ₹ "+global.category[global.TempIndex].data['price'],style: TextStyle(
+            Text("\t\t\tPrice:  ₹ ${global.category[global.TempIndex].data['price']}",style: TextStyle(
                             color: Colors.pink,
                             fontWeight: FontWeight.w600,
                             fontSize: SizeConfig.blockSizeVertical * 2.9,)
@@ -218,7 +218,18 @@ class _SubCategoryState extends State<SubCategory> {
 print(global.category[global.TempIndex]);
 // var te=global.selected[i];
     global.cart.add(qs.documents[global.TempIndex]);
-                        
+  //  print(global.cart[global.TempIndex].data["price"]) ;
+  // setState(() {
+      // price(){               
+     global.totalamount = 0;
+    for(int i=0;i<global.cart.length;i++) {
+      global.totalamount += global.cart[i].data["price"] ;}
+    //   return global.totalamount;
+    // }
+    print(global.totalamount.toString());
+  // });
+ 
+   
                           // global.cart.add(global.TempIndex);
                           global.touch=1;
                           // int tem = int.parse(global.category[global.TempIndex].data['price']);

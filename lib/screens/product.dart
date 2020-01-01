@@ -132,7 +132,7 @@ class _ProductState extends State<Product> {
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
                                 fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-                          subtitle: Text("Price Starts from ₹ "+global.category[index].data['price']),
+                          subtitle: Text("Price Starts from ₹ ${global.category[index].data['price']}"),
                           // dense: true,
                           onTap: (){
                             // Navigator.pushNamed(context,"ContactUs");
