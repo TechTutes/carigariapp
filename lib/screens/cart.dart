@@ -49,6 +49,9 @@ class _CartState extends State<Cart> {
     print(qp);
     print(global.selected.length);
     print("${global.touch}this is glo touch in cart page");
+     setState(() {
+      isLoading=false;
+    });
   }
 
   @override
@@ -194,7 +197,7 @@ class _CartState extends State<Cart> {
                                       : "https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new3.jpg"),
                                 ),
                                 contentPadding: EdgeInsets.all(5),
-                                title: Text(global.cart[index].data['a'],
+                                title: Text(global.cart[index].data['name'],
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w600,

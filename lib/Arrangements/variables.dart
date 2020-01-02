@@ -10,10 +10,11 @@ int touch=0,totalamount=0;
 var UserName="NoName";
 var EmailId="No Mailid";
 var Phone;
-int TempIndex;
+// int TempIndex;
 int price=0;
   List<DocumentSnapshot> category=[];
   List<DocumentSnapshot> categories=[];
+
 
   List<DocumentSnapshot> cart=[];
 

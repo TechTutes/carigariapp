@@ -268,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen>
                            child: GestureDetector(
                              onTap: () {
                                Navigator.pushNamed(context, "Product",arguments:i);
-                              
+                                global.touch=i;
                              },
                              child: Hero(
                                tag: global.categories[i],
@@ -280,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen>
                            footer: GestureDetector(
                               onTap: () {
                                Navigator.pushNamed(context, "Product",arguments:i);
-                              
+                              global.touch=i;
                              },
                                                            child: GridTileBar(
                        backgroundColor: Colors.black38,

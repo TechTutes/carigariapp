@@ -7,11 +7,11 @@ import 'package:flutter/cupertino.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
-import '../Arrangements/variables.dart'as global;
+import '../Arrangements/variables.dart' as global;
 import 'homescreen.dart';
 // import '../Arrangements/variables.dart';
 
-class SubCategory extends StatefulWidget{
+class SubCategory extends StatefulWidget {
   // SubCategory([int index]);
 
   @override
@@ -19,32 +19,13 @@ class SubCategory extends StatefulWidget{
 }
 
 class _SubCategoryState extends State<SubCategory> {
+  bool isLoading = false;
 
- 
-  QuerySnapshot qs;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
- void initState() {
-    print("in init state");
-    super.initState();
-    getCategoryList();
-  }
 
-
-  getCategoryList() async {
-    // setState(() {
-    //   isLoading = true;
-    // });
-    
-    qs = await Firestore.instance.collection("category").getDocuments();
-    global.category.isEmpty ? global.category.addAll(qs.documents) : null;
-    print(global.category[0].data['a']);
-    // +-
-  }
-
-  void callSnackBar(String me)
-  {
+  void callSnackBar(String me) {
     print("called me for scnack bar");
-    final SnackBar =new prefix0.SnackBar(
+    final SnackBar = new prefix0.SnackBar(
       content: new Text(me),
       duration: new Duration(seconds: 1),
       // action: new SnackBarAction(
@@ -58,57 +39,60 @@ class _SubCategoryState extends State<SubCategory> {
     _scaffoldkey.currentState.showSnackBar(SnackBar);
   }
 
-
   @override
   Widget build(BuildContext context) {
     // void Alert(){
     //   return
     // }
+     final index = ModalRoute.of(context).settings.arguments ; 
 
-    Alerting(BuildContext context){
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context){
-        return new AlertDialog(
-            shape: RoundedRectangleBorder(
-                 borderRadius: BorderRadius.all(Radius.circular(20.0))
-                 ),
-          // elevation: 200.0,
-          // backgroundColor: Colors.white60,
-          // title: Text("Please Enter SMS Code"),
-          titlePadding: EdgeInsets.all(20.0),
-          content:Text(" Shop further Or Checkout",style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-          contentPadding: EdgeInsets.all(10.0),
-          
-          actions: <Widget>[
-            new FlatButton(
-              child: Text("Shop ",style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.w600,
-                            fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-              onPressed: (){
-                Navigator.pushNamed(context,"HomeScreen");
-                
-              },
-            ),
-             new FlatButton(
-              child: Text("Checkout",style: TextStyle(
-                            color: Colors.pink,
-                            fontWeight: FontWeight.w600,
-                            fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-              onPressed: (){
-                  Navigator.pushNamed(context,"Cart");
-              },
-            )
-          ],
-        );
-      }
-    );
-  }
+    Alerting(BuildContext context) {
+      return showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return new AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              // elevation: 200.0,
+              // backgroundColor: Colors.white60,
+              // title: Text("Please Enter SMS Code"),
+              titlePadding: EdgeInsets.all(20.0),
+              content: Text(" Shop further Or Checkout",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: SizeConfig.blockSizeVertical * 2.9,
+                  )),
+              contentPadding: EdgeInsets.all(10.0),
+
+              actions: <Widget>[
+                new FlatButton(
+                  child: Text("Shop ",
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                        fontSize: SizeConfig.blockSizeVertical * 2.9,
+                      )),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "HomeScreen");
+                  },
+                ),
+                new FlatButton(
+                  child: Text("Checkout",
+                      style: TextStyle(
+                        color: Colors.pink,
+                        fontWeight: FontWeight.w600,
+                        fontSize: SizeConfig.blockSizeVertical * 2.9,
+                      )),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "Cart");
+                  },
+                )
+              ],
+            );
+          });
+    }
 
     // TODO: implement build
     return Scaffold(
@@ -116,187 +100,246 @@ class _SubCategoryState extends State<SubCategory> {
       appBar: new AppBar(
         backgroundColor: Colors.cyan[300],
         title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 
-               Text(global.category[global.TempIndex].data['a']),
-                   Image.asset(
-                 'images/logo.png',
-                  fit: BoxFit.fill,
-                  height:SizeConfig.blockSizeVertical * 4.5,
-                  
-              ),
-            ],
-
-          ), 
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(global.category[index].data['name']),
+            Image.asset(
+              'images/logo.png',
+              fit: BoxFit.fill,
+              height: SizeConfig.blockSizeVertical * 4.5,
+            ),
+          ],
+        ),
       ),
       drawer: theDrawer(context),
       bottomNavigationBar: bottomnavigation(context, 2),
-      body: 
-      // WillPopScope(
-      //   onWillPop: ()
-      //   {
-      //     Navigator.pushNamed(context,"Product",arguments: );
-      //   },
-      //   child:
-            // Text(global.category[0].data['a']),
-            // Text("\n"),
-            Padding(
-              padding: EdgeInsets.only(top: 10.0,left:10.0,right:9.0),
-            child: ListView(
+      body:
+          // WillPopScope(
+          //   onWillPop: ()
+          //   {
+          //     Navigator.pushNamed(context,"Product",arguments: );
+          //   },
+          //   child:
+          // Text(global.category[0].data['a']),
+          // Text("\n"),
+          Padding(
+        padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 9.0),
+        child: ListView(
           children: <Widget>[
             SizedBox(
-              height: MediaQuery.of(context).size.height/10,
+              height: MediaQuery.of(context).size.height / 9,
               width: SizeConfig.blockSizeVertical * 85,
-              child:Text("\t\t\tProduct Description for "+global.category[global.TempIndex].data['a'],style: TextStyle(
+              child: Column(
+                crossAxisAlignment:CrossAxisAlignment.start,
+                children: <Widget>[
+                  
+                  Text(
+                    "\t\t\tProduct Description for " ,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: SizeConfig.blockSizeVertical * 2.9,
+                    ),
+                  ),
+                   Center(
+                     child: Text(
+                      global.category[index].data['name'],
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: SizeConfig.blockSizeVertical * 2.9,
+                      ),
+                  ),
+                   ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 4,
+              width: MediaQuery.of(context).size.width * 1,
+              child: Image.network(
+                  global.category[index].data['image']),
+            ),
+            Divider(),
+            // Image.network(global.category[0].data['image']),
+            Text(
+                "\t\t\tPrice:  ₹ ${global.category[index].data['price']}",
+                style: TextStyle(
+                  color: Colors.pink,
+                  fontWeight: FontWeight.w600,
+                  fontSize: SizeConfig.blockSizeVertical * 2.9,
+                )),
+            Divider(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 13,
+              child: Row(
+                children: <Widget>[
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text("\t\t\tQuantity ",
+                          style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
                             fontSize: SizeConfig.blockSizeVertical * 2.9,
-                          ),),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height/3,
-              width: MediaQuery.of(context).size.width*1,
-              child: Image.network(global.category[global.TempIndex].data['image']),
-            ),Divider(),
-            // Image.network(global.category[0].data['image']),
-            Text("\t\t\tPrice:  ₹ ${global.category[global.TempIndex].data['price']}",style: TextStyle(
-                            color: Colors.pink,
-                            fontWeight: FontWeight.w600,
-                            fontSize: SizeConfig.blockSizeVertical * 2.9,)
-                            ),
-              Divider(),
-              SizedBox(
-              
-              height: MediaQuery.of(context).size.height/15,
-              child: Text("\t\t\tDescription:     .....",style: TextStyle(
+                          )),
+                      Text("\t\t\t Available:",
+                          style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
-                            fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-
-
-              ), 
-              SizedBox(
-              
-              height: MediaQuery.of(context).size.height/15,
+                            fontSize: SizeConfig.blockSizeVertical * 2.5,
+                          )),
+                    ],
+                  ),
+                  Text(
+                      "\t\t\t${global.category[index].data["quantity"]}",
+                      style: TextStyle(
+                        color: Colors.pink,
+                        fontWeight: FontWeight.w600,
+                        fontSize: SizeConfig.blockSizeVertical * 2.9,
+                      )),
+                ],
+              ),
+            ),
+            Divider(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height/10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("\t\t\tDescription:",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: SizeConfig.blockSizeVertical * 2.9,
+                      )),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // SizedBox(
+                      //   width:30,
+                      // ),
+                      Text(
+                          "\t\t\t${global.category[index].data['desc']}",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.pink,
+                            fontWeight: FontWeight.w600,
+                            fontSize: SizeConfig.blockSizeVertical * 2.9,
+                          )),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 18,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("\t\t\t[Delevery Charges:extra",style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: SizeConfig.blockSizeVertical * 2.2,)),
-                                Text("\t\t\tGST:18% extra]",style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400,
-                            fontSize: SizeConfig.blockSizeVertical * 2.2,)),
+                  Text("\t\t\t[Delevery Charges:extra",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: SizeConfig.blockSizeVertical * 2.2,
+                      )),
+                  Text("\t\t\tGST:18% extra]",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: SizeConfig.blockSizeVertical * 2.2,
+                      )),
                 ],
               ),
-
-
-              ),
-             
-
-              Divider(),     
-           SizedBox(
-         height:SizeConfig.blockSizeVertical * 6,
-         width:SizeConfig.blockSizeHorizontal * 50,
-                child: RaisedButton(
-                  elevation:5.0,
-                    color: Colors.brown[400],
-                  child: Text("Add +",style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: SizeConfig.blockSizeVertical * 4,)
-                              ),
-                          
-                        
-                          onPressed: ()async{
-                            print("clilcked to  add");
-
-print(global.category[global.TempIndex]);
-// var te=global.selected[i];
-    global.cart.add(qs.documents[global.TempIndex]);
-  //  print(global.cart[global.TempIndex].data["price"]) ;
-  // setState(() {
-      // price(){               
-     global.totalamount = 0;
-    for(int i=0;i<global.cart.length;i++) {
-      global.totalamount += global.cart[i].data["price"] ;}
-    //   return global.totalamount;
-    // }
-    print(global.totalamount.toString());
-  // });
- 
-   
-                          // global.cart.add(global.TempIndex);
-                          global.touch=1;
-                          // int tem = int.parse(global.category[global.TempIndex].data['price']);
-                          // print(tem);
-                          // global.totalamount = global.totalamount + tem;
-                          print("${global.touch}touch is selected ");
-                          // print(selected);
-                          // global.selected.add(12);
-                          print("${global.selected}this is selected lenght");
-                          // await Future.delayed(const Duration(seconds: 1));
-                            Alerting(context);
-
-                            
-                            // Firestore.instance
-                            // .collection("selected")
-                            // .document("1")
-                            // .collection("cart")
-                            // // .add({
-                            // //   "a":global.TempIndex.toString(),
-                            // // }).catchError((err) =>print(err));
-                            // .document("cart")
-                            // // .collection("cart")
-                            // // .document(global.TempIndex.toString());
-                            // .setData({
-                            //       "name":"jp"
-
-                            // })
-                            // .then((result)=>
-                            // {
-                              
-                            // }) .catchError((err) =>print(err));
-                            // //  callSnackBar("Please check the details properly"));
-
-                            // await Future.delayed(const Duration(seconds: 1));
-                            // Alerting(context);
-                            // await Future.delayed(const Duration(seconds: 5));
-                            // Navigator.pushNamed(context,"HomeScreen");  jp
-
-
-                            // global.
-                            // print("clicked "+global.category[global.TempIndex].data['a']);
-                            // callSnackBar("Added "+global.category[global.TempIndex].data['a'] +" to the cart");
-                            // // global.cart=global.category[0].data['a'];
-                            // // global.CartData=
-                            // // CallForAdding();
-
-                            //  Firestore.instance
-                            //           .collection("cart")
-                            //           .document(global.category[global.TempIndex].data['a'].toString())
-                            //           .setData({
-                            //             // "name":nameInput.text,
-                            //             "name":global.category[global.TempIndex].data['a'].toString(),
-                            //             "price":global.category[global.TempIndex].data['price'].toString(),
-                                        
-                            //           })
-                            //           .then((result) => {
-                                        
-                            //           })
-                            //       .catchError((err) => callSnackBar("Please check the details properly"));
-
-                            // await Future.delayed(const Duration(seconds: 1));
-                            // Alerting(context);
-                            // Navigator.pushNamed(context,"HomeScreen");
-                          },
-                            ),
-              
             ),
+
+            Divider(),
+            SizedBox(
+              height: SizeConfig.blockSizeVertical * 6,
+              width: SizeConfig.blockSizeHorizontal * 50,
+              child: RaisedButton(
+                elevation: 5.0,
+                color: Colors.brown[400],
+                child: Text("Add +",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: SizeConfig.blockSizeVertical * 4,
+                    )),
+                onPressed: () async {
+                  print("clilcked to  add");
+
+                  print(global.category[1].data["name"]);
+                  global.cart.add(global.category[index]);
+
+                  global.totalamount = 0;
+                  for (int i = 0; i < global.cart.length; i++) {
+                    global.totalamount += global.cart[i].data["price"];
+                  }
+
+                  print(global.totalamount.toString());
+
+                  Alerting(context);
+
+                  // Firestore.instance
+                  // .collection("selected")
+                  // .document("1")
+                  // .collection("cart")
+                  // // .add({
+                  // //   "a":index.toString(),
+                  // // }).catchError((err) =>print(err));
+                  // .document("cart")
+                  // // .collection("cart")
+                  // // .document(index.toString());
+                  // .setData({
+                  //       "name":"jp"
+
+                  // })
+                  // .then((result)=>
+                  // {
+
+                  // }) .catchError((err) =>print(err));
+                  // //  callSnackBar("Please check the details properly"));
+
+                  // await Future.delayed(const Duration(seconds: 1));
+                  // Alerting(context);
+                  // await Future.delayed(const Duration(seconds: 5));
+                  // Navigator.pushNamed(context,"HomeScreen");  jp
+
+                  // global.
+                  // print("clicked "+global.category[index].data['a']);
+                  // callSnackBar("Added "+global.category[index].data['a'] +" to the cart");
+                  // // global.cart=global.category[0].data['a'];
+                  // // global.CartData=
+                  // // CallForAdding();
+
+                  //  Firestore.instance
+                  //           .collection("cart")
+                  //           .document(global.category[index].data['a'].toString())
+                  //           .setData({
+                  //             // "name":nameInput.text,
+                  //             "name":global.category[index].data['a'].toString(),
+                  //             "price":global.category[index].data['price'].toString(),
+
+                  //           })
+                  //           .then((result) => {
+
+                  //           })
+                  //       .catchError((err) => callSnackBar("Please check the details properly"));
+
+                  // await Future.delayed(const Duration(seconds: 1));
+                  // Alerting(context);
+                  // Navigator.pushNamed(context,"HomeScreen");
+                },
+              ),
+            ),
+            isLoading
+                ? Container(
+                    child: Text("Loading"),
+                  )
+                : Container()
           ],
           // child: Text(global.category[0].data['a']),
         ),
@@ -304,8 +347,4 @@ print(global.category[global.TempIndex]);
       ),
     );
   }
-
-  // void CallForAdding() {
-                                  
-  // }
 }

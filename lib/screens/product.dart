@@ -58,14 +58,12 @@ class _ProductState extends State<Product> {
     // if(global.category==null){
 
     // }
-    QuerySnapshot qp;
-    qp=await Firestore.instance.collection("category").getDocuments();
+    QuerySnapshot qp,qs;
+    qp=await Firestore.instance.collection("${global.categories[global.touch].data['name']}").getDocuments();
     global.category.isEmpty?global.category.addAll(qp.documents):null;
-    // :SizedBox();
-  print(global.category[2].data["a"]);
+    
     print("category");
-    // print("hai at end");
-    // callTest();
+   
     setState(() {
       isLoading=false;
     });
@@ -73,7 +71,6 @@ class _ProductState extends State<Product> {
 
   @override
   Widget build(BuildContext context) {
-     final indx = ModalRoute.of(context).settings.arguments ; 
 
     return new Scaffold(
       key: _scaffoldkey,
@@ -83,7 +80,7 @@ class _ProductState extends State<Product> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                  
-               Text(global.categories[indx].data["name"]),
+               Text(global.categories[global.touch].data['name']),
                    Image.asset(
                  'images/logo.png',
                   fit: BoxFit.fill,
@@ -96,7 +93,7 @@ class _ProductState extends State<Product> {
       ),
       drawer: theDrawer(context),
       bottomNavigationBar: bottomnavigation(context,0),
-      body: Column(
+      body:global.category.length>0? Column(
             children:<Widget>
           [
             
@@ -128,7 +125,7 @@ class _ProductState extends State<Product> {
                             backgroundImage: NetworkImage(global.category[index].data['image']),
                           ),
                           // contentPadding: EdgeInsets.all(5),
-                          title: Text(global.category[index].data['a'],style: TextStyle(
+                          title: Text(global.category[index].data['name'],style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
                                 fontSize: SizeConfig.blockSizeVertical * 2.9,)),
@@ -136,11 +133,11 @@ class _ProductState extends State<Product> {
                           // dense: true,
                           onTap: (){
                             // Navigator.pushNamed(context,"ContactUs");
-                            Navigator.pushNamed(context, "SubCategory");
+                            Navigator.pushNamed(context, "SubCategory",arguments: index);
                             // SubCategory(index);
-                            global.TempIndex=index;
+                            // global.TempIndex=index;
 
-                            print("clicked"+global.category[index].data['a']+global.TempIndex.toString());
+                            print("clicked"+global.category[index].data['name']);
                           },
                           // onLongPress: (){
                           //   //  CategoryData(index);
@@ -216,7 +213,31 @@ class _ProductState extends State<Product> {
           // ),
    
           ]
+          ):
+         Column(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           children: <Widget>[
+           
+           Center(
+                       child: Text("\n\n\n\t\t\t There are no products in this category.\n\n\n\t\t\tThank You",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
+
           ),
+         RaisedButton(
+                elevation: 5.0,
+                color: Colors.brown[400],
+                child: Text("Back to Categories",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: SizeConfig.blockSizeVertical * 4,
+                    )),
+                onPressed: (){
+                    Navigator.pushReplacementNamed(context, "HomeScreen");
+
+                }
+            
+          )
+         ],) 
     
       
     );
