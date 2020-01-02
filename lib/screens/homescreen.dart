@@ -158,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen>
             //   ctxt,
             //   new MaterialPageRoute(builder: (ctxt) => new Privacy()),
             // );
-            Navigator.pushNamed(context, "HomeScreen");
+            Navigator.pushReplacementNamed(context, "HomeScreen");
             // Navigator.pop(context);
               },
             ),
@@ -267,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen>
                          child: GridTile(
                            child: GestureDetector(
                              onTap: () {
-                               Navigator.pushNamed(context, "Product",arguments:i);
+                               Navigator.pushReplacementNamed(context, "Product",arguments:i);
                                 global.touch=i;
                              },
                              child: Hero(
@@ -279,7 +279,7 @@ class _HomeScreenState extends State<HomeScreen>
                            ),),
                            footer: GestureDetector(
                               onTap: () {
-                               Navigator.pushNamed(context, "Product",arguments:i);
+                               Navigator.pushReplacementNamed(context, "Product",arguments:i);
                               global.touch=i;
                              },
                                                            child: GridTileBar(

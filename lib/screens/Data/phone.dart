@@ -39,7 +39,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
       this.verificationId=verId;
       smsCodeDialog(context).then((value){
         print("signed in");
-        global.Phone=phoneNo;
+        // global.Phone=phoneNo;
         print(global.Phone);
         
       });
@@ -155,7 +155,7 @@ if (value.length!=6 || value.length==null) {
       callSnackBar("You are signing in please wait !!");
                 FirebaseAuth.instance.currentUser().then((user){
                   if(user!=null){
-                    global.Phone=phoneNo;
+                    // global.Phone=phoneNo;
                     Navigator.of(context).pop();
                     Navigator.pushReplacementNamed(context,'HomeScreen');
                   }

@@ -133,7 +133,7 @@ class _ProductState extends State<Product> {
                           // dense: true,
                           onTap: (){
                             // Navigator.pushNamed(context,"ContactUs");
-                            Navigator.pushNamed(context, "SubCategory",arguments: index);
+                            Navigator.pushReplacementNamed(context, "SubCategory",arguments: index);
                             // SubCategory(index);
                             // global.TempIndex=index;
 

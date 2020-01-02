@@ -169,9 +169,9 @@ class _LoginPageState extends State<LoginPage> {
                                   
                                   //
                                   Navigator.pushReplacementNamed(context, "HomeScreen"),
-                                   global.Phone=currentUser.phoneNumber,
+                                  //  global.Phone=5439654785,
                                   global.EmailId=currentUser.email,
-                                  print(global.EmailId+global.Phone),
+                                  print(global.EmailId+"global.Phone"),
                                   }
                                             )
                                 .catchError((err) => callSnackBar(err.toString())))

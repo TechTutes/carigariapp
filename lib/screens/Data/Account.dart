@@ -220,8 +220,7 @@ class _AccountInfoState extends State<AccountInfo> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
-                        Text(
-                          global.Phone,
+                        Text("j",
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
                               fontSize: 20.0,

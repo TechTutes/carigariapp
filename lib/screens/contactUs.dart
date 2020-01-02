@@ -1,9 +1,11 @@
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:carigari/Arrangements/variables.dart' as local;
 
 class ContactUs extends StatefulWidget{
   @override
@@ -11,6 +13,30 @@ class ContactUs extends StatefulWidget{
 }
 
 class _ContactUsState extends State<ContactUs> {
+   void initState(){
+    print("in init state");
+    super.initState();
+    getCategoryList();
+  }
+
+  getCategoryList() async{
+    setState(() {
+      // isLoading=true;
+    });
+    // if(local.category==null){
+
+    // }
+    QuerySnapshot qs;
+    qs=await Firestore.instance.collection("phone").getDocuments();
+    local.phone.isEmpty?local.phone.addAll(qs.documents):null;
+    
+    print("category");
+   
+    setState(() {
+      // isLoading=false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
