@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
 import 'homescreen.dart';
+import 'product.dart'as local;
 // import '../Arrangements/variables.dart';
 
 class SubCategory extends StatefulWidget {
@@ -19,10 +20,10 @@ class SubCategory extends StatefulWidget {
 }
 
 class _SubCategoryState extends State<SubCategory> {
-  bool isLoading = false;
+  bool isLoading = false,productIs=true;
 
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-
+ 
   void callSnackBar(String me) {
     print("called me for scnack bar");
     final SnackBar = new prefix0.SnackBar(
@@ -44,6 +45,12 @@ class _SubCategoryState extends State<SubCategory> {
     // void Alert(){
     //   return
     // }
+     if(global.category.isEmpty){
+      
+    setState(() {
+      productIs = false;
+    });
+    }
      final index = ModalRoute.of(context).settings.arguments ; 
 
     Alerting(BuildContext context) {
@@ -95,7 +102,7 @@ class _SubCategoryState extends State<SubCategory> {
     }
 
     // TODO: implement build
-    return Scaffold(
+    return  Scaffold(
       key: _scaffoldkey,
       appBar: new AppBar(
         backgroundColor: Colors.cyan[300],
@@ -113,7 +120,7 @@ class _SubCategoryState extends State<SubCategory> {
       ),
       drawer: theDrawer(context),
       bottomNavigationBar: bottomnavigation(context, 2),
-      body:
+      body:productIs?
           // WillPopScope(
           //   onWillPop: ()
           //   {
@@ -271,7 +278,7 @@ class _SubCategoryState extends State<SubCategory> {
                 onPressed: () async {
                   print("clilcked to  add");
 
-                  print(global.category[1].data["name"]);
+                  // print(global.category[1].data["name"]);
                   global.cart.add(global.category[index]);
 
                   global.totalamount = 0;
@@ -344,7 +351,41 @@ class _SubCategoryState extends State<SubCategory> {
           // child: Text(global.category[0].data['a']),
         ),
         // ),
-      ),
+      ): Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      "\n\n\n\t\t\t There are no products in this category.\n\n\n\t\t\tThank You",
+                      style: TextStyle(
+                          fontSize: SizeConfig.blockSizeVertical * 2.5,
+                          color: Colors.green),
+                    ),
+                  ),
+                  Column(
+                    children: <Widget>[
+                      SizedBox(
+                        width:SizeConfig.blockSizeHorizontal*95,
+                        height:SizeConfig.blockSizeVertical * 5.5,
+                                          child: RaisedButton(
+                            elevation: 5.0,
+                            color: Colors.brown[400],
+                            child: Text("Back to Categories",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: SizeConfig.blockSizeVertical * 4,
+                                )),
+                            onPressed: () {
+                              Navigator.pushReplacementNamed(context, "HomeScreen");
+                            }),
+                      ),
+                      SizedBox(height:SizeConfig.blockSizeVertical * 2,)
+                    ],
+                  ),
+                ],
+
+              )
     );
   }
 }

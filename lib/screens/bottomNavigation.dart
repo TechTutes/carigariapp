@@ -22,7 +22,7 @@ Widget bottomnavigation(BuildContext context, int index) {
 
         case 2:
           {
-            Navigator.pushReplacementNamed(context, 'Cart');
+            Navigator.pushNamed(context, 'Cart');
             break;
           }
       }

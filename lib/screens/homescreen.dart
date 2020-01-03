@@ -62,9 +62,12 @@ class _HomeScreenState extends State<HomeScreen>
     // if(global.category==null){
 
     // }
+                                    if(global.category.length>0){global.category.removeRange(0,global.category.length);}
+
     QuerySnapshot qp;
     qp=await Firestore.instance.collection("categories").getDocuments();
     global.categories.isEmpty?global.categories.addAll(qp.documents):null;
+    
     // :SizedBox();
   // var dem=global.categories[10].data["name"];
     // print(dem["name"]);
@@ -267,8 +270,12 @@ class _HomeScreenState extends State<HomeScreen>
                          child: GridTile(
                            child: GestureDetector(
                              onTap: () {
-                               Navigator.pushReplacementNamed(context, "Product",arguments:i);
+                               Navigator.pushNamed(context, "Product",arguments:i);
                                 global.touch=i;
+                                print(global.touch);
+                                                                                              print ("${global.category.length}");
+
+                               print ("${global.categories[global.touch].data['name']}");
                              },
                              child: Hero(
                                tag: global.categories[i],
@@ -279,8 +286,11 @@ class _HomeScreenState extends State<HomeScreen>
                            ),),
                            footer: GestureDetector(
                               onTap: () {
-                               Navigator.pushReplacementNamed(context, "Product",arguments:i);
+                               Navigator.pushNamed(context, "Product",arguments:i);
                               global.touch=i;
+                                                             print ("${global.categories[global.touch].data['name']}");
+                                                              print ("${global.category.length}");
+
                              },
                                                            child: GridTileBar(
                        backgroundColor: Colors.black38,

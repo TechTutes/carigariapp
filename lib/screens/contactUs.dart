@@ -13,6 +13,7 @@ class ContactUs extends StatefulWidget{
 }
 
 class _ContactUsState extends State<ContactUs> {
+  bool isLoading=false;
    void initState(){
     print("in init state");
     super.initState();
@@ -21,7 +22,7 @@ class _ContactUsState extends State<ContactUs> {
 
   getCategoryList() async{
     setState(() {
-      // isLoading=true;
+      isLoading=false;
     });
     // if(local.category==null){
 
@@ -30,10 +31,10 @@ class _ContactUsState extends State<ContactUs> {
     qs=await Firestore.instance.collection("phone").getDocuments();
     local.phone.isEmpty?local.phone.addAll(qs.documents):null;
     
-    print("category");
+    print("${local.phone[0].data["call"]}");
    
     setState(() {
-      // isLoading=false;
+      isLoading=true;
     });
   }
 
@@ -66,7 +67,7 @@ class _ContactUsState extends State<ContactUs> {
       {
         Navigator.pushNamed(context, 'HomeScreen');
       },
-         child:Center(
+         child:isLoading?Center(
         child: Column(
           children: <Widget>[
           // Row(
@@ -106,7 +107,7 @@ class _ContactUsState extends State<ContactUs> {
          height:SizeConfig.blockSizeVertical * 6,
          width:SizeConfig.blockSizeHorizontal * 80,
          child:RaisedButton(
-             onPressed: () => launch("tel:+919010590693"),
+             onPressed: () => launch("tel:+91${local.phone[0].data["call"]}"),
               child: new Text("CALL US",style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -125,7 +126,7 @@ class _ContactUsState extends State<ContactUs> {
          child:RaisedButton(
               onPressed: () async =>
               //  var whatsappUrl ="whatsapp://send?phone=$phone";
-            await canLaunch("whatsapp://send?phone=0919010590693")? launch("whatsapp://send?phone=0919010590693"):print("open whatsapp app link or do a snackbar with notification that there is no whatsapp installed"),
+            await canLaunch("whatsapp://send?phone=091${local.phone[0].data["whatsapp"]}")? launch("whatsapp://send?phone=091${local.phone[0].data["whatsapp"]}"):print("open whatsapp app link or do a snackbar with notification that there is no whatsapp installed"),
 
               child: new Text("Live chat (whatsApp)",style: TextStyle(
                               color: Colors.white,
@@ -135,7 +136,9 @@ class _ContactUsState extends State<ContactUs> {
            ),
           ],
     ),
-        ),
+        ):   Center(child:Container(
+                    child: Text("Loading"),
+                  )) 
       ),
     ),
     );
