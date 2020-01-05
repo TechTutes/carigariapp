@@ -119,7 +119,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
         bottomNavigationBar: bottomnavigation(context, 1),
         body: WillPopScope(
           onWillPop: () {
-            Navigator.pushNamed(context, 'HomeScreen');
+            Navigator.pushReplacementNamed(context, 'HomeScreen');
           },
           child: Container(
             margin: EdgeInsets.all(SizeConfig.blockSizeVertical * 1.5),
@@ -383,7 +383,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                 "message": msgInput.text,
                                 "email": emailInput.text,
                                 "mobile": phoneNumberInput.text,
-                                "price": global.selected.toString(),
+                                "price": global.selected,
                               })
                               .then((result) => {
                                     global.selected = [],

@@ -12,6 +12,8 @@ var EmailId="No Mailid";
 var Phone;
 // int TempIndex;
 int price=0;
+  List<int> value=[];
+
   List<DocumentSnapshot> category=[];
   List<DocumentSnapshot> categories=[];
     List<DocumentSnapshot> phone=[];

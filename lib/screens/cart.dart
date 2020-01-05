@@ -25,34 +25,34 @@ class _CartState extends State<Cart> {
 
 // final List<DocumentSnapshot> userList = snapshot.data.documents;
   @override
-  void initState() {
-    print("in init state");
+  // void initState() {
+  //   print("in init state");
 
-    super.initState();
-    getSelectedList();
-  }
-
-  // getSelectedList() async
-  // {
-
+  //   super.initState();
+  //   getSelectedList();
   // }
-  getSelectedList() async {
-    setState(() {
-      // print(global.EmailId+global.Phone);
-      isLoading = true;
-    });
 
-    // if(global.cart.isEmpty)
-    // {
+  // // getSelectedList() async
+  // // {
 
-    qp = await Firestore.instance.collection("category").getDocuments();
-    print(qp);
-    print(global.selected.length);
-    print("${global.touch}this is glo touch in cart page");
-     setState(() {
-      isLoading=false;
-    });
-  }
+  // // }
+  // getSelectedList() async {
+  //   setState(() {
+  //     // print(global.EmailId+global.Phone);
+  //     isLoading = true;
+  //   });
+
+  //   // if(global.cart.isEmpty)
+  //   // {
+
+  //   qp = await Firestore.instance.collection("category").getDocuments();
+  //   print(qp);
+  //   print(global.selected.length);
+  //   print("${global.touch}this is glo touch in cart page");
+  //    setState(() {
+  //     isLoading=false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _CartState extends State<Cart> {
           drawer: theDrawer(context),
           body: WillPopScope(
             onWillPop: () {
-              Navigator.pushNamed(context, 'HomeScreen');
+              Navigator.pushReplacementNamed(context, 'HomeScreen');
             },
             child: Center(
                 child: Column(
@@ -98,7 +98,8 @@ class _CartState extends State<Cart> {
                         Chip(
                           label: Text(
                             ' ₹  ${global.totalamount}',
-                            style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.2, 
+                            style: TextStyle(
+                              fontSize: SizeConfig.blockSizeVertical * 2.2,
                               color: Theme.of(context)
                                   .primaryTextTheme
                                   .title
@@ -108,9 +109,15 @@ class _CartState extends State<Cart> {
                           backgroundColor: Theme.of(context).primaryColor,
                         ),
                         FlatButton(
-                          child: Text('ORDER NOW',style:TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.2, )),
+                          child: Text(
+                              global.cart.isEmpty ? "SHOP NOW" : 'ORDER NOW',
+                              style: TextStyle(
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
+                              )),
                           onPressed: () {
-                            Navigator.pushNamed(context, "OrderConfirm");
+                            global.cart.isEmpty
+                                ? Navigator.pushNamed(context, "HomeScreen")
+                                : Navigator.pushNamed(context, "OrderConfirm");
                           },
                           textColor: Theme.of(context).primaryColor,
                         )
@@ -119,7 +126,7 @@ class _CartState extends State<Cart> {
                   ),
                 ),
                 SizedBox(height: 10),
-             
+
                 Expanded(
                   child: global.cart.length == 0
                       ? Center(
@@ -129,9 +136,11 @@ class _CartState extends State<Cart> {
                           // controller: _scrollController,
                           itemCount: global.cart.length,
                           itemBuilder: (context, index) {
-                            print("executed j ${index}${global.cart.length}");
+                            final k = global.cart[index];
+                            print(
+                                "executed index is ${index} cart lenght is ${global.cart.length}");
                             return Dismissible(
-                              key: ValueKey(id),
+                              key: ValueKey(k),
                               background: Container(
                                 color: Theme.of(context).errorColor,
                                 child: Icon(
@@ -150,72 +159,111 @@ class _CartState extends State<Cart> {
                               onDismissed: (direction) {
                                 setState(
                                   () {
-                                    num = index;
-                                    global.cart.remove(global.cart[num]);
-
-                                    global.totalamount = 0;
-                                    for (int i = 0;
-                                        i < global.cart.length;
-                                        i++) {
-                                      global.totalamount +=
-                                          global.cart[i].data["price"];
-                                    }
-
+                                    print(index.toString());
+                                    global.cart.removeAt(index);
+                                    global.value.removeAt(index);
                                   },
                                 );
+                                print(global.cart.length.toString() +
+                                    " after removing");
+                                global.totalamount = 0;
+                                for (int i = 0; i < global.cart.length; i++) {
+                                  global.totalamount +=
+                                      global.cart[i].data["price"] * global.value[i];
+                                }
                               },
-
                               child: Card(
-                                  child: ListTile(
-                                trailing: IconButton(
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                    size: 30,
+                                child: ListTile(
+                                  trailing: IconButton(
+                                    iconSize:SizeConfig.blockSizeVertical *
+                                                    4.9 ,
+                                    icon: Column(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                          size: 25,
+                                        ),
+                                        Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.red,
+                                          size: 15,
+                                        ),
+                                        // Text("<-", style: TextStyle(
+                                        //     color: Colors.black,
+                                        //     fontWeight: FontWeight.w600,
+                                        //     fontSize:
+                                        //         SizeConfig.blockSizeVertical *
+                                        //             1.0,
+                                        //   ))
+                                      ],
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        num = index;
+                                      });
+
+                                      global.cart.removeAt(num);
+                                      global.value.removeAt(index);
+
+                                      global.totalamount = 0;
+                                      for (int i = 0;
+                                          i < global.cart.length;
+                                          i++) {
+                                        global.totalamount +=
+                                            global.cart[i].data["price"]* global.value[i];
+                                      }
+                                    },
                                   ),
-                                  onPressed: () {
-                                    setState(() {
-                                      num = index;
-                                    });
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(global
+                                                .cart[index].data['image'] !=
+                                            null
+                                        ? global.cart[index].data['image']
+                                        : "https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new3.jpg"),
+                                  ),
+                                  contentPadding: EdgeInsets.all(5),
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(global.cart[index].data['name'],
+                                      textAlign: TextAlign.justify,
+                                          style: TextStyle(
+                                            
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize:
+                                                SizeConfig.blockSizeVertical *
+                                                    2.3,
+                                          )),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                         top: SizeConfig.blockSizeVertical * 1.8,
+                                        ),
+                                        child: Text('${global.value[index]} x',
+                                            style: TextStyle(
+                                                fontSize: SizeConfig
+                                                        .blockSizeVertical *
+                                                    1.9,
+                                                color: Colors.black)),
+                                      ),
+                                    ],
+                                  ),
+                                  subtitle: Text(
+                                      " Price  ₹  ${global.cart[index].data['price']} "),
+                                  // dense: true,
 
-                                    global.cart.remove(global.cart[num]);
-                                 
-                                        global.totalamount = 0;
-                                    for (int i = 0;
-                                        i < global.cart.length;
-                                        i++) {
-                                      global.totalamount +=
-                                          global.cart[i].data["price"];
-                                    }
+                                  onTap: () {
+                                    // Navigator.pushNamed(context,"ContactUs");
+                                    // Navigator.pushNamed(context, "SubCategory");
+                                    // SubCategory(index);
+
+                                    print(id);
                                   },
+                                  // trailing: Text('$quantity x'),
                                 ),
-                                leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(global
-                                              .cart[index].data['image'] !=
-                                          null
-                                      ? global.cart[index].data['image']
-                                      : "https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new3.jpg"),
-                                ),
-                                contentPadding: EdgeInsets.all(5),
-                                title: Text(global.cart[index].data['name'],
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize:
-                                          SizeConfig.blockSizeVertical * 2.9,
-                                    )),
-                                subtitle: Text(
-                                    " Price  ₹  ${global.cart[index].data['price']} "),
-                                // dense: true,
-
-                                onTap: () {
-                                  // Navigator.pushNamed(context,"ContactUs");
-                                  // Navigator.pushNamed(context, "SubCategory");
-                                  // SubCategory(index);
-
-                                  print(id);
-                                },
-                              )),
+                              ),
                             );
                           },
                         ),
