@@ -171,97 +171,151 @@ class _SubCategoryState extends State<SubCategory> {
                             Image.network(global.category[index].data['image']),
                       ),
                       Divider(),
-                      // Image.network(global.category[0].data['image']),
-                      Text(
-                          "\t\t\tPrice:  ₹ ${global.category[index].data['price']}",
-                          style: TextStyle(
-                            color: Colors.pink,
+
+ Container(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.05),
+                  width: MediaQuery.of(context).size.width * 0.99,
+                  // height: MediaQuery.of(context).size.height * 0.21,
+                  child: DataTable(
+                    headingRowHeight:
+                        MediaQuery.of(context).size.height * 0.0,
+                    horizontalMargin: MediaQuery.of(context).size.width * 0.03,
+                    columnSpacing: MediaQuery.of(context).size.width * 0.04,
+                    sortAscending: true,
+                    columns: <DataColumn>[
+                      DataColumn(
+                        // label: Text("First Name"),
+                        numeric: false,
+
+                        tooltip: "To display first name of the Name",
+                        label: Text(""),
+                      ),
+                      DataColumn(
+                        label: Text(""),
+                        numeric: false,
+                        tooltip: "To display last name of the Name",
+                      ),
+                     
+                    ],
+                    rows: [
+                      DataRow(//for the data of session 1 in gold
+                        cells: [
+                          DataCell(
+                            Text("Price",
+                                style:TextStyle(
+                            color: Colors.black,
                             fontWeight: FontWeight.w600,
                             fontSize: SizeConfig.blockSizeVertical * 2.9,
                           )),
-                      Divider(),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 13,
-                        child: Row(
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text("\t\t\tQuantity ",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize:
-                                          SizeConfig.blockSizeVertical * 2.9,
-                                    )),
-                                Text("\t\t\t Available:",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize:
-                                          SizeConfig.blockSizeVertical * 2.5,
-                                    )),
-                              ],
-                            ),
-                            Text(
-                                "\t\t\t${global.category[index].data["quantity"]}",
+                            showEditIcon: false,
+                            placeholder: false,
+                          ),
+                          DataCell(
+                            Text("₹ ${global.category[index].data['price']}",
                                 style: TextStyle(
-                                  color: Colors.pink,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: SizeConfig.blockSizeVertical * 2.9,
-                                )),
-                          ],
-                        ),
+                            color: Colors.pink,
+                            fontWeight: FontWeight.w600,
+                            fontSize: SizeConfig.blockSizeVertical * 2.8,
+                          )),
+                            showEditIcon: false,
+                            placeholder: false,
+                          ),
+                         
+                        ],
                       ),
+                      DataRow(//for the data of session 5 in gold
+                        cells: [
+                          DataCell(
+                            Text("Quantity Available",
+                                style:TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: SizeConfig.blockSizeVertical * 2.5,
+                          )),
+                            showEditIcon: false,
+                            placeholder: false,
+                          ),
+                          DataCell(
+                            Text("${global.category[index].data["quantity"]}",
+                                style:TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontSize: SizeConfig.blockSizeVertical * 2.5,
+                          )),
+                            showEditIcon: false,
+                            placeholder: false,
+                          ),
+                        
+                        ],
+                      ),
+                      // DataRow(//for the data of session 10 in gold
+                      //   cells: [
+                      //     DataCell(
+                      //       Text("10",
+                      //           style: TextStyle(
+                      //               fontSize:
+                      //                   MediaQuery.of(context).size.height *
+                      //                       0.025)),
+                      //       showEditIcon: false,
+                      //       placeholder: false,
+                      //     ),
+                      
+                      //   ],
+                      // ),
+                    ],
+                  ),
+ ),
+
+                      // Image.network(global.category[0].data['image']),
+                    
                       Divider(),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 10,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text("\t\t\tDescription:",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: SizeConfig.blockSizeVertical * 2.9,
-                                )),
-                            Flexible(
-                              child: SingleChildScrollView(
-                                child: Text(
-                                    "\t\t\t${global.category[index].data['desc']}",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.pink,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize:
-                                          SizeConfig.blockSizeVertical * 2.5,
-                                    )),
+                      Padding(
+                        padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.08),
+                                              child: SizedBox(
+                          height: MediaQuery.of(context).size.height / 7,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Description:",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: SizeConfig.blockSizeVertical * 2.7,
+                                  )),
+                              Flexible(
+                                fit:FlexFit.tight,
+                                child: SingleChildScrollView(
+                                  child: Text(
+                                      "\t\t\t\t${global.category[index].data['desc']}",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.5,
+                                      )),
+                                ),
                               ),
-                            ),
-                          ],
+                                Text("\t\t\t[Delevery Charges:extra",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: SizeConfig.blockSizeVertical * 2.2,
+                                )),
+                                 Text("\t\t\tGST:18% extra]",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: SizeConfig.blockSizeVertical * 2.2,
+                                )),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 18,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text("\t\t\t[Delevery Charges:extra",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: SizeConfig.blockSizeVertical * 2.2,
-                                )),
-                            Text("\t\t\tGST:18% extra]",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: SizeConfig.blockSizeVertical * 2.2,
-                                )),
-                          ],
-                        ),
+                        height: MediaQuery.of(context).size.height / 25,
+                        
                       ),
 
                       Divider(),

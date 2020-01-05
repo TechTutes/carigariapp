@@ -383,11 +383,14 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                 "message": msgInput.text,
                                 "email": emailInput.text,
                                 "mobile": phoneNumberInput.text,
-                                "price": global.selected,
+                                "cart": {
+"name":global.cart[0].data["name"],
+"quantity":global.value[0]
+                                },
                               })
                               .then((result) => {
-                                    global.selected = [],
-                                    global.cart = [],
+                                    global.cart[0].data["name"] = [],
+                                    global.value[0],
                                     print(global.selected),
                                     Navigator.pushNamed(context, "HomeScreen"),
                                     nameInput.clear(),

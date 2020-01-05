@@ -249,7 +249,7 @@ class _ProductState extends State<Product> {
                                             child: RaisedButton(
                               elevation: 5.0,
                               color: Colors.brown[400],
-                              child: Text("Back to Categories",
+                              child: Text("Continue Shoping",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,

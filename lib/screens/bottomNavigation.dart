@@ -5,8 +5,10 @@ import '../Arrangements/sizeModification.dart';
 
 Widget bottomnavigation(BuildContext context, int index) {
   return BottomNavigationBar(
-    backgroundColor: Color.fromRGBO(255, 184, 102, .6),
-    elevation: 25.0,
+    backgroundColor:
+    // Colors.cyan[200],
+     Color.fromRGBO(255, 184, 102, .6),
+    elevation: 9.0,
     onTap: (index) {
       switch (index) {
         case 0:
