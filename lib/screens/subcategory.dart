@@ -108,7 +108,7 @@ class _SubCategoryState extends State<SubCategory> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(global.category[index].data['name']),
+              Text(global.category.isEmpty?"product":global.category[index].data['name']),
               Image.asset(
                 'images/logo.png',
                 fit: BoxFit.fill,
@@ -188,13 +188,13 @@ class _SubCategoryState extends State<SubCategory> {
                         // label: Text("First Name"),
                         numeric: false,
 
-                        tooltip: "To display first name of the Name",
+                        tooltip: " price",
                         label: Text(""),
                       ),
                       DataColumn(
                         label: Text(""),
                         numeric: false,
-                        tooltip: "To display last name of the Name",
+                        tooltip: "value",
                       ),
                      
                     ],
@@ -297,13 +297,14 @@ class _SubCategoryState extends State<SubCategory> {
                                       )),
                                 ),
                               ),
-                                Text("\t\t\t[Delevery Charges:extra",
+                              Divider(),
+                                Text("\t\t\t[Delivery Charges:extra",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: SizeConfig.blockSizeVertical * 2.2,
                                 )),
-                                 Text("\t\t\tGST:18% extra]",
+                                 Text("\t\t\tGST:${global.data[0].data['gst']}% extra]",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
@@ -358,6 +359,8 @@ class _SubCategoryState extends State<SubCategory> {
                                 //  print(j.toString());
                                 global.value.add(1);
                                 print(global.value.toString());
+                                                                print(global.value.toString());
+
                               }
                             }
                             //  print("extra product "+ global.cart[i].data["quantity"].toString());

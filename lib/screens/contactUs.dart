@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:carigari/Arrangements/variables.dart' as local;
 
 class ContactUs extends StatefulWidget{
   @override
@@ -14,6 +13,8 @@ class ContactUs extends StatefulWidget{
 
 class _ContactUsState extends State<ContactUs> {
   bool isLoading=false;
+          List<DocumentSnapshot> phone=[];
+
    void initState(){
     print("in init state");
     super.initState();
@@ -28,10 +29,11 @@ class _ContactUsState extends State<ContactUs> {
 
     // }
     QuerySnapshot qs;
-    qs=await Firestore.instance.collection("phone").getDocuments();
-    local.phone.isEmpty?local.phone.addAll(qs.documents):null;
+
+    qs=await Firestore.instance.collection("data").getDocuments();
+    phone.isEmpty?phone.addAll(qs.documents):null;
     
-    print("${local.phone[0].data["call"]}");
+    print("${phone[3].data["call"]}");
    
     setState(() {
       isLoading=true;
@@ -107,7 +109,7 @@ class _ContactUsState extends State<ContactUs> {
          height:SizeConfig.blockSizeVertical * 6,
          width:SizeConfig.blockSizeHorizontal * 80,
          child:RaisedButton(
-             onPressed: () => launch("tel:+91${local.phone[0].data["call"]}"),
+             onPressed: () => launch("tel:+91${phone[3].data["call"]}"),
               child: new Text("CALL US",style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
@@ -126,7 +128,7 @@ class _ContactUsState extends State<ContactUs> {
          child:RaisedButton(
               onPressed: () async =>
               //  var whatsappUrl ="whatsapp://send?phone=$phone";
-            await canLaunch("whatsapp://send?phone=091${local.phone[0].data["whatsapp"]}")? launch("whatsapp://send?phone=091${local.phone[0].data["whatsapp"]}"):print("open whatsapp app link or do a snackbar with notification that there is no whatsapp installed"),
+            await canLaunch("whatsapp://send?phone=091${phone[3].data["whatsapp"]}")? launch("whatsapp://send?phone=091${phone[3].data["whatsapp"]}"):print("open whatsapp app link or do a snackbar with notification that there is no whatsapp installed"),
 
               child: new Text("Live chat (whatsApp)",style: TextStyle(
                               color: Colors.white,

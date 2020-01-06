@@ -60,11 +60,18 @@ class _ProductState extends State<Product> {
 
     // }
     print("geting instance for category");
-    QuerySnapshot qp;
+    QuerySnapshot qp,g;
     qp = await Firestore.instance
         .collection("${global.categories[global.touch].data['name']}")
         .getDocuments();
+
     global.category.isEmpty ? global.category.addAll(qp.documents) : null;
+      g = await Firestore.instance
+        .collection("data")
+        .getDocuments();
+            global.data.isEmpty ? global.data.addAll(g.documents) : null;
+
+
     if(global.category.isEmpty){
       
     setState(() {
@@ -234,8 +241,8 @@ class _ProductState extends State<Product> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Center(
-                      child: Text(
-                        "\n\n\n\t\t\t There are no products in this category.\n\n\n\t\t\tThank You",
+                      child: Text(global.data.isEmpty?
+                        "\n\n\n\nThere are no products in this category.":"\n\n\n\n${global.data[5].data["not-available"]}",
                         style: TextStyle(
                             fontSize: SizeConfig.blockSizeVertical * 2.5,
                             color: Colors.green),
@@ -249,7 +256,7 @@ class _ProductState extends State<Product> {
                                             child: RaisedButton(
                               elevation: 5.0,
                               color: Colors.brown[400],
-                              child: Text("Continue Shoping",
+                              child: Text("Continue Shopping",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,

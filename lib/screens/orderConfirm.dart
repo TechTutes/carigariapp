@@ -90,7 +90,11 @@ class _OrderConfirmState extends State<OrderConfirm> {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.title;
-
+String cartitem ="${global.cart[0].data["name"]}"+" quantity -"+"${global.value[0]}"+"," ;
+for(int i=1;i<global.cart.length;i++){
+cartitem= cartitem+"${global.cart[i].data["name"]}"+" quantity -"+"${global.value[i]}"+",";
+}
+print(cartitem);
     // // TODO: implement build
     // String dropdownValue='One';
 
@@ -304,13 +308,16 @@ class _OrderConfirmState extends State<OrderConfirm> {
                         bottom: SizeConfig.blockSizeVertical * 1.5),
                     child: TextFormField(
                       // keyboardType: TextInputType.number,
+                      readOnly: true,
                       style: textStyle,
                       controller: cityInput,
                       validator: nameValidator,
+                     
                       decoration: InputDecoration(
                           labelStyle: textStyle,
                           labelText: "City",
-                          hintText: "Enter your City",
+                          enabled: false,
+                          hintText: "Hyderabad",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
                                   SizeConfig.blockSizeVertical * 1.5))),
@@ -380,19 +387,22 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                 "name": nameInput.text,
                                 // "uid": currentUser.uid,
                                 "city": cityInput.text,
-                                "message": msgInput.text,
+                                "address": msgInput.text,
                                 "email": emailInput.text,
                                 "mobile": phoneNumberInput.text,
                                 "cart": {
-"name":global.cart[0].data["name"],
-"quantity":global.value[0]
+"items":cartitem,
+"total price":global.totalamount
                                 },
                               })
                               .then((result) => {
-                                    global.cart[0].data["name"] = [],
-                                    global.value[0],
-                                    print(global.selected),
-                                    Navigator.pushNamed(context, "HomeScreen"),
+                                    global.cart.removeRange(0,global.cart.length),
+                                    global.value.removeRange(0, global.value.length),
+                                    global.totalamount=0,
+                                    cartitem="empty",
+                                    print(cartitem),
+                                    Navigator.pushReplacementNamed(context, "HomeScreen"),
+
                                     nameInput.clear(),
                                     cityInput.clear(),
                                     phoneNumberInput.clear(),

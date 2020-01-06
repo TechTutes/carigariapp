@@ -16,7 +16,9 @@ int price=0;
 
   List<DocumentSnapshot> category=[];
   List<DocumentSnapshot> categories=[];
-    List<DocumentSnapshot> phone=[];
+    List<DocumentSnapshot> data=[];
+      
+
 
 
 

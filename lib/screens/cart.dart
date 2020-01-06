@@ -137,8 +137,8 @@ class _CartState extends State<Cart> {
                           itemCount: global.cart.length,
                           itemBuilder: (context, index) {
                             final k = global.cart[index];
-                            print(
-                                "executed index is ${index} cart lenght is ${global.cart.length}");
+                            // print(
+                            //     "executed index is ${index} cart lenght is ${global.cart.length}");
                             return Dismissible(
                               key: ValueKey(k),
                               background: Container(
