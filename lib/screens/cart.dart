@@ -182,12 +182,14 @@ class _CartState extends State<Cart> {
                                         Icon(
                                           Icons.delete,
                                           color: Colors.red,
-                                          size: 25,
+                                          size: SizeConfig.blockSizeVertical *
+                                                    3.4,
                                         ),
                                         Icon(
                                           Icons.arrow_back,
                                           color: Colors.red,
-                                          size: 15,
+                                          size:SizeConfig.blockSizeVertical *
+                                                    1.4,
                                         ),
                                         // Text("<-", style: TextStyle(
                                         //     color: Colors.black,

@@ -311,7 +311,7 @@ print(cartitem);
                       readOnly: true,
                       style: textStyle,
                       controller: cityInput,
-                      validator: nameValidator,
+                      // validator: nameValidator,
                      
                       decoration: InputDecoration(
                           labelStyle: textStyle,
@@ -386,7 +386,7 @@ print(cartitem);
                               .setData({
                                 "name": nameInput.text,
                                 // "uid": currentUser.uid,
-                                "city": cityInput.text,
+                                "city": "Hyderabad" ,
                                 "address": msgInput.text,
                                 "email": emailInput.text,
                                 "mobile": phoneNumberInput.text,
