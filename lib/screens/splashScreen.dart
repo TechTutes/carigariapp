@@ -36,7 +36,7 @@ class _SplashState extends State<Splash> {
         fit: StackFit.expand,
         children: <Widget>[
           new SplashScreen(
-            seconds: 0,
+            seconds: 3,
             backgroundColor: 
             // Colors.white,
             Color.fromRGBO(255, 184, 102, .6),
