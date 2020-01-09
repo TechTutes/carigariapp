@@ -30,7 +30,7 @@ final snack= new prefix0.SnackBar(
       // duration: new Duration(seconds: 1),
       action: new SnackBarAction(
         label: "Shop",onPressed: (){
-          Navigator.pushNamed(context, "HomeScreen");
+          Navigator.pushReplacementNamed(context, "HomeScreen");
           // exit(0);
         },
       ),
@@ -53,6 +53,38 @@ final snack= new prefix0.SnackBar(
       // backgroundColor: Colors.blue,
     );
     _scaffoldkey.currentState.showSnackBar(SnackBar);
+  }
+
+  @override
+  void initState() {
+    print("in init state");
+    super.initState();
+    getCategoryList();
+  }
+
+  getCategoryList() async {
+    setState(() {
+      isLoading = true;
+    });
+    // if(global.category==null){
+
+    // }
+    print("geting instance for category");
+    QuerySnapshot qp;
+    qp = await Firestore.instance
+        .collection("${global.categories[global.touch].data['name']}")
+        .getDocuments();
+
+    
+    
+
+
+    // print("${global.category[0].data['name']}");
+    print("category");
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
