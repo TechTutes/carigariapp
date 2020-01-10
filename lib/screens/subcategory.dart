@@ -21,7 +21,7 @@ class SubCategory extends StatefulWidget {
 
 class _SubCategoryState extends State<SubCategory> {
   bool isLoading = false, productIs = true;
-  bool t = false, c = false;
+  bool t = false, c = false,inside=false;
   int j = 1, demo = 1,place;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 void callsnack(String dis){
@@ -101,15 +101,16 @@ final snack= new prefix0.SnackBar(
 for (int i = 0;
                                           i < global.cart.length;
                                           i++) {
-                                            if(global.cart.isNotEmpty){
+                                            
                                         if (global
                                                 .category[index].data["name"] ==
                                             global.cart[i].data["name"]) {
                                          setState(() {
+                                           inside=true;
                                             place = i;
                                          });
                                          
-                                        }}
+                                        }
                                       }
     Alerting(BuildContext context) {
       return showDialog(
@@ -390,7 +391,7 @@ for (int i = 0;
                       SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               IconButton(
                                   icon: Icon(
@@ -473,7 +474,7 @@ for (int i = 0;
                                         MediaQuery.of(context).size.width / 16,
                                     height:
                                         MediaQuery.of(context).size.height / 20,
-                                    child: Text(global.cart.isEmpty?"1":"${global.value[place] }"),
+                                    child: Text(inside?"${global.value[place] }":"1"),
                                   )),
                               IconButton(
                                 icon: Icon(
@@ -518,7 +519,7 @@ for (int i = 0;
                                         } else {
                                           if (int.parse(
                                                   "${global.category[index].data["quantity"]}") ==
-                                              1) {
+                                             1) {
                                             callSnackBar(
                                                 " only ${global.category[index].data["quantity"]} item can be added to cart ");
                                           } else if (global.value[at] ==
@@ -552,7 +553,7 @@ for (int i = 0;
                         child: RaisedButton(
                           elevation: 5.0,
                           color: Colors.brown[400],
-                          child: Text("Add +",
+                          child: Text("Add to cart",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400,
