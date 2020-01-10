@@ -21,7 +21,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
   TextEditingController cityInput;
   TextEditingController phoneNumberInput;
   TextEditingController emailInput;
-  TextEditingController stateInput;
+  // TextEditingController stateInput;
   TextEditingController msgInput;
 
   @override
@@ -30,7 +30,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
     emailInput = new TextEditingController();
     cityInput = new TextEditingController();
     phoneNumberInput = new TextEditingController();
-    stateInput = new TextEditingController();
+    // stateInput = new TextEditingController();
     msgInput = new TextEditingController();
     super.initState();
   }
@@ -323,23 +323,23 @@ print(cartitem);
                                   SizeConfig.blockSizeVertical * 1.5))),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: SizeConfig.blockSizeVertical * 1.5,
-                        bottom: SizeConfig.blockSizeVertical * 1.5),
-                    child: TextField(
-                      // keyboardType: TextInputType.number,
-                      style: textStyle,
-                      //  controller: ,
-                      decoration: InputDecoration(
-                          labelStyle: textStyle,
-                          labelText: "State",
-                          hintText: "Enter your State",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  SizeConfig.blockSizeVertical * 1.5))),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(
+                  //       top: SizeConfig.blockSizeVertical * 1.5,
+                  //       bottom: SizeConfig.blockSizeVertical * 1.5),
+                  //   child: TextField(
+                  //     // keyboardType: TextInputType.number,
+                  //     style: textStyle,
+                  //     //  controller: ,
+                  //     decoration: InputDecoration(
+                  //         labelStyle: textStyle,
+                  //         labelText: "State",
+                  //         hintText: "Enter your State",
+                  //         border: OutlineInputBorder(
+                  //             borderRadius: BorderRadius.circular(
+                  //                 SizeConfig.blockSizeVertical * 1.5))),
+                  //   ),
+                  // ),
 
                   SizedBox(
          height:SizeConfig.blockSizeVertical * 6,
@@ -408,7 +408,7 @@ print(cartitem);
                                     phoneNumberInput.clear(),
                                     emailInput.clear(),
                                     msgInput.clear(),
-                                    stateInput.clear(),
+                                    // stateInput.clear(),
                                   })
                               .catchError((err) => print(err));
                           // callSnackBar("Please check the details properly"));

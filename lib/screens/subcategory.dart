@@ -21,15 +21,16 @@ class SubCategory extends StatefulWidget {
 
 class _SubCategoryState extends State<SubCategory> {
   bool isLoading = false, productIs = true;
-  bool t = false, c = false,inside=false;
-  int j = 1, demo = 1,place;
+  bool t = false, c = false, inside = false;
+  int j = 1, demo = 1, place;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
-void callsnack(String dis){
-final snack= new prefix0.SnackBar(
+  void callsnack(String dis) {
+    final snack = new prefix0.SnackBar(
       content: new Text(dis),
       // duration: new Duration(seconds: 1),
       action: new SnackBarAction(
-        label: "Shop",onPressed: (){
+        label: "Shop",
+        onPressed: () {
           Navigator.pushReplacementNamed(context, "HomeScreen");
           // exit(0);
         },
@@ -37,8 +38,8 @@ final snack= new prefix0.SnackBar(
       // backgroundColor: Colors.blue,
     );
     _scaffoldkey.currentState.showSnackBar(snack);
-  
-}
+  }
+
   void callSnackBar(String me) {
     print("called me for scnack bar");
     final SnackBar = new prefix0.SnackBar(
@@ -75,10 +76,6 @@ final snack= new prefix0.SnackBar(
         .collection("${global.categories[global.touch].data['name']}")
         .getDocuments();
 
-    
-    
-
-
     // print("${global.category[0].data['name']}");
     print("category");
 
@@ -98,20 +95,14 @@ final snack= new prefix0.SnackBar(
       });
     }
     final index = ModalRoute.of(context).settings.arguments;
-for (int i = 0;
-                                          i < global.cart.length;
-                                          i++) {
-                                            
-                                        if (global
-                                                .category[index].data["name"] ==
-                                            global.cart[i].data["name"]) {
-                                         setState(() {
-                                           inside=true;
-                                            place = i;
-                                         });
-                                         
-                                        }
-                                      }
+    for (int i = 0; i < global.cart.length; i++) {
+      if (global.category[index].data["name"] == global.cart[i].data["name"]) {
+        setState(() {
+          inside = true;
+          place = i;
+        });
+      }
+    }
     Alerting(BuildContext context) {
       return showDialog(
           context: context,
@@ -474,7 +465,9 @@ for (int i = 0;
                                         MediaQuery.of(context).size.width / 16,
                                     height:
                                         MediaQuery.of(context).size.height / 20,
-                                    child: Text(inside?"${global.value[place] }":"1"),
+                                    child: Text(inside
+                                        ? "${global.value[place]}"
+                                        : "1"),
                                   )),
                               IconButton(
                                 icon: Icon(
@@ -490,6 +483,7 @@ for (int i = 0;
                                   //     demo += 1;
                                   //   });
                                   // }
+
                                   setState(() {
                                     if (global.cart.length == 0) {
                                       global.value.add(1);
@@ -515,11 +509,14 @@ for (int i = 0;
                                           global.value
                                               .insert(at, global.value[at] + 1);
                                           global.value.removeAt(at + 1);
+                                          setState(() {
+                                            t=true;
+                                          });
                                           // print(global.value[at].toString());}
                                         } else {
                                           if (int.parse(
                                                   "${global.category[index].data["quantity"]}") ==
-                                             1) {
+                                              1) {
                                             callSnackBar(
                                                 " only ${global.category[index].data["quantity"]} item can be added to cart ");
                                           } else if (global.value[at] ==
@@ -531,10 +528,19 @@ for (int i = 0;
                                         }
                                       } else {
                                         //  print(j.toString());
-                                        global.value.add(1);
+                                        print("else of add");
+                                        print(global.value.toString());
                                         setState(() {
-                                          t = true;
+                                           t = true;
+                                          global.value.add(1);
+                                          flag == false
+                                              ? global.value.removeAt(
+                                                  global.cart.length + 1)
+                                              : global.value.removeAt(at + 1);
+                                          global.cart
+                                              .add(global.category[index]);
                                         });
+                                      
 
                                         // print(global.value.toString());
                                         // print(global.value.toString());
@@ -592,7 +598,8 @@ for (int i = 0;
                                           "${global.category[index].data["quantity"]}") ==
                                       1) {
                                     callsnack(
-                                        " only ${global.category[index].data["quantity"]} items"+" can be added to cart ");
+                                        " only ${global.category[index].data["quantity"]} items" +
+                                            " can be added to cart ");
                                   } else if (global.value[at] ==
                                       int.parse(
                                           "${global.category[index].data["quantity"]}")) {
