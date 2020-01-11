@@ -95,13 +95,19 @@ class _SubCategoryState extends State<SubCategory> {
       });
     }
     final index = ModalRoute.of(context).settings.arguments;
+    print(global.cart.length.toString());
+    print(inside);
+    inside=false;
     for (int i = 0; i < global.cart.length; i++) {
+      if(global.cart.isNotEmpty){
+        inside=false;
       if (global.category[index].data["name"] == global.cart[i].data["name"]) {
         setState(() {
+          
           inside = true;
           place = i;
         });
-      }
+      }}
     }
     Alerting(BuildContext context) {
       return showDialog(

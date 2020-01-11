@@ -13,6 +13,8 @@ class CategoryData extends StatelessWidget
       appBar: new AppBar(
          backgroundColor: Colors.cyan[300],
         title:  Row(
+
+
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                  
