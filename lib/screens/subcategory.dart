@@ -10,7 +10,8 @@ import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
 import 'homescreen.dart';
 import 'product.dart' as local;
-import 'package:zoomable_image/zoomable_image.dart';
+// import 'package:zoomable_image/zoomable_image.dart';
+import 'package:photo_view/photo_view.dart';
 
 // import 'package:photo_view/photo_view.dart';
 // import '../Arrangements/variables.dart';
@@ -86,52 +87,6 @@ class _SubCategoryState extends State<SubCategory> {
       isLoading = false;
     });
   }
-
-img(index,BuildContext context) {
-                                            //   return showDialog(
-                                            // context: context,
-                                            // barrierDismissible: false,
-                                            // builder: (BuildContext context){
-                                              return new AlertDialog(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20.0))),
-                                                // title: Text(
-                                                //     "Select your Choice"),
-                                                titlePadding:
-                                                    EdgeInsets.all(10.0),
-                                                
-                                                actions: <Widget>[
-                                                  Container(
-                                                  child: 
-                                                  // PhotoView(
-                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
-                                                  // ),
-                                                  Flexible(
-                                                                                                      child: ZoomableImage(
-                                                      
-                                                      NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-                                                      backgroundColor: Colors.white,
-                                                    ),
-                                                  )
-                                                ),
-                                                  new FlatButton(
-                                                    child: Text("Save"),
-                                                    onPressed: () {
-                                                      // Null;
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      // Navigator.pushNamed(context,"");
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            
-
-                                            }
-
   @override
   Widget build(BuildContext context) {
     // void Alert(){
@@ -227,23 +182,23 @@ img(index,BuildContext context) {
               actions: <Widget>[
                 
                                                 
-                                                  // PhotoView(
-                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
-                                                  // ),
-                                                  // Flexible(
-                                                                                                      // child: 
-                                                                                                      SizedBox(
-                                                                                                        height:MediaQuery.of(context).size.height/1.2,
-                                                                                                        width:MediaQuery.of(context).size.width*0.75,
-                                                                                                        child: ZoomableImage(
+                                                  PhotoView(
+                                                    imageProvider: NetworkImage(global.category[index].data['image']),
+                                                  ),
+                                                  // // Flexible(
+                                                  //                                                     // child: 
+                                                  //                                                     SizedBox(
+                                                  //                                                       height:MediaQuery.of(context).size.height/1.2,
+                                                  //                                                       width:MediaQuery.of(context).size.width*0.75,
+                                                  //                                                       child: ZoomableImage(
                                                                                                           
                                                       
-                                                      NetworkImage(global.category[index].data['image']),
-                                                      backgroundColor: Colors.white,
-                                                      maxScale:3.0,
-                                                      minScale:1.0
-                                                    ),
-                                                                                                      ),
+                                                  //     NetworkImage(global.category[index].data['image']),
+                                                  //     backgroundColor: Colors.white,
+                                                  //     maxScale:3.0,
+                                                  //     minScale:1.0
+                                                  //   ),
+                                                                                                      // ),
                                                   // )
                                               
                 
@@ -886,54 +841,54 @@ img(index,BuildContext context) {
   }
 }
 
-class Fetch extends StatefulWidget {
+// class Fetch extends StatefulWidget {
        
 
-  Fetch( {Key key}) : super(key: key);
-  @override
-  _FetchState createState() => _FetchState();
-}
+//   Fetch( {Key key}) : super(key: key);
+//   @override
+//   _FetchState createState() => _FetchState();
+// }
 
-class _FetchState extends State<Fetch> {
-  Widget build(BuildContext context) {
-   int index=1;
-      return new AlertDialog(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20.0))),
-                                                // title: Text(
-                                                //     "Select your Choice"),
-                                                titlePadding:
-                                                    EdgeInsets.all(10.0),
+// class _FetchState extends State<Fetch> {
+//   Widget build(BuildContext context) {
+//    int index=1;
+//       return new AlertDialog(
+//                                                 shape: RoundedRectangleBorder(
+//                                                     borderRadius:
+//                                                         BorderRadius.all(
+//                                                             Radius.circular(
+//                                                                 20.0))),
+//                                                 // title: Text(
+//                                                 //     "Select your Choice"),
+//                                                 titlePadding:
+//                                                     EdgeInsets.all(10.0),
                                                 
-                                                actions: <Widget>[
-                                                  Container(
-                                                  child: 
-                                                  // PhotoView(
-                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
-                                                  // ),
-                                                  Flexible(
-                                                                                                      child: ZoomableImage(
+//                                                 actions: <Widget>[
+//                                                   Container(
+//                                                   child: 
+//                                                   // PhotoView(
+//                                                   //   imageProvider: NetworkImage(global.category[index].data['image']),
+//                                                   // ),
+//                                                   Flexible(
+//                                                                                                       child: ZoomableImage(
                                                       
-                                                      NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-                                                      backgroundColor: Colors.white,
-                                                    ),
-                                                  )
-                                                ),
-                                                  new FlatButton(
-                                                    child: Text("Save"),
-                                                    onPressed: () {
-                                                      // Null;
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      // Navigator.pushNamed(context,"");
-                                                    },
-                                                  )
-                                                ],
-                                              );
+//                                                       NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+//                                                       backgroundColor: Colors.white,
+//                                                     ),
+//                                                   )
+//                                                 ),
+//                                                   new FlatButton(
+//                                                     child: Text("Save"),
+//                                                     onPressed: () {
+//                                                       // Null;
+//                                                       Navigator.of(context)
+//                                                           .pop();
+//                                                       // Navigator.pushNamed(context,"");
+//                                                     },
+//                                                   )
+//                                                 ],
+//                                               );
 
-  }}
+//   }}
 
 
