@@ -168,7 +168,18 @@ class _ContactUsState extends State<ContactUs> {
                               ),
                           child:Column(
                             children: <Widget>[
-                              Text("H.no:3-110/38,"),
+                              Text("10-1-17, DANA CHAMBERS,"),
+Text("OPP.J.N.T.U. COLLEGE,"),
+Text("BESIDES HYDERABAD HOUSE,"),
+Text("MASAB TANK,"),
+Text("HYDERABAD - 500 004."),
+Text("A.P."),
+
+Text("Tel Cum Fax 040-30628610."),
+Text("Mobile : 9246363415  9885444435."),
+Text("E-mail : carigarifurniture@yahoo.co.in"),
+           Text("  carigarifurniture@gmail.com"),
+           Text("  arvind@carigarifurniture.com"),
                                Text("Carigari Furnitures,"),
                               Text("MasabTank,")
 
