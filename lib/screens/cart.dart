@@ -72,7 +72,7 @@ class _CartState extends State<Cart> {
                 ),
               ],
             ),
-            backgroundColor: Colors.cyan[300],
+            backgroundColor: Color.fromRGBO(191,32,37, 1.0),
           ),
           bottomNavigationBar: bottomnavigation(context, 2),
           drawer: theDrawer(context),

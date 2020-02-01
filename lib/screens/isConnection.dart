@@ -7,6 +7,7 @@ import 'package:carigari/screens/Data/notification.dart' as prefix0;
 import 'package:carigari/screens/product.dart';
 import 'package:carigari/screens/subcategory.dart';
 import 'package:carigari/screens/testforcategory.dart';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
 import 'package:carigari/Screens/contactUS.dart';
@@ -78,6 +79,7 @@ class _IsConnection extends State<IsConnection> {
              {
               //  IsConnection();
               Splash();
+                // Navigator.pushReplacementNamed(context, "HomeScreen");
              },
                  ),
               ]

@@ -13,4 +13,5 @@ class SizeConfig {
   blockSizeHorizontal = screenWidth / 100;
   blockSizeVertical = screenHeight / 100;
  }
+
 }

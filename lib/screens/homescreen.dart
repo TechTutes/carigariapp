@@ -105,7 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
   //     ),
   //   );
   // }
-
+// void dispose(){
+//   super.dispose();
+// }
   Widget CarouselImages() {
     return new Container(
         color: Colors.white,
@@ -210,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return new Scaffold(
       key: _scaffoldkey,
       appBar: new AppBar(
-        backgroundColor: Colors.cyan[300],
+        backgroundColor: Color.fromRGBO(191,32,37, 1.0),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

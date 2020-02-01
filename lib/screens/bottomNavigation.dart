@@ -7,8 +7,8 @@ Widget bottomnavigation(BuildContext context, int index) {
   return BottomNavigationBar(
     backgroundColor:
     // Colors.cyan[200],
-     Color.fromRGBO(255, 184, 102, .6),
-    elevation: 9.0,
+     Color.fromRGBO(191,32,37, 1.0),
+    elevation: 4.0,
     onTap: (index) {
       switch (index) {
         case 0:
@@ -45,7 +45,7 @@ Widget bottomnavigation(BuildContext context, int index) {
                 fontWeight: FontWeight.w800)),
         activeIcon: Icon(
           Icons.home,
-          color: Colors.black87,
+          color: Colors.white,
         ),
       ),
       BottomNavigationBarItem(
@@ -56,7 +56,7 @@ Widget bottomnavigation(BuildContext context, int index) {
           ),
            activeIcon:Icon(
             Icons.contacts,
-            color: Colors.black87,
+            color: Colors.white,
             //  color:Colors.black45,
           ),
           title: Text('Contact us',
@@ -71,7 +71,7 @@ Widget bottomnavigation(BuildContext context, int index) {
           ),
            activeIcon:Icon(
            Icons.shopping_cart,
-            color: Colors.black87,
+            color: Colors.white,
             //  color:Colors.black45,
           ),
           title: Text('Cart',
@@ -79,6 +79,8 @@ Widget bottomnavigation(BuildContext context, int index) {
                 fontSize: SizeConfig.blockSizeVertical * 1.8,
                 fontWeight: FontWeight.w800))),
     ],
-    fixedColor: Color.fromRGBO(127, 68, 0, .9),
+    fixedColor: 
+    Colors.white,
+    // Color.fromRGBO(127, 68, 0, .9),
   );
 }

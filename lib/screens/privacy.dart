@@ -50,7 +50,7 @@ bool isLoading = false;
       home: Scaffold(
         appBar: AppBar(
           title: Text("Privacy Info"),
-          backgroundColor:Colors.orange[300],
+          backgroundColor:Color.fromRGBO(191,32,37, 1.0),
         ),
         bottomNavigationBar: bottomnavigation(context,1),
         drawer: theDrawer(context),

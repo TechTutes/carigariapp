@@ -91,7 +91,7 @@ class _ProductState extends State<Product> {
     return new Scaffold(
         key: _scaffoldkey,
         appBar: new AppBar(
-          backgroundColor: Colors.cyan[300],
+          backgroundColor: Color.fromRGBO(191,32,37, 1.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

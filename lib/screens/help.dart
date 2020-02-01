@@ -64,7 +64,7 @@ bool isLoading = false;
             ],
 
           ), 
-           backgroundColor: Colors.cyan[300],
+           backgroundColor: Color.fromRGBO(191,32,37, 1.0),
         ),
         bottomNavigationBar: bottomnavigation(context,1),
         drawer: theDrawer(context),

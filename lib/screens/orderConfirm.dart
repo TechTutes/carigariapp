@@ -117,7 +117,7 @@ print(cartitem);
             ],
 
           ), 
-          backgroundColor: Colors.brown,
+          backgroundColor:Color.fromRGBO(191,32,37, 1.0),
         ),
         drawer: theDrawer(context),
         bottomNavigationBar: bottomnavigation(context, 1),

@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Arrangements/sizeModification.dart';
 import './selectScreen.dart';
+import 'isConnection.dart';
 import 'dart:async';
 
 class Splash extends StatefulWidget {
@@ -51,30 +52,30 @@ class _SplashState extends State<Splash> {
               ),
             ),
             // loaderColor: Colors.green,
-            navigateAfterSeconds: new HomeScreen(),
+            navigateAfterSeconds: HomeScreen(),
             //  SelectScreen(),
           ),
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text('Powered By ConversionGuru',
-                  style: TextStyle(
-                    // decorationColor: Colors.green,
-                    fontWeight: FontWeight.w400,
-                    fontSize: SizeConfig.blockSizeVertical * 2.5,
-                    backgroundColor: Color.fromRGBO(255, 184, 102, .2),
-                  )),
-              Padding(
-                padding: EdgeInsets.only(bottom: 30.0),
-                // child: new Image.asset(
-                //   'assets/dff.png',
-                //   height: 40.0,
-                //   fit: BoxFit.scaleDown,
-                // ),
-              )
-            ],
-          ),
+          // new Column(
+          //   mainAxisAlignment: MainAxisAlignment.end,
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: <Widget>[
+          //     Text('Powered By ConversionGuru',
+          //         style: TextStyle(
+          //           // decorationColor: Colors.green,
+          //           fontWeight: FontWeight.w400,
+          //           fontSize: SizeConfig.blockSizeVertical * 2.5,
+          //           backgroundColor: Color.fromRGBO(255, 184, 102, .2),
+          //         )),
+          //     Padding(
+          //       padding: EdgeInsets.only(bottom: 30.0),
+          //       // child: new Image.asset(
+          //       //   'assets/dff.png',
+          //       //   height: 40.0,
+          //       //   fit: BoxFit.scaleDown,
+          //       // ),
+          //     )
+          //   ],
+          // ),
           // return new Scaffold(
           //   body: Center(
           //     child: new Image.asset("images/logo.png"),
@@ -85,6 +86,9 @@ class _SplashState extends State<Splash> {
         //  height: SizeConfig.blockSizeVertical * 20,
         //  width: SizeConfig.blockSizeHorizontal * 50,
       ),
+      
     );
+        
+
   }
 }

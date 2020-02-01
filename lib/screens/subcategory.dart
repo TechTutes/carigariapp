@@ -10,6 +10,9 @@ import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
 import 'homescreen.dart';
 import 'product.dart' as local;
+import 'package:zoomable_image/zoomable_image.dart';
+
+// import 'package:photo_view/photo_view.dart';
 // import '../Arrangements/variables.dart';
 
 class SubCategory extends StatefulWidget {
@@ -84,6 +87,51 @@ class _SubCategoryState extends State<SubCategory> {
     });
   }
 
+img(index,BuildContext context) {
+                                            //   return showDialog(
+                                            // context: context,
+                                            // barrierDismissible: false,
+                                            // builder: (BuildContext context){
+                                              return new AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20.0))),
+                                                // title: Text(
+                                                //     "Select your Choice"),
+                                                titlePadding:
+                                                    EdgeInsets.all(10.0),
+                                                
+                                                actions: <Widget>[
+                                                  Container(
+                                                  child: 
+                                                  // PhotoView(
+                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
+                                                  // ),
+                                                  Flexible(
+                                                                                                      child: ZoomableImage(
+                                                      
+                                                      NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+                                                      backgroundColor: Colors.white,
+                                                    ),
+                                                  )
+                                                ),
+                                                  new FlatButton(
+                                                    child: Text("Save"),
+                                                    onPressed: () {
+                                                      // Null;
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      // Navigator.pushNamed(context,"");
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            
+
+                                            }
+
   @override
   Widget build(BuildContext context) {
     // void Alert(){
@@ -112,7 +160,7 @@ class _SubCategoryState extends State<SubCategory> {
     Alerting(BuildContext context) {
       return showDialog(
           context: context,
-          barrierDismissible: false,
+          barrierDismissible: true,
           builder: (BuildContext context) {
             return new AlertDialog(
               shape: RoundedRectangleBorder(
@@ -156,12 +204,58 @@ class _SubCategoryState extends State<SubCategory> {
             );
           });
     }
+ Alert(int index,BuildContext context) {
+      return showDialog(  
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return new AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              // elevation: 200.0,
+              // backgroundColor: Colors.white60,
+              // title: Text("Please Enter SMS Code"),
+              titlePadding: EdgeInsets.all(20.0),
+              // content: Text(" Shop further Or Checkout",
+              //     style: TextStyle(
+              //       color: Colors.black,
+              //       fontWeight: FontWeight.w600,
+              //       fontSize: SizeConfig.blockSizeVertical * 2.9,
+              //     )),
+              // contentPadding: EdgeInsets.all(10.0),
 
+              actions: <Widget>[
+                
+                                                
+                                                  // PhotoView(
+                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
+                                                  // ),
+                                                  // Flexible(
+                                                                                                      // child: 
+                                                                                                      SizedBox(
+                                                                                                        height:MediaQuery.of(context).size.height/1.2,
+                                                                                                        width:MediaQuery.of(context).size.width*0.75,
+                                                                                                        child: ZoomableImage(
+                                                                                                          
+                                                      
+                                                      NetworkImage(global.category[index].data['image']),
+                                                      backgroundColor: Colors.white,
+                                                      maxScale:3.0,
+                                                      minScale:1.0
+                                                    ),
+                                                                                                      ),
+                                                  // )
+                                              
+                
+              ],
+            );
+          });
+    }
     // TODO: implement build
     return Scaffold(
         key: _scaffoldkey,
         appBar: new AppBar(
-          backgroundColor: Colors.cyan[300],
+          backgroundColor: Color.fromRGBO(191,32,37, 1.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -193,6 +287,7 @@ class _SubCategoryState extends State<SubCategory> {
               // Text(global.category[0].data['a']),
               // Text("\n"),
               Padding(
+                
                   padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 9.0),
                   child: ListView(
                     children: <Widget>[
@@ -207,7 +302,8 @@ class _SubCategoryState extends State<SubCategory> {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
-                                fontSize: SizeConfig.blockSizeVertical * 2.9,
+                                fontSize:  7,
+                                // SizeConfig.blockSizeVertical * 2.9,
                               ),
                             ),
                             Center(
@@ -223,12 +319,27 @@ class _SubCategoryState extends State<SubCategory> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 4,
-                        width: MediaQuery.of(context).size.width * 1,
-                        child:
-                            Image.network(global.category[index].data['image']),
-                      ),
+                      //  Container(child:Flexible(
+                                                                                                      // child: 
+                          //                                                                             SizedBox(
+                          // height:70.0,
+                          // width:200.0,
+                          // child:
+                          //                                                                             ZoomableImage(
+                                                      
+                          //                             NetworkImage(global.category[index].data['image']),
+                          //                             backgroundColor: Colors.white,
+                          //                           ),),
+                GestureDetector(
+                        child: SizedBox(
+                          height:70.0,
+                          width:200.0,
+                          child: Image.network(global.category[index].data['image'])),
+                        onTap:()=> Alert(index,context),
+                                              ),
+                        
+                        
+                        
                       Divider(),
 
                       Container(
@@ -246,7 +357,7 @@ class _SubCategoryState extends State<SubCategory> {
                           sortAscending: true,
                           columns: <DataColumn>[
                             DataColumn(
-                              // label: Text("First Name"),
+                              
                               numeric: false,
 
                               tooltip: " price",
@@ -260,13 +371,41 @@ class _SubCategoryState extends State<SubCategory> {
                           ],
                           rows: [
                             DataRow(
+                             
+                              cells: [
+                                DataCell(
+                                  Text("Model Name",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.0,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                                DataCell(
+                                  Text(
+                                      global.category[index].data['name'],
+                                      style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 1.9,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                              ],
+                            ),
+                            DataRow(
                               //for the data of session 1 in gold
                               cells: [
                                 DataCell(
                                   Text("Price",
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         fontSize:
                                             SizeConfig.blockSizeVertical * 2.9,
                                       )),
@@ -278,7 +417,7 @@ class _SubCategoryState extends State<SubCategory> {
                                       "₹ ${global.category[index].data['price']}",
                                       style: TextStyle(
                                         color: Colors.pink,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         fontSize:
                                             SizeConfig.blockSizeVertical * 2.8,
                                       )),
@@ -294,7 +433,7 @@ class _SubCategoryState extends State<SubCategory> {
                                   Text("Quantity Available",
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         fontSize:
                                             SizeConfig.blockSizeVertical * 2.5,
                                       )),
@@ -306,7 +445,7 @@ class _SubCategoryState extends State<SubCategory> {
                                       "${global.category[index].data["quantity"]}",
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         fontSize:
                                             SizeConfig.blockSizeVertical * 2.5,
                                       )),
@@ -347,7 +486,7 @@ class _SubCategoryState extends State<SubCategory> {
                               Text("Description:",
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w400,
                                     fontSize:
                                         SizeConfig.blockSizeVertical * 2.7,
                                   )),
@@ -359,7 +498,7 @@ class _SubCategoryState extends State<SubCategory> {
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                         color: Colors.pink,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w300,
                                         fontSize:
                                             SizeConfig.blockSizeVertical * 2.5,
                                       )),
@@ -746,3 +885,55 @@ class _SubCategoryState extends State<SubCategory> {
         ));
   }
 }
+
+class Fetch extends StatefulWidget {
+       
+
+  Fetch( {Key key}) : super(key: key);
+  @override
+  _FetchState createState() => _FetchState();
+}
+
+class _FetchState extends State<Fetch> {
+  Widget build(BuildContext context) {
+   int index=1;
+      return new AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20.0))),
+                                                // title: Text(
+                                                //     "Select your Choice"),
+                                                titlePadding:
+                                                    EdgeInsets.all(10.0),
+                                                
+                                                actions: <Widget>[
+                                                  Container(
+                                                  child: 
+                                                  // PhotoView(
+                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
+                                                  // ),
+                                                  Flexible(
+                                                                                                      child: ZoomableImage(
+                                                      
+                                                      NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+                                                      backgroundColor: Colors.white,
+                                                    ),
+                                                  )
+                                                ),
+                                                  new FlatButton(
+                                                    child: Text("Save"),
+                                                    onPressed: () {
+                                                      // Null;
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      // Navigator.pushNamed(context,"");
+                                                    },
+                                                  )
+                                                ],
+                                              );
+
+  }}
+
+
