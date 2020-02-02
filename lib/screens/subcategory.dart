@@ -186,6 +186,13 @@ class _SubCategoryState extends State<SubCategory> {
                 // ),
                 // Flexible(
                 // child:
+
+
+                
+  ///paste it here
+
+
+
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.87,
                   width: MediaQuery.of(context).size.width * 0.76,
