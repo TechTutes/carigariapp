@@ -188,33 +188,12 @@ class _SubCategoryState extends State<SubCategory> {
                 // child:
 
 
-                
+
   ///paste it here
 
 
 
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.87,
-                  width: MediaQuery.of(context).size.width * 0.76,
-                  child: Center(
-                   child: Text("hai")
-                    // child: 
-                    // CachedNetworkImage(
-                    //    placeholder: (context, url) => 
-                      //  CircularProgressIndicator(),
-                      //                     child:
-//                                            ZoomableImage(
-//                           NetworkImage("global.category[index].data['image']"),
-// placeholder: CircularProgressIndicator(
-//   strokeWidth: 3.0,
-// ),
-//                           backgroundColor: Colors.white10,
-//                           maxScale: 2.5,
-//                           minScale: 1.0),
-                    // ),
-
-                  ),
-                ),
+//               
                 // )
               ],
             );
