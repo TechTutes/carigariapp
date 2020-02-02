@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
 
-import 'package:zoomable_image/zoomable_image.dart';
+// import 'package:zoomable_image/zoomable_image.dart';
 
 
 // import 'package:photo_view/photo_view.dart';
@@ -190,19 +190,20 @@ class _SubCategoryState extends State<SubCategory> {
                   height: MediaQuery.of(context).size.height * 0.87,
                   width: MediaQuery.of(context).size.width * 0.76,
                   child: Center(
-                    child: 
+                   child: Text("hai")
+                    // child: 
                     // CachedNetworkImage(
                     //    placeholder: (context, url) => 
                       //  CircularProgressIndicator(),
                       //                     child:
-                                           ZoomableImage(
-                          NetworkImage("global.category[index].data['image']"),
-placeholder: CircularProgressIndicator(
-  strokeWidth: 3.0,
-),
-                          backgroundColor: Colors.white10,
-                          maxScale: 2.5,
-                          minScale: 1.0),
+//                                            ZoomableImage(
+//                           NetworkImage("global.category[index].data['image']"),
+// placeholder: CircularProgressIndicator(
+//   strokeWidth: 3.0,
+// ),
+//                           backgroundColor: Colors.white10,
+//                           maxScale: 2.5,
+//                           minScale: 1.0),
                     // ),
 
                   ),
@@ -296,7 +297,7 @@ placeholder: CircularProgressIndicator(
                             height: 70.0,
                             width: 200.0,
                             child: Image.network(
-                                global.category[index].data['image'])),
+                                "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}")),
                         onTap: () => Alert(index, context),
                       ),
 
@@ -841,44 +842,44 @@ placeholder: CircularProgressIndicator(
   }
 }
 
-class Fetch extends StatefulWidget {
-  Fetch({Key key}) : super(key: key);
-  @override
-  _FetchState createState() => _FetchState();
-}
+// class Fetch extends StatefulWidget {
+//   Fetch({Key key}) : super(key: key);
+//   @override
+//   _FetchState createState() => _FetchState();
+// }
 
-class _FetchState extends State<Fetch> {
-  Widget build(BuildContext context) {
-    int index = 1;
-    return new AlertDialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      // title: Text(
-      //     "Select your Choice"),
-      titlePadding: EdgeInsets.all(10.0),
+// class _FetchState extends State<Fetch> {
+//   Widget build(BuildContext context) {
+//     int index = 1;
+//     return new AlertDialog(
+//       shape: RoundedRectangleBorder(
+//           borderRadius: BorderRadius.all(Radius.circular(20.0))),
+//       // title: Text(
+//       //     "Select your Choice"),
+//       titlePadding: EdgeInsets.all(10.0),
 
-      actions: <Widget>[
-        Container(
-            child:
-                // PhotoView(
-                //   imageProvider: NetworkImage(global.category[index].data['image']),
-                // ),
-                Flexible(
-          child: ZoomableImage(
-            NetworkImage(
-                "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-            backgroundColor: Colors.white,
-          ),
-        )),
-        new FlatButton(
-          child: Text("Save"),
-          onPressed: () {
-            // Null;
-            Navigator.of(context).pop();
-            // Navigator.pushNamed(context,"");
-          },
-        )
-      ],
-    );
-  }
-}
+//       actions: <Widget>[
+//         Container(
+//             child:
+//                 // PhotoView(
+//                 //   imageProvider: NetworkImage(global.category[index].data['image']),
+//                 // ),
+//                 Flexible(
+//           child: ZoomableImage(
+//             NetworkImage(
+//                 "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+//             backgroundColor: Colors.white,
+//           ),
+//         )),
+//         new FlatButton(
+//           child: Text("Save"),
+//           onPressed: () {
+//             // Null;
+//             Navigator.of(context).pop();
+//             // Navigator.pushNamed(context,"");
+//           },
+//         )
+//       ],
+//     );
+//   }
+// }

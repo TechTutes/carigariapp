@@ -126,8 +126,7 @@ class _ProductState extends State<Product> {
                                     color: Colors.cyan[100],
                                     child: ListTile(
                                       leading: CircleAvatar(
-                                        backgroundImage: NetworkImage(global
-                                            .category[index].data['image']),
+                                        backgroundImage: NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
                                       ),
                                       // contentPadding: EdgeInsets.all(5),
                                       title: Text(
