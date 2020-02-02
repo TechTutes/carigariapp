@@ -12,7 +12,7 @@ import '../Arrangements/variables.dart' as global;
 // import 'package:zoomable_image/zoomable_image.dart';
 
 
-// import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view.dart';
 // import '../Arrangements/variables.dart';
 
 class SubCategory extends StatefulWidget {
