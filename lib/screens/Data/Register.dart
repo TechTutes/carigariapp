@@ -1,16 +1,12 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
-import 'package:carigari/screens/bottomNavigation.dart';
-import 'package:carigari/screens/homepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart' ;
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
-import "package:flutter/material.dart";
-import 'package:flutter/src/widgets/navigator.dart';
+
 
 class Register extends StatefulWidget
 {

@@ -1,13 +1,9 @@
 import 'dart:io';
-import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
-import 'package:carigari/screens/bottomNavigation.dart';
-import 'package:carigari/screens/homepage.dart';
-import 'package:carigari/screens/status.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart' ;
 import 'package:flutter/material.dart' as prefix0;
 import 'package:carigari/Arrangements/variables.dart' as global;
 

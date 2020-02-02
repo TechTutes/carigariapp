@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart' as prefix0;
-
+import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
 import "package:flutter/material.dart";
 import '../Arrangements/variables.dart' as global;
-
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 class OrderConfirm extends StatefulWidget {
   @override
   _OrderConfirmState createState() => _OrderConfirmState();
@@ -34,9 +34,11 @@ class _OrderConfirmState extends State<OrderConfirm> {
     msgInput = new TextEditingController();
     super.initState();
   }
-
+  String username = 'carigarifurniture@gmail.com';
+  String password = 'jaisrishyam';
   var _dropforms = ['General', 'Feedback', 'Corporate', 'BulkOrder'];
   var _dropformSelected = "General";
+  var date = new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now());
 
   void callSnackBar(String msg, [int er]) {
     // msg="There is no record with this user, please register first by clicking Register";
@@ -90,11 +92,20 @@ class _OrderConfirmState extends State<OrderConfirm> {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.title;
-String cartitem ="${global.cart[0].data["name"]}"+" quantity -"+"${global.value[0]}"+"," ;
-for(int i=1;i<global.cart.length;i++){
-cartitem= cartitem+"${global.cart[i].data["name"]}"+" quantity -"+"${global.value[i]}"+",";
-}
-print(cartitem);
+    String cartitem = "${global.cart[0].data["name"]}" +
+        " : quantity -" +
+        "${global.value[0]}" +
+        ", ";
+    for (int i = 1; i < global.cart.length; i++) {
+      cartitem = cartitem +
+          "${global.cart[i].data["name"]}" +
+          " : quantity -" +
+          "${global.value[i]}" +
+          ", ";
+    }
+    
+ 
+    print(cartitem);
     // // TODO: implement build
     // String dropdownValue='One';
 
@@ -104,20 +115,17 @@ print(cartitem);
         // resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 
-               Text("Order Placing"),
-                   Image.asset(
-                 'images/logo.png',
-                  fit: BoxFit.fill,
-                  height:SizeConfig.blockSizeVertical * 4.5,
-                  
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Order Placing", style: TextStyle(color: Colors.white)),
+              Image.asset(
+                'images/logo.png',
+                fit: BoxFit.fill,
+                height: SizeConfig.blockSizeVertical * 4.5,
               ),
             ],
-
-          ), 
-          backgroundColor:Color.fromRGBO(191,32,37, 1.0),
+          ),
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
         ),
         drawer: theDrawer(context),
         bottomNavigationBar: bottomnavigation(context, 1),
@@ -312,7 +320,7 @@ print(cartitem);
                       style: textStyle,
                       controller: cityInput,
                       // validator: nameValidator,
-                     
+
                       decoration: InputDecoration(
                           labelStyle: textStyle,
                           labelText: "City",
@@ -342,20 +350,22 @@ print(cartitem);
                   // ),
 
                   SizedBox(
-         height:SizeConfig.blockSizeVertical * 6,
-         width:SizeConfig.blockSizeHorizontal * 90,
-                child: RaisedButton(
-                  elevation:5.0,
-                    color: Colors.brown[400],
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius:new BorderRadius.circular(18.0),
-                    //   side: BorderSide(color: Colors.pink)
-                    //   ),
-                    child: Text("Place Order",style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: SizeConfig.blockSizeVertical * 3.5,)),
-                      
+                    height: SizeConfig.blockSizeVertical * 6,
+                    width: SizeConfig.blockSizeHorizontal * 90,
+                    child: RaisedButton(
+                      elevation: 5.0,
+                      color: Colors.brown[400],
+                      // shape: RoundedRectangleBorder(
+                      //   borderRadius:new BorderRadius.circular(18.0),
+                      //   side: BorderSide(color: Colors.pink)
+                      //   ),
+                      child: Text("Place Order",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: SizeConfig.blockSizeVertical * 3.5,
+                          )),
+
                       onPressed: () async {
                         // showDialog(
                         //     context: context,
@@ -363,8 +373,9 @@ print(cartitem);
                         //       return Center(child: CircularProgressIndicator(),);
                         //     });
                         // await loginAction();
-
+                       
                         if (_OrderConfirmKey.currentState.validate()) {
+                      
                           //  _scaffoldKey.currentState.showSnackBar(
                           // new SnackBar(duration: new Duration(seconds: 4), content:
                           // new Row(
@@ -382,36 +393,96 @@ print(cartitem);
 
                           Firestore.instance
                               .collection('Orders Placed')
-                              .document(nameInput.text)
+                              .document(nameInput.text + " " + date)
                               .setData({
+                                "date and time": date,
                                 "name": nameInput.text,
-                                // "uid": currentUser.uid,
-                                "city": "Hyderabad" ,
+                                "city": "Hyderabad",
                                 "address": msgInput.text,
                                 "email": emailInput.text,
                                 "mobile": phoneNumberInput.text,
                                 "cart": {
-"items":cartitem,
-"total price":global.totalamount
+                                  "items": cartitem,
+                                  "total price": global.totalamount
                                 },
                               })
                               .then((result) => {
-                                    global.cart.removeRange(0,global.cart.length),
-                                    global.value.removeRange(0, global.value.length),
-                                    global.totalamount=0,
-                                    cartitem="empty",
+                                    global.cart
+                                        .removeRange(0, global.cart.length),
+                                    global.value
+                                        .removeRange(0, global.value.length),
+                                    global.totalamount = 0,
+                                    cartitem = "empty",
                                     print(cartitem),
-                                    Navigator.pushReplacementNamed(context, "HomeScreen"),
+                                    Navigator.pushReplacementNamed(
+                                        context, "HomeScreen"),
 
                                     nameInput.clear(),
                                     cityInput.clear(),
                                     phoneNumberInput.clear(),
                                     emailInput.clear(),
                                     msgInput.clear(),
+
                                     // stateInput.clear(),
                                   })
                               .catchError((err) => print(err));
+
                           // callSnackBar("Please check the details properly"));
+                          
+
+  final smtpServer = gmail(username, password);
+  // Use the SmtpServer class to configure an SMTP server:
+  // final smtpServer = SmtpServer('smtp.domain.com');
+  // See the named arguments of SmtpServer for further configuration
+  // options.  
+  
+  // Create our message.
+  final message = Message()
+    ..from = Address(username, 'Your name')
+    ..recipients.add('carigarifurniture@gmail.com')
+    ..ccRecipients.addAll(['vamshi777reddy@gmail.com'])
+    // ..bccRecipients.add(Address(''))
+    ..subject = 'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'
+    ..text = 'This mail is from user who ordered this product'
+    ..html = "<h1 style='color:blue;'>Carigari Ordered Products</h1>\n<p>Hey!  \n<h3 >Name :- ${nameInput.text}\n </h3><h3> Mobile NO:-  ${phoneNumberInput.text} \n </h3><h3>Email ID:- ${emailInput.text} \n </h3><h3> Shipping Address :- ${msgInput.text} \n </h3>   <h3> The Ordered Products With Quantity are </h3><h3 style='color:blue;'>  ${cartitem} \n </h3> <h3>Total Price for this order is ${global.totalamount}</h3></p>";
+
+  try {
+    final sendReport = await send(message, smtpServer);
+    print('Message sent: ' + sendReport.toString());
+  } on MailerException catch (e) {
+    print('Message not sent.');
+    for (var p in e.problems) {
+      print('Problem: ${p.code}: ${p.msg}');
+    }
+    print('Message not sent.');
+  }
+  // DONE
+  
+  
+  // Let's send another message using a slightly different syntax:
+  //
+  // Addresses without a name part can be set directly.
+  // For instance `..recipients.add('destination@example.com')`
+  // If you want to display a name part you have to create an
+  // Address object: `new Address('destination@example.com', 'Display name part')`
+  // Creating and adding an Address object without a name part
+  // `new Address('destination@example.com')` is equivalent to
+  // adding the mail address as `String`.
+ 
+  // Sending multiple messages with the same connection
+  //
+  // Create a smtp client that will persist the connection
+  var connection = PersistentConnection(smtpServer);
+  
+  // Send the first message
+  await connection.send(message);
+  
+  // send the equivalent message
+  
+  // close the connection
+  await connection.close();
+  
+
                         }
                       },
                     ),

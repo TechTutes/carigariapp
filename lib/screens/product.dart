@@ -1,19 +1,11 @@
 import 'dart:io';
 import 'package:carigari/Arrangements/Drawer.dart';
-import 'package:carigari/screens/Data/Category.dart';
-import 'package:carigari/screens/Data/contactForm.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
-import 'package:carigari/screens/contactUs.dart';
-import 'package:carigari/screens/privacy.dart';
-import 'package:carigari/screens/splashScreen.dart';
-import 'package:carigari/screens/subcategory.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
-import './showImage.dart';
 import '../Arrangements/sizeModification.dart';
 import '../Arrangements/variables.dart' as global;
 
@@ -24,7 +16,7 @@ class Product extends StatefulWidget {
 }
 
 class _ProductState extends State<Product> {
-  bool isLoading = false,productIs=true;
+  bool isLoading = false, productIs = true;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
   var msg;
@@ -60,23 +52,19 @@ class _ProductState extends State<Product> {
 
     // }
     print("geting instance for category");
-    QuerySnapshot qp,g;
+    QuerySnapshot qp, g;
     qp = await Firestore.instance
         .collection("${global.categories[global.touch].data['name']}")
         .getDocuments();
 
     global.category.isEmpty ? global.category.addAll(qp.documents) : null;
-      g = await Firestore.instance
-        .collection("data")
-        .getDocuments();
-            global.data.isEmpty ? global.data.addAll(g.documents) : null;
+    g = await Firestore.instance.collection("data").getDocuments();
+    global.data.isEmpty ? global.data.addAll(g.documents) : null;
 
-
-    if(global.category.isEmpty){
-      
-    setState(() {
-      productIs = false;
-    });
+    if (global.category.isEmpty) {
+      setState(() {
+        productIs = false;
+      });
     }
     // print("${global.category[0].data['name']}");
     print("category");
@@ -91,7 +79,7 @@ class _ProductState extends State<Product> {
     return new Scaffold(
         key: _scaffoldkey,
         appBar: new AppBar(
-          backgroundColor: Color.fromRGBO(191,32,37, 1.0),
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -106,11 +94,11 @@ class _ProductState extends State<Product> {
         ),
         drawer: theDrawer(context),
         bottomNavigationBar: bottomnavigation(context, 0),
-        body: WillPopScope(onWillPop: () {
-          Navigator.pushReplacementNamed(context,'HomeScreen');
-         
-        },
-                  child: productIs
+        body: WillPopScope(
+          onWillPop: () {
+            Navigator.pushReplacementNamed(context, 'HomeScreen');
+          },
+          child: productIs
               ? Column(children: <Widget>[
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 25,
@@ -138,8 +126,8 @@ class _ProductState extends State<Product> {
                                     color: Colors.cyan[100],
                                     child: ListTile(
                                       leading: CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                            global.category[index].data['image']),
+                                        backgroundImage: NetworkImage(global
+                                            .category[index].data['image']),
                                       ),
                                       // contentPadding: EdgeInsets.all(5),
                                       title: Text(
@@ -163,7 +151,8 @@ class _ProductState extends State<Product> {
                                         // global.TempIndex=index;
 
                                         print("clicked" +
-                                            global.category[index].data['name']);
+                                            global
+                                                .category[index].data['name']);
                                       },
                                       // onLongPress: (){
                                       //   //  CategoryData(index);
@@ -241,8 +230,10 @@ class _ProductState extends State<Product> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Center(
-                      child: Text(global.data.isEmpty?
-                        "\n\n\n\nThere are no products in this category.":"\n\n\n\n${global.data[5].data["not-available"]}",
+                      child: Text(
+                        global.data.isEmpty
+                            ? "\n\n\n\nThere are no products in this category."
+                            : "\n\n\n\n${global.data[5].data["not-available"]}",
                         style: TextStyle(
                             fontSize: SizeConfig.blockSizeVertical * 2.5,
                             color: Colors.green),
@@ -251,9 +242,9 @@ class _ProductState extends State<Product> {
                     Column(
                       children: <Widget>[
                         SizedBox(
-                          width:SizeConfig.blockSizeHorizontal*95,
-                          height:SizeConfig.blockSizeVertical * 5.5,
-                                            child: RaisedButton(
+                          width: SizeConfig.blockSizeHorizontal * 95,
+                          height: SizeConfig.blockSizeVertical * 5.5,
+                          child: RaisedButton(
                               elevation: 5.0,
                               color: Colors.brown[400],
                               child: Text("Continue Shopping",
@@ -263,15 +254,17 @@ class _ProductState extends State<Product> {
                                     fontSize: SizeConfig.blockSizeVertical * 4,
                                   )),
                               onPressed: () {
-                                Navigator.pushReplacementNamed(context, "HomeScreen");
+                                Navigator.pushReplacementNamed(
+                                    context, "HomeScreen");
                               }),
                         ),
-                        SizedBox(height:SizeConfig.blockSizeVertical * 2,)
+                        SizedBox(
+                          height: SizeConfig.blockSizeVertical * 2,
+                        )
                       ],
                     ),
-                //  SizedBox(height:5)
+                    //  SizedBox(height:5)
                   ],
-
                 ),
         ));
   }

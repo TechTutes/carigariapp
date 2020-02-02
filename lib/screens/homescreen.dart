@@ -1,20 +1,13 @@
 // import 'dart:html';
 import 'dart:io';
 import 'package:carigari/Arrangements/Drawer.dart';
-import 'package:carigari/screens/Data/Category.dart';
-import 'package:carigari/screens/Data/contactForm.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
-import 'package:carigari/screens/contactUs.dart';
-import 'package:carigari/screens/privacy.dart';
-import 'package:carigari/screens/splashScreen.dart';
-import 'package:carigari/screens/subcategory.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
-import './showImage.dart';
 import '../Arrangements/sizeModification.dart';
 import '../Arrangements/variables.dart' as global;
 // import 'package:provider/provider.dart';

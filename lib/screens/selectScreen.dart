@@ -1,11 +1,9 @@
 import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' ;
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
-import '../Arrangements/sizeModification.dart';
-import 'package:carigari/screens/homescreen.dart';
+
 import '../Arrangements/variables.dart'as global;
 
 class SelectScreen extends StatefulWidget

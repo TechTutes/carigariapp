@@ -37,7 +37,7 @@ Widget bottomnavigation(BuildContext context, int index) {
       BottomNavigationBarItem(
         icon: Icon(
           Icons.home,
-          color: Colors.black45,
+          color: Colors.black54,
         ),
         title: Text('Home',
             style: TextStyle(
@@ -52,7 +52,7 @@ Widget bottomnavigation(BuildContext context, int index) {
       
           icon: Icon(
             Icons.contacts,
-             color:Colors.black45,
+             color:Colors.black54,
           ),
            activeIcon:Icon(
             Icons.contacts,
@@ -67,7 +67,7 @@ Widget bottomnavigation(BuildContext context, int index) {
       BottomNavigationBarItem(
           icon: Icon(
             Icons.shopping_cart,
-            color: Colors.black45,
+            color: Colors.black87,
           ),
            activeIcon:Icon(
            Icons.shopping_cart,
@@ -79,6 +79,7 @@ Widget bottomnavigation(BuildContext context, int index) {
                 fontSize: SizeConfig.blockSizeVertical * 1.8,
                 fontWeight: FontWeight.w800))),
     ],
+    // unselectedLabelStyle: TextStyle(color: Colors.white),
     fixedColor: 
     Colors.white,
     // Color.fromRGBO(127, 68, 0, .9),

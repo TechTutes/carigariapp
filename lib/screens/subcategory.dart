@@ -8,9 +8,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
-import 'homescreen.dart';
-import 'product.dart' as local;
+
 import 'package:zoomable_image/zoomable_image.dart';
+
 
 // import 'package:photo_view/photo_view.dart';
 // import '../Arrangements/variables.dart';
@@ -86,52 +86,6 @@ class _SubCategoryState extends State<SubCategory> {
       isLoading = false;
     });
   }
-
-img(index,BuildContext context) {
-                                            //   return showDialog(
-                                            // context: context,
-                                            // barrierDismissible: false,
-                                            // builder: (BuildContext context){
-                                              return new AlertDialog(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20.0))),
-                                                // title: Text(
-                                                //     "Select your Choice"),
-                                                titlePadding:
-                                                    EdgeInsets.all(10.0),
-                                                
-                                                actions: <Widget>[
-                                                  Container(
-                                                  child: 
-                                                  // PhotoView(
-                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
-                                                  // ),
-                                                  Flexible(
-                                                                                                      child: ZoomableImage(
-                                                      
-                                                      NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-                                                      backgroundColor: Colors.white,
-                                                    ),
-                                                  )
-                                                ),
-                                                  new FlatButton(
-                                                    child: Text("Save"),
-                                                    onPressed: () {
-                                                      // Null;
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      // Navigator.pushNamed(context,"");
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            
-
-                                            }
-
   @override
   Widget build(BuildContext context) {
     // void Alert(){
@@ -145,17 +99,18 @@ img(index,BuildContext context) {
     final index = ModalRoute.of(context).settings.arguments;
     print(global.cart.length.toString());
     print(inside);
-    inside=false;
+    inside = false;
     for (int i = 0; i < global.cart.length; i++) {
-      if(global.cart.isNotEmpty){
-        inside=false;
-      if (global.category[index].data["name"] == global.cart[i].data["name"]) {
-        setState(() {
-          
-          inside = true;
-          place = i;
-        });
-      }}
+      if (global.cart.isNotEmpty) {
+        inside = false;
+        if (global.category[index].data["name"] ==
+            global.cart[i].data["name"]) {
+          setState(() {
+            inside = true;
+            place = i;
+          });
+        }
+      }
     }
     Alerting(BuildContext context) {
       return showDialog(
@@ -204,8 +159,9 @@ img(index,BuildContext context) {
             );
           });
     }
- Alert(int index,BuildContext context) {
-      return showDialog(  
+
+    Alert(int index, BuildContext context) {
+      return showDialog(
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
@@ -213,7 +169,7 @@ img(index,BuildContext context) {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               // elevation: 200.0,
-              // backgroundColor: Colors.white60,
+              backgroundColor: Colors.white10,
               // title: Text("Please Enter SMS Code"),
               titlePadding: EdgeInsets.all(20.0),
               // content: Text(" Shop further Or Checkout",
@@ -225,37 +181,43 @@ img(index,BuildContext context) {
               // contentPadding: EdgeInsets.all(10.0),
 
               actions: <Widget>[
-                
-                                                
-                                                  // PhotoView(
-                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
-                                                  // ),
-                                                  // Flexible(
-                                                                                                      // child: 
-                                                                                                      SizedBox(
-                                                                                                        height:MediaQuery.of(context).size.height/1.2,
-                                                                                                        width:MediaQuery.of(context).size.width*0.75,
-                                                                                                        child: ZoomableImage(
-                                                                                                          
-                                                      
-                                                      NetworkImage(global.category[index].data['image']),
-                                                      backgroundColor: Colors.white,
-                                                      maxScale:3.0,
-                                                      minScale:1.0
-                                                    ),
-                                                                                                      ),
-                                                  // )
-                                              
-                
+                // PhotoView(
+                //   imageProvider: NetworkImage(global.category[index].data['image']),
+                // ),
+                // Flexible(
+                // child:
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.87,
+                  width: MediaQuery.of(context).size.width * 0.76,
+                  child: Center(
+                    child: 
+                    // CachedNetworkImage(
+                    //    placeholder: (context, url) => 
+                      //  CircularProgressIndicator(),
+                      //                     child:
+                                           ZoomableImage(
+                          NetworkImage("global.category[index].data['image']"),
+placeholder: CircularProgressIndicator(
+  strokeWidth: 3.0,
+),
+                          backgroundColor: Colors.white10,
+                          maxScale: 2.5,
+                          minScale: 1.0),
+                    // ),
+
+                  ),
+                ),
+                // )
               ],
             );
           });
     }
+
     // TODO: implement build
     return Scaffold(
         key: _scaffoldkey,
         appBar: new AppBar(
-          backgroundColor: Color.fromRGBO(191,32,37, 1.0),
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -287,7 +249,6 @@ img(index,BuildContext context) {
               // Text(global.category[0].data['a']),
               // Text("\n"),
               Padding(
-                
                   padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 9.0),
                   child: ListView(
                     children: <Widget>[
@@ -302,7 +263,7 @@ img(index,BuildContext context) {
                               style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600,
-                                fontSize:  7,
+                                fontSize: 7,
                                 // SizeConfig.blockSizeVertical * 2.9,
                               ),
                             ),
@@ -320,26 +281,25 @@ img(index,BuildContext context) {
                         ),
                       ),
                       //  Container(child:Flexible(
-                                                                                                      // child: 
-                          //                                                                             SizedBox(
-                          // height:70.0,
-                          // width:200.0,
-                          // child:
-                          //                                                                             ZoomableImage(
-                                                      
-                          //                             NetworkImage(global.category[index].data['image']),
-                          //                             backgroundColor: Colors.white,
-                          //                           ),),
-                GestureDetector(
+                      // child:
+                      //                                                                             SizedBox(
+                      // height:70.0,
+                      // width:200.0,
+                      // child:
+                      //                                                                             ZoomableImage(
+
+                      //                             NetworkImage(global.category[index].data['image']),
+                      //                             backgroundColor: Colors.white,
+                      //                           ),),
+                      GestureDetector(
                         child: SizedBox(
-                          height:70.0,
-                          width:200.0,
-                          child: Image.network(global.category[index].data['image'])),
-                        onTap:()=> Alert(index,context),
-                                              ),
-                        
-                        
-                        
+                            height: 70.0,
+                            width: 200.0,
+                            child: Image.network(
+                                global.category[index].data['image'])),
+                        onTap: () => Alert(index, context),
+                      ),
+
                       Divider(),
 
                       Container(
@@ -357,9 +317,7 @@ img(index,BuildContext context) {
                           sortAscending: true,
                           columns: <DataColumn>[
                             DataColumn(
-                              
                               numeric: false,
-
                               tooltip: " price",
                               label: Text(""),
                             ),
@@ -371,7 +329,6 @@ img(index,BuildContext context) {
                           ],
                           rows: [
                             DataRow(
-                             
                               cells: [
                                 DataCell(
                                   Text("Model Name",
@@ -385,8 +342,7 @@ img(index,BuildContext context) {
                                   placeholder: false,
                                 ),
                                 DataCell(
-                                  Text(
-                                      global.category[index].data['name'],
+                                  Text(global.category[index].data['name'],
                                       style: TextStyle(
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
@@ -655,7 +611,7 @@ img(index,BuildContext context) {
                                               .insert(at, global.value[at] + 1);
                                           global.value.removeAt(at + 1);
                                           setState(() {
-                                            t=true;
+                                            t = true;
                                           });
                                           // print(global.value[at].toString());}
                                         } else {
@@ -676,7 +632,7 @@ img(index,BuildContext context) {
                                         print("else of add");
                                         print(global.value.toString());
                                         setState(() {
-                                           t = true;
+                                          t = true;
                                           global.value.add(1);
                                           flag == false
                                               ? global.value.removeAt(
@@ -685,7 +641,6 @@ img(index,BuildContext context) {
                                           global.cart
                                               .add(global.category[index]);
                                         });
-                                      
 
                                         // print(global.value.toString());
                                         // print(global.value.toString());
@@ -887,53 +842,43 @@ img(index,BuildContext context) {
 }
 
 class Fetch extends StatefulWidget {
-       
-
-  Fetch( {Key key}) : super(key: key);
+  Fetch({Key key}) : super(key: key);
   @override
   _FetchState createState() => _FetchState();
 }
 
 class _FetchState extends State<Fetch> {
   Widget build(BuildContext context) {
-   int index=1;
-      return new AlertDialog(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                20.0))),
-                                                // title: Text(
-                                                //     "Select your Choice"),
-                                                titlePadding:
-                                                    EdgeInsets.all(10.0),
-                                                
-                                                actions: <Widget>[
-                                                  Container(
-                                                  child: 
-                                                  // PhotoView(
-                                                  //   imageProvider: NetworkImage(global.category[index].data['image']),
-                                                  // ),
-                                                  Flexible(
-                                                                                                      child: ZoomableImage(
-                                                      
-                                                      NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-                                                      backgroundColor: Colors.white,
-                                                    ),
-                                                  )
-                                                ),
-                                                  new FlatButton(
-                                                    child: Text("Save"),
-                                                    onPressed: () {
-                                                      // Null;
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                      // Navigator.pushNamed(context,"");
-                                                    },
-                                                  )
-                                                ],
-                                              );
+    int index = 1;
+    return new AlertDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      // title: Text(
+      //     "Select your Choice"),
+      titlePadding: EdgeInsets.all(10.0),
 
-  }}
-
-
+      actions: <Widget>[
+        Container(
+            child:
+                // PhotoView(
+                //   imageProvider: NetworkImage(global.category[index].data['image']),
+                // ),
+                Flexible(
+          child: ZoomableImage(
+            NetworkImage(
+                "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+            backgroundColor: Colors.white,
+          ),
+        )),
+        new FlatButton(
+          child: Text("Save"),
+          onPressed: () {
+            // Null;
+            Navigator.of(context).pop();
+            // Navigator.pushNamed(context,"");
+          },
+        )
+      ],
+    );
+  }
+}

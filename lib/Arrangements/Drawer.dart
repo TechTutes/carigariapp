@@ -1,15 +1,10 @@
-import 'dart:io';
 
 import 'package:carigari/Arrangements/sizeModification.dart';
-import 'package:carigari/screens/homescreen.dart';
-import 'package:carigari/screens/privacy.dart';
-import 'package:carigari/screens/status.dart';
-import 'package:carigari/screens/status.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:carigari/Screens/splashScreen.dart';
 
 // Widget theDrawer(BuildContext context)
 // {

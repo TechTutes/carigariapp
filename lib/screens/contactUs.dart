@@ -49,7 +49,7 @@ class _ContactUsState extends State<ContactUs> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Contact Us", style: TextStyle(color: Colors.black)),
+              Text("Contact Us", style: TextStyle(color: Colors.white)),
               Image.asset(
                 'images/logo.png',
                 fit: BoxFit.fill,

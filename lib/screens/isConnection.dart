@@ -2,29 +2,21 @@ import 'dart:async';
 import 'dart:io';
 import 'package:carigari/screens/Data/ProfileEdit.dart';
 import 'package:carigari/screens/Data/about.dart';
-import 'package:carigari/screens/Data/details.dart';
 import 'package:carigari/screens/Data/notification.dart' as prefix0;
 import 'package:carigari/screens/product.dart';
 import 'package:carigari/screens/subcategory.dart';
-import 'package:carigari/screens/testforcategory.dart';
 
 import 'package:connectivity/connectivity.dart';
-import 'package:carigari/Arrangements/sizeModification.dart';
 import 'package:carigari/Screens/contactUS.dart';
 import 'package:carigari/screens/Data/Account.dart';
 import 'package:carigari/screens/Data/contactForm.dart';
 import 'package:carigari/screens/Data/login.dart';
 import 'package:carigari/screens/Data/phone.dart';
 import 'package:carigari/screens/Data/subscription.dart';
-import 'package:carigari/screens/bottomNavigation.dart';
 import 'package:carigari/screens/cart.dart';
 import 'package:carigari/screens/help.dart';
 import 'package:carigari/screens/logout.dart';
-import 'package:carigari/screens/Data/notification.dart';
 import 'package:carigari/screens/privacy.dart';
-import 'package:carigari/screens/showImage.dart';
-// import 'package:carigari/screens/test.dart';
-import './Data/CheckingData.dart';
 import './splashScreen.dart';
 import 'package:flutter/material.dart';
 import './homescreen.dart';
@@ -99,7 +91,6 @@ class _IsConnection extends State<IsConnection> {
           'Splash':(BuildContext context)=> new Splash(),
           'IsConnection':(BuildContext context)=> new IsConnection(),
          'HomeScreen': (BuildContext context) => new HomeScreen(),
-        'CheckData': (BuildContext context) => new CheckData(),
         'ScreenSelection':(BuildContext context) => new SelectScreen(),
         'Register':(BuildContext context) => new Register(),
         // 'Details':(BuildContext context)=> new Details(),
@@ -117,7 +108,6 @@ class _IsConnection extends State<IsConnection> {
         'Login': (BuildContext context) => new LoginPage(),
         'PhoneLogin':(BuildContext context)=> new PhoneLogin(),
         'Logout': (BuildContext context) => new Logout(),
-        'Testing':(BuildContext context) => new Test(),
         'About':(BuildContext context)=> new About(),
         'ProfileEdit':(BuildContext context) => new ProfileEdit(),
         'SubCategory':(BuildContext context) => new SubCategory(),
