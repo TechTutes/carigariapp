@@ -261,8 +261,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text("Select by Category",
                     style: TextStyle(
                       color: Colors.brown,
-                      fontWeight: FontWeight.w600,
-                      fontSize: SizeConfig.blockSizeVertical * 3.5,
+                      fontWeight: FontWeight.w400,
+                      fontSize: SizeConfig.blockSizeVertical * 2.9,
                     )),
               ),
               Expanded(
@@ -491,3 +491,36 @@ class _HomeScreenState extends State<HomeScreen> {
 //    }
 
 // }
+//  AlertDialog(
+//             title: new Text(
+//               " Install Update",
+//               style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2.5),
+//             ),
+//             content: new Text(
+//               "A new version of our App is in play Store, Please Update!!",
+//               style: TextStyle(fontSize: 14.0),
+//             ),
+//             actions: <Widget>[
+//               // usually buttons at the bottom of the dialog
+//               new FlatButton(
+//                 child: new Text("Update"),
+//                 onPressed: () {
+               
+//                  LaunchReview.launch(androidAppId: "conversionguru.in.carigari");
+                     
+//                   // Navigator.pop(context);
+//                 },
+//               ),
+//               new FlatButton(
+//                 child: new Text("Later"),
+//                 onPressed: () {
+//                   setState(() {
+//                     isUpdate = false;
+//                   });
+
+//                   // exit(0);
+//                   // Navigator.of(context).pop();
+//                 },
+//               ),
+//             ],
+//           ):

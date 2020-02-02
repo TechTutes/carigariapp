@@ -57,10 +57,7 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
+    final appbar =AppBar(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -73,7 +70,11 @@ class _CartState extends State<Cart> {
               ],
             ),
             backgroundColor: Color.fromRGBO(191,32,37, 1.0),
-          ),
+          );
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: appbar,
           bottomNavigationBar: bottomnavigation(context, 2),
           drawer: theDrawer(context),
           body: WillPopScope(
@@ -130,7 +131,7 @@ class _CartState extends State<Cart> {
                 Expanded(
                   child: global.cart.length == 0
                       ? Center(
-                          child: Text('no data'),
+                          child: Container(),
                         )
                       : ListView.builder(
                           // controller: _scrollController,
@@ -146,12 +147,12 @@ class _CartState extends State<Cart> {
                                 child: Icon(
                                   Icons.delete,
                                   color: Colors.white,
-                                  size: 40,
+                                  size: 39,
                                 ),
                                 alignment: Alignment.centerRight,
-                                padding: EdgeInsets.only(right: 20),
+                                padding: EdgeInsets.only(right: 19),
                                 margin: EdgeInsets.symmetric(
-                                  horizontal: 15,
+                                  horizontal: 14,
                                   vertical: 4,
                                 ),
                               ),
@@ -188,8 +189,7 @@ class _CartState extends State<Cart> {
                                         Icon(
                                           Icons.arrow_back,
                                           color: Colors.red,
-                                          size:SizeConfig.blockSizeVertical *
-                                                    1.4,
+                                          size:((SizeConfig.screenHeight) - (appbar.preferredSize.height)) * 0.0161,
                                         ),
                                         // Text("<-", style: TextStyle(
                                         //     color: Colors.black,
@@ -291,7 +291,7 @@ class _CartState extends State<Cart> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: SizeConfig.blockSizeVertical * 4,
+                                  fontSize: ((SizeConfig.screenHeight) - (appbar.preferredSize.height)) * 0.035,
                                 )),
                             onPressed: () {
                               Navigator.pushNamed(context, "HomeScreen");
@@ -311,7 +311,7 @@ class _CartState extends State<Cart> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: SizeConfig.blockSizeVertical * 4,
+                                  fontSize: ((SizeConfig.screenHeight) - (appbar.preferredSize.height)) * 0.035,
                                 )),
                             onPressed: () {
                               Navigator.pushNamed(context, "OrderConfirm");

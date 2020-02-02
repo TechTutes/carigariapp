@@ -259,15 +259,15 @@ class _SubCategoryState extends State<SubCategory> {
                         child: Column(
                           // crossAxisAlignment:CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              "\t\t\tProduct Description for ",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 7,
-                                // SizeConfig.blockSizeVertical * 2.9,
-                              ),
-                            ),
+                            // Text(
+                            //   "\t\t\tProduct Description for ",
+                            //   style: TextStyle(
+                            //     color: Colors.black,
+                            //     fontWeight: FontWeight.w600,
+                            //     fontSize: 7,
+                            //     // SizeConfig.blockSizeVertical * 2.9,
+                            //   ),
+                            // ),
                             Center(
                               child: Text(
                                 global.category[index].data['name'],
@@ -300,188 +300,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}")),
                         onTap: () => Alert(index, context),
                       ),
-
-                      Divider(),
-
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width * 0.05),
-                        width: MediaQuery.of(context).size.width * 0.99,
-                        // height: MediaQuery.of(context).size.height * 0.21,
-                        child: DataTable(
-                          headingRowHeight:
-                              MediaQuery.of(context).size.height * 0.0,
-                          horizontalMargin:
-                              MediaQuery.of(context).size.width * 0.03,
-                          columnSpacing:
-                              MediaQuery.of(context).size.width * 0.04,
-                          sortAscending: true,
-                          columns: <DataColumn>[
-                            DataColumn(
-                              numeric: false,
-                              tooltip: " price",
-                              label: Text(""),
-                            ),
-                            DataColumn(
-                              label: Text(""),
-                              numeric: false,
-                              tooltip: "value",
-                            ),
-                          ],
-                          rows: [
-                            DataRow(
-                              cells: [
-                                DataCell(
-                                  Text("Model Name",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 2.0,
-                                      )),
-                                  showEditIcon: false,
-                                  placeholder: false,
-                                ),
-                                DataCell(
-                                  Text(global.category[index].data['name'],
-                                      style: TextStyle(
-                                        color: Colors.pink,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 1.9,
-                                      )),
-                                  showEditIcon: false,
-                                  placeholder: false,
-                                ),
-                              ],
-                            ),
-                            DataRow(
-                              //for the data of session 1 in gold
-                              cells: [
-                                DataCell(
-                                  Text("Price",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 2.9,
-                                      )),
-                                  showEditIcon: false,
-                                  placeholder: false,
-                                ),
-                                DataCell(
-                                  Text(
-                                      "₹ ${global.category[index].data['price']}",
-                                      style: TextStyle(
-                                        color: Colors.pink,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 2.8,
-                                      )),
-                                  showEditIcon: false,
-                                  placeholder: false,
-                                ),
-                              ],
-                            ),
-                            DataRow(
-                              //for the data of session 5 in gold
-                              cells: [
-                                DataCell(
-                                  Text("Quantity Available",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 2.5,
-                                      )),
-                                  showEditIcon: false,
-                                  placeholder: false,
-                                ),
-                                DataCell(
-                                  Text(
-                                      "${global.category[index].data["quantity"]}",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 2.5,
-                                      )),
-                                  showEditIcon: false,
-                                  placeholder: false,
-                                ),
-                              ],
-                            ),
-                            // DataRow(//for the data of session 10 in gold
-                            //   cells: [
-                            //     DataCell(
-                            //       Text("10",
-                            //           style: TextStyle(
-                            //               fontSize:
-                            //                   MediaQuery.of(context).size.height *
-                            //                       0.025)),
-                            //       showEditIcon: false,
-                            //       placeholder: false,
-                            //     ),
-
-                            //   ],
-                            // ),
-                          ],
-                        ),
-                      ),
-
-                      // Image.network(global.category[0].data['image']),
-
-                      Divider(),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width * 0.08),
-                        child: SizedBox(
-                          height: MediaQuery.of(context).size.height / 7,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("Description:",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize:
-                                        SizeConfig.blockSizeVertical * 2.7,
-                                  )),
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: SingleChildScrollView(
-                                  child: Text(
-                                      "\t\t\t\t${global.category[index].data['desc']}",
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                        color: Colors.pink,
-                                        fontWeight: FontWeight.w300,
-                                        fontSize:
-                                            SizeConfig.blockSizeVertical * 2.5,
-                                      )),
-                                ),
-                              ),
-                              Divider(),
-                              Text("\t\t\t[Delivery Charges:extra",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize:
-                                        SizeConfig.blockSizeVertical * 2.2,
-                                  )),
-                              Text(
-                                  "\t\t\tGST:${global.data[0].data['gst']}% extra]",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize:
-                                        SizeConfig.blockSizeVertical * 2.2,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
+ SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -791,6 +610,188 @@ class _SubCategoryState extends State<SubCategory> {
                           },
                         ),
                       ),
+                      Divider(),
+
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.05),
+                        width: MediaQuery.of(context).size.width * 0.99,
+                        // height: MediaQuery.of(context).size.height * 0.21,
+                        child: DataTable(
+                          headingRowHeight:
+                              MediaQuery.of(context).size.height * 0.0,
+                          horizontalMargin:
+                              MediaQuery.of(context).size.width * 0.03,
+                          columnSpacing:
+                              MediaQuery.of(context).size.width * 0.04,
+                          sortAscending: true,
+                          columns: <DataColumn>[
+                            DataColumn(
+                              numeric: false,
+                              tooltip: " price",
+                              label: Text(""),
+                            ),
+                            DataColumn(
+                              label: Text(""),
+                              numeric: false,
+                              tooltip: "value",
+                            ),
+                          ],
+                          rows: [
+                            DataRow(
+                              cells: [
+                                DataCell(
+                                  Text("Model Name",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.0,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                                DataCell(
+                                  Text(global.category[index].data['name'],
+                                      style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 1.9,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                              ],
+                            ),
+                            DataRow(
+                              //for the data of session 1 in gold
+                              cells: [
+                                DataCell(
+                                  Text("Price",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.9,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                                DataCell(
+                                  Text(
+                                      "₹ ${global.category[index].data['price']}",
+                                      style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.8,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                              ],
+                            ),
+                            DataRow(
+                              //for the data of session 5 in gold
+                              cells: [
+                                DataCell(
+                                  Text("Quantity Available",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.5,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                                DataCell(
+                                  Text(
+                                      "${global.category[index].data["quantity"]}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.5,
+                                      )),
+                                  showEditIcon: false,
+                                  placeholder: false,
+                                ),
+                              ],
+                            ),
+                            // DataRow(//for the data of session 10 in gold
+                            //   cells: [
+                            //     DataCell(
+                            //       Text("10",
+                            //           style: TextStyle(
+                            //               fontSize:
+                            //                   MediaQuery.of(context).size.height *
+                            //                       0.025)),
+                            //       showEditIcon: false,
+                            //       placeholder: false,
+                            //     ),
+
+                            //   ],
+                            // ),
+                          ],
+                        ),
+                      ),
+
+                      // Image.network(global.category[0].data['image']),
+
+                      Divider(),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.08),
+                        child: SizedBox(
+                          height: MediaQuery.of(context).size.height / 7,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("Description:",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize:
+                                        SizeConfig.blockSizeVertical * 2.7,
+                                  )),
+                              Flexible(
+                                fit: FlexFit.tight,
+                                child: SingleChildScrollView(
+                                  child: Text(
+                                      "\t\t\t\t${global.category[index].data['desc']}",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.pink,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize:
+                                            SizeConfig.blockSizeVertical * 2.5,
+                                      )),
+                                ),
+                              ),
+                              Divider(),
+                              
+                              Text("\t\t\t[Delivery Charges:extra",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize:
+                                        SizeConfig.blockSizeVertical * 2.2,
+                                  )),
+                              Text(
+                                  "\t\t\tGST:${global.data[0].data['gst']}% extra]",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize:
+                                        SizeConfig.blockSizeVertical * 2.2,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      ),
+                     
                       isLoading
                           ? Container(
                               child: Text("Loading"),
