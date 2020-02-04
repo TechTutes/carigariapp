@@ -440,7 +440,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
   final message = Message()
     ..from = Address(username, 'Your name')
     ..recipients.add('carigarifurniture@gmail.com')
-    ..ccRecipients.addAll(['vamshi777reddy@gmail.com'])
+    // ..ccRecipients.addAll(['vamshi777reddy@gmail.com'])
     // ..bccRecipients.add(Address(''))
     ..subject = 'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'
     ..text = 'This mail is from user who ordered this product'

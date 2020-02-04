@@ -103,6 +103,9 @@ print("inside categorylist");
 //   super.dispose();
 // }
   Widget CarouselImages() {
+    print("inside carousell");
+
+
     return new Container(
         color: Colors.white,
         child: new CarouselSlider(
@@ -277,6 +280,7 @@ print("inside categorylist");
                         padding: const EdgeInsets.all(10.0),
                         itemCount: global.categories.length,
                         itemBuilder: (ctx, i) {
+                          print("inside grid view of home screen");
                           return Container(
                             height: MediaQuery.of(context).size.height * 0.30,
                             child: Card(
