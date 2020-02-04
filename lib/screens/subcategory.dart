@@ -190,7 +190,18 @@ class _SubCategoryState extends State<SubCategory> {
 
 
   ///paste it here
-
+Container(
+                  height: MediaQuery.of(context).size.height * 0.78,
+                  width: MediaQuery.of(context).size.width * 0.99,
+                  child: PhotoView(
+                      imageProvider:
+                          NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+                      maxScale: 2.3,
+                      minScale: 1.0,
+                      backgroundDecoration: BoxDecoration(
+                        color: Colors.white,
+                      )),
+                )
 
 
 //               

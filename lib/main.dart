@@ -18,9 +18,12 @@ import 'package:flutter/services.dart';
 // // import 'package:firebase_core/firebase_core.dart';
 
 void main() {
-SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitUp]);
+// SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitUp]);
+ 
+
   // runApp(new myapp());
   runApp(new prefix0.IsConnection());
+
 }
 
 // class myapp extends StatelessWidget

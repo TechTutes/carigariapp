@@ -1,7 +1,11 @@
-cloud_firestore=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-0.8.2+3\\
-connectivity=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\connectivity-0.3.2\\
-firebase_auth=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-0.6.6\\
-firebase_core=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.2.5+1\\
-firebase_database=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_database-0.4.6\\
-launch_review=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\launch_review-2.0.0\\
-url_launcher=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.0.2\\
+# This is a generated file; do not edit or check into version control.
+cloud_firestore=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\cloud_firestore-0.13.0+1\\
+connectivity=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\connectivity-0.4.6+2\\
+firebase_auth=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth-0.15.4\\
+firebase_auth_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_auth_web-0.1.2\\
+firebase_core=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core-0.4.3+3\\
+firebase_core_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_core_web-0.1.1+2\\
+firebase_database=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\firebase_database-3.1.1\\
+url_launcher=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher-5.4.1\\
+url_launcher_macos=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_macos-0.0.1+2\\
+url_launcher_web=D:\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\url_launcher_web-0.1.0+2\\

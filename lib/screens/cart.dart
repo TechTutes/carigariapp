@@ -218,10 +218,9 @@ class _CartState extends State<Cart> {
                                     },
                                   ),
                                   leading: CircleAvatar(
-                                    backgroundImage: NetworkImage(global
-                                                .cart[index].data['image'] !=
+                                    backgroundImage: NetworkImage("https://drive.google.com/thumbnail?id=${global.cart[index].data['image']}" !=
                                             null
-                                        ? global.cart[index].data['image']
+                                        ? "https://drive.google.com/thumbnail?id=${global.cart[index].data['image']}"
                                         : "https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new3.jpg"),
                                   ),
                                   contentPadding: EdgeInsets.all(5),

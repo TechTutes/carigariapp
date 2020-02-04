@@ -10,8 +10,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:carigari/Screens/contactUS.dart';
 import 'package:carigari/screens/Data/Account.dart';
 import 'package:carigari/screens/Data/contactForm.dart';
-import 'package:carigari/screens/Data/login.dart';
-import 'package:carigari/screens/Data/phone.dart';
+
 import 'package:carigari/screens/Data/subscription.dart';
 import 'package:carigari/screens/cart.dart';
 import 'package:carigari/screens/help.dart';
@@ -22,7 +21,6 @@ import 'package:flutter/material.dart';
 import './homescreen.dart';
 import './imageNoNet.dart';
 import './selectScreen.dart';
-import './Data/Register.dart';
 import '../screens/orderConfirm.dart';
 class IsConnection extends StatefulWidget {
   @override
@@ -92,7 +90,6 @@ class _IsConnection extends State<IsConnection> {
           'IsConnection':(BuildContext context)=> new IsConnection(),
          'HomeScreen': (BuildContext context) => new HomeScreen(),
         'ScreenSelection':(BuildContext context) => new SelectScreen(),
-        'Register':(BuildContext context) => new Register(),
         // 'Details':(BuildContext context)=> new Details(),
         'ContactForm':(BuildContext context) => new ContactForm(),
         // 'BottomNavigation':(BuildContext context) => new BottomNavigation(),
@@ -105,8 +102,7 @@ class _IsConnection extends State<IsConnection> {
         'Privacy':(BuildContext context) => new Privacy(),
         'Subscription':(BuildContext context)=> new Subscription(),
         'Notification':(BuildContext context)=> new prefix0.Notification(),
-        'Login': (BuildContext context) => new LoginPage(),
-        'PhoneLogin':(BuildContext context)=> new PhoneLogin(),
+      
         'Logout': (BuildContext context) => new Logout(),
         'About':(BuildContext context)=> new About(),
         'ProfileEdit':(BuildContext context) => new ProfileEdit(),

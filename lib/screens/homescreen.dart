@@ -48,12 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
     getCategoryList();
   }
 
+
   getCategoryList() async {
     setState(() {
       isLoading = true;
     });
     // if(global.category==null){
-
+print("inside categorylist");
     // }
     if (global.category.length > 0) {
       global.category.removeRange(0, global.category.length);
@@ -160,6 +161,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("inside build of home screen");
+
     void show() {
       // flutter defined function
       showDialog(
@@ -298,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Hero(
                                       tag: global.categories[i],
                                       child: Image.network(
-                                        global.categories[i].data['image'],
+                                        "https://drive.google.com/thumbnail?id=${global.categories[i].data['image']}",
                                         fit: BoxFit.fill,
                                       ),
                                     ),
