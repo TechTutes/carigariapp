@@ -10,6 +10,12 @@ import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/material.dart';
 import '../Arrangements/sizeModification.dart';
 import '../Arrangements/variables.dart' as global;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:package_info/package_info.dart';
+
+
+
+
 // import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,6 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
   // List<DocumentSnapshot> category=[];
   bool isLoading = false;
   List<DocumentSnapshot> carousel = [];
+    List<DocumentSnapshot> update = [];
+    double currentVersion;
+   
+
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
   var msg;
@@ -44,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     print("in init state");
+   
     super.initState();
     getCategoryList();
   }
@@ -60,12 +71,16 @@ print("inside categorylist");
       global.category.removeRange(0, global.category.length);
     }
 
-    QuerySnapshot qp, cs;
+    QuerySnapshot qp, cs,up;
     qp = await Firestore.instance.collection("categories").getDocuments();
     global.categories.isEmpty ? global.categories.addAll(qp.documents) : null;
     cs = await Firestore.instance.collection("Carousel").getDocuments();
     carousel.isEmpty ? carousel.addAll(cs.documents) : null;
-    
+    up = await Firestore.instance.collection("data").getDocuments();
+    update.isEmpty ? update.addAll(up.documents) : null;
+     final PackageInfo info = await PackageInfo.fromPlatform();
+ currentVersion = double.parse(info.version.trim().replaceAll(".", ""));  
+  
     // :SizedBox();
     // var dem=global.categories[10].data["name"];
     // print(dem["name"]);
@@ -164,8 +179,62 @@ print("inside categorylist");
 
   @override
   Widget build(BuildContext context) {
+ 
     print("inside build of home screen");
+  void alertDialog(context){
+     AlertDialog(
+            title: new Text(
+              "New Update Available",
+              style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2.5),
+            ),
+            content: new Text(
+              "A new version of our App is in play Store, Please Update!!",
+              style: TextStyle(fontSize: 14.0),
+            ),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Update"),
+                onPressed: ()async {
+              
+                                  //  var whatsappUrl ="whatsapp://send?phone=$phone";
+                                  await canLaunch(
+                                          "https://play.google.com/store/apps/details?id=YOUR-APP-ID")
+                                      ? launch(
+                                          "https://play.google.com/store/apps/details?id=YOUR-APP-ID")
+                                      : print(
+                                          "playstore can't be loaded");
+                             
+                     
+                  // Navigator.pop(context);
+                },
+              ),
+              new FlatButton(
+                child: new Text("Later"),
+                onPressed: () {
+                 Navigator.pop(context);
 
+                  // exit(0);
+                  // Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+    }
+  try {
+    // Using default duration to force fetching from remote server.
+    
+    double newVersion = double.parse(update[6].data["version"]
+        .trim()
+        .replaceAll(".", ""));
+    if (newVersion > currentVersion) {
+         alertDialog(context);
+     
+    }
+  }  catch (exception) {
+    print('Unable to fetch update version '
+        'used');
+  }
     void show() {
       // flutter defined function
       showDialog(
@@ -207,7 +276,7 @@ print("inside categorylist");
         },
       );
     }
-
+  
     return new Scaffold(
       key: _scaffoldkey,
       appBar: new AppBar(
@@ -498,36 +567,3 @@ print("inside categorylist");
 //    }
 
 // }
-//  AlertDialog(
-//             title: new Text(
-//               " Install Update",
-//               style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2.5),
-//             ),
-//             content: new Text(
-//               "A new version of our App is in play Store, Please Update!!",
-//               style: TextStyle(fontSize: 14.0),
-//             ),
-//             actions: <Widget>[
-//               // usually buttons at the bottom of the dialog
-//               new FlatButton(
-//                 child: new Text("Update"),
-//                 onPressed: () {
-               
-//                  LaunchReview.launch(androidAppId: "conversionguru.in.carigari");
-                     
-//                   // Navigator.pop(context);
-//                 },
-//               ),
-//               new FlatButton(
-//                 child: new Text("Later"),
-//                 onPressed: () {
-//                   setState(() {
-//                     isUpdate = false;
-//                   });
-
-//                   // exit(0);
-//                   // Navigator.of(context).pop();
-//                 },
-//               ),
-//             ],
-//           ):
