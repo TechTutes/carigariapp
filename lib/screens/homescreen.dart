@@ -8,12 +8,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
-import 'package:flutter/material.dart';
 import '../Arrangements/sizeModification.dart';
 import '../Arrangements/variables.dart' as global;
-import 'package:url_launcher/url_launcher.dart';
-
-import 'package:package_info/package_info.dart';
 
 // import 'package:provider/provider.dart';
 
@@ -26,10 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
   // List<DocumentSnapshot> category=[];
   bool isLoading = false, isUpdate = false;
   List<DocumentSnapshot> carousel = [];
-  List<DocumentSnapshot> update = [];
-  // double
-  double currentVersion;
-  double newVersion;
 
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
@@ -54,18 +46,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     print("in init state");
- getCategoryList();
+    getCategoryList();
     super.initState();
-   
   }
 
   getCategoryList() async {
     setState(() {
       isLoading = true;
     });
-    // if(global.category==null){
-    print("inside categorylist");
-    // }
+
     if (global.category.length > 0) {
       global.category.removeRange(0, global.category.length);
     }
@@ -75,62 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
     global.categories.isEmpty ? global.categories.addAll(qp.documents) : null;
     cs = await Firestore.instance.collection("Carousel").getDocuments();
     carousel.isEmpty ? carousel.addAll(cs.documents) : null;
-    up = await Firestore.instance.collection("data").getDocuments();
-    update.isEmpty ? update.addAll(up.documents) : null;
-    final PackageInfo info = await PackageInfo.fromPlatform();
-    currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
-    try {
-      // Using default duration to force fetching from remote server.
 
-      newVersion =
-          double.parse(update[6].data["version"].trim().replaceAll(".", ""));
-      ;
-
-      if (newVersion > currentVersion) {
-        isUpdate = true;
-
-        print("inside try if");
-      }
-    } catch (exception) {
-      print('Unable to fetch update version '
-          'used');
-    }
-    // :SizedBox();
-    // var dem=global.categories[10].data["name"];
-    // print(dem["name"]);
-    print("categories");
-    // print("hai at end");
-    // callTest();
     setState(() {
       isLoading = false;
     });
   }
 
-  // callTest(){
-  //   print("in 2nd");
-  //   calTest();
-
-  // }
-
-  // calTest(){
-  //   print("in 3");
-  // }
-  // Widget CategoryData(){
-  //   print("in catefory data");
-  //   // CategoryData(index);
-  //   return Scaffold(
-  //     appBar: new AppBar(
-  //       // title: Text(category[index].data['a']),
-  //       title: Text("hai"),
-  //     ),
-  //     body: Container(
-  //       child:Text("data"),
-  //     ),
-  //   );
-  // }
-// void dispose(){
-//   super.dispose();
-// }
   Widget CarouselImages() {
     print("inside carousell");
 
@@ -190,8 +129,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     print("inside build of home screen");
@@ -238,295 +175,121 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
-    return  Scaffold(
-        key: _scaffoldkey,
-        appBar: new AppBar(
-          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('Carigari'),
-              Image.asset(
-                'images/logo.png',
-                fit: BoxFit.fill,
-                height: SizeConfig.blockSizeVertical * 4.5,
-              ),
-            ],
-          ),
+    return Scaffold(
+      key: _scaffoldkey,
+      appBar: new AppBar(
+        backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Carigari'),
+            Image.asset(
+              'images/logo.png',
+              fit: BoxFit.fill,
+              height: SizeConfig.blockSizeVertical * 4.5,
+            ),
+          ],
         ),
-        drawer: theDrawer(context),
-        bottomNavigationBar: bottomnavigation(context, 0),
-        body: 
-      WillPopScope(
+      ),
+      drawer: theDrawer(context),
+      bottomNavigationBar: bottomnavigation(context, 0),
+      body: WillPopScope(
           onWillPop: () {
             // Navigator.pushNamed(context,''),
             show();
           },
-          child:  Center( 
-            child:    Container(
-          color: Color.fromRGBO(255, 216, 180, .1),
-          child: Column(children: <Widget>[
-            CarouselImages(),
-            //  ShowImage("logo"),
+          child: Center(
+              child: Container(
+            color: Color.fromRGBO(255, 216, 180, .1),
+            child: Column(children: <Widget>[
+              CarouselImages(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 25,
+                width: MediaQuery.of(context).size.width / 1.5,
+                child: Text("Select by Category",
+                    style: TextStyle(
+                      color: Colors.brown,
+                      fontWeight: FontWeight.w400,
+                      fontSize: SizeConfig.blockSizeVertical * 2.9,
+                    )),
+              ),
+              Expanded(
+                child: global.categories.length == 0
+                    ? Center(
+                        child: Text('loading'),
+                      )
+                    : GridView.builder(
+                        padding: const EdgeInsets.all(10.0),
+                        itemCount: global.categories.length,
+                        itemBuilder: (ctx, i) {
+                          print("inside grid view of home screen");
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.30,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              elevation: 4.0,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: GridTile(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, "Product",
+                                          arguments: i);
+                                      global.touch = i;
+                                      print(global.touch);
+                                      print("${global.category.length}");
 
-            //  Text("About\n",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5),),
-            //   InkWell(
-            //           child: new Text('About Carigari Furnitures',style:TextStyle(fontSize: 20.0,color: Colors.red, decoration: TextDecoration.underline)),
-            //       onTap: () async {
-            //   if (await canLaunch("http://www.carigarifurniture.com//")) {
-            //     await launch("http://www.carigarifurniture.com//");
-            //   }
-            //       }
-
-            //       // launch("https://in.linkedin.com/in/jaya-prakash-veldanda-756b48179"),
-            //     ),
-            //  CallForcategoryDetails(),
-            //   Text("\n\n"),
-            //      RaisedButton(
-            //     color: Colors.orange,
-            //   child: Text("Subscription"),
-            //   onPressed: ()
-            //   {
-            //     // show();
-            //     Navigator.pushNamed(context, 'Testing');
-
-            //   },
-            // ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 25,
-              width: MediaQuery.of(context).size.width / 1.5,
-              child: Text("Select by Category",
-                  style: TextStyle(
-                    color: Colors.brown,
-                    fontWeight: FontWeight.w400,
-                    fontSize: SizeConfig.blockSizeVertical * 2.9,
-                  )),
-            ),
-            Expanded(
-              child: global.categories.length == 0
-                  ? Center(
-                      child: Text('loading'),
-                    )
-                  : GridView.builder(
-                      padding: const EdgeInsets.all(10.0),
-                      itemCount: global.categories.length,
-                      itemBuilder: (ctx, i) {
-                        print("inside grid view of home screen");
-                        return Container(
-                          height: MediaQuery.of(context).size.height * 0.30,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            elevation: 4.0,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: GridTile(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, "Product",
-                                        arguments: i);
-                                    global.touch = i;
-                                    print(global.touch);
-                                    print("${global.category.length}");
-
-                                    print(
-                                        "${global.categories[global.touch].data['name']}");
-                                  },
-                                  child: Hero(
-                                    tag: global.categories[i],
-                                    child: Image.network(
-                                      "https://drive.google.com/thumbnail?id=${global.categories[i].data['image']}",
-                                      fit: BoxFit.fill,
+                                      print(
+                                          "${global.categories[global.touch].data['name']}");
+                                    },
+                                    child: Hero(
+                                      tag: global.categories[i],
+                                      child: Image.network(
+                                        "https://drive.google.com/thumbnail?id=${global.categories[i].data['image']}",
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                footer: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, "Product",
-                                        arguments: i);
-                                    global.touch = i;
-                                    print(
-                                        "${global.categories[global.touch].data['name']}");
-                                    print("${global.category.length}");
-                                  },
-                                  child: GridTileBar(
-                                    backgroundColor: Colors.black38,
-                                    // leading: Consumer<Product>(
-                                    //   builder: (ctx, product, _) => IconButton(
-                                    //         icon: Icon(
-                                    //           product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                                    //         ),
-                                    //         color: Theme.of(context).accentColor,
-                                    //         onPressed: () {
-                                    //           product.toggleFavoriteStatus(
-                                    //             authData.token,
-                                    //             authData.userId,
-                                    //           );
-                                    //         },
-                                    //       ),
-                                    // ),
-                                    title: Text(
-                                      global.categories[i].data['name'],
-                                      // style:TextStyle(color: Colors.black),
-                                      textAlign: TextAlign.center,
+                                  footer: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, "Product",
+                                          arguments: i);
+                                      global.touch = i;
+                                      print(
+                                          "${global.categories[global.touch].data['name']}");
+                                      print("${global.category.length}");
+                                    },
+                                    child: GridTileBar(
+                                      backgroundColor: Colors.black38,
+                                      title: Text(
+                                        global.categories[i].data['name'],
+                                        // style:TextStyle(color: Colors.black),
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
-                                    // trailing: IconButton(
-                                    //   icon: Icon(
-                                    //     Icons.shopping_cart,
-                                    //   ),
-                                    // onPressed: () {
-                                    //   cart.addItem(product.id, product.price, product.title);
-                                    //   Scaffold.of(context).hideCurrentSnackBar();
-                                    //   Scaffold.of(context).showSnackBar(
-                                    //     SnackBar(
-                                    //       content: Text(
-                                    //         'Added item to cart!',
-                                    //       ),
-                                    //       duration: Duration(seconds: 2),
-                                    //       action: SnackBarAction(
-                                    //         label: 'UNDO',
-                                    //         onPressed: () {
-                                    //           cart.removeSingleItem(product.id);
-                                    //         },
-                                    //       ),
-                                    //     ),
-                                    //   );
-                                    // },
-
-                                    // ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 92 / 100,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                          );
+                        },
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 92 / 100,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                        ),
                       ),
-                    ),
-            ),
-            isLoading
-                ? Container(
-                    child: Text("Loading"),
-                  )
-                : Container()
-          ]),
-        ))
-          ),
-        
-      
+              ),
+              isLoading
+                  ? Container(
+                      child: Text("Loading"),
+                    )
+                  : Container()
+            ]),
+          ))),
     );
   }
 }
-//     color:Color.fromRGBO(255,216,180,.6),
-//     child: ListView.builder(
-//     // controller: _scrollController,
-//     itemCount: global.category.length,
-//     itemBuilder: (context, index) {
-//       return Card(
-//         color:Colors.cyan[100],
-//         child:ListTile(
-//         leading: CircleAvatar(
-//           backgroundImage: NetworkImage(global.category[index].data['image']),
-//         ),
-//         // contentPadding: EdgeInsets.all(5),
-//         title: Text(global.category[index].data['a'],style: TextStyle(
-//               color: Colors.black,
-//               fontWeight: FontWeight.w600,
-//               fontSize: SizeConfig.blockSizeVertical * 2.9,)),
-//         subtitle: Text("Price Starts from ₹ "+global.category[index].data['price']),
-//         // dense: true,
-//         onTap: (){
-//           // Navigator.pushNamed(context,"ContactUs");
-//           Navigator.pushNamed(context, "SubCategory");
-//           // SubCategory(index);
-//           global.TempIndex=index;
-
-//           print("clicked"+global.category[index].data['a']+global.TempIndex.toString());
-//         },
-//         // onLongPress: (){
-//         //   //  CategoryData(index);
-//         //   Navigator.pushNamed(context, "ContactForm");
-//         // },
-//         // onTap: (){
-//         //   print("clicked"+category[index].data['a']);
-//         //   // CategoryData();
-//         //   // Navigator.pushNamed(context,"CategoryData");
-//         //   // CategoryData(index);
-//         //   Navigator.pushNamed(context,"Account");
-//         //   print("clicked 2 nd tinem  "+category[index].data['a']);
-
-//         // },
-//         // onTap:(){
-//         //   print("clicked"+category[index].data['a']);
-//         //   msg=category[index].data['a'];
-//         //   // SubCategory(msg
-//         //   //   );
-
-//         //   Navigator.push(
-//         //     context,
-//         //     MaterialPageRoute(
-//         //         builder: (context) => SubCategory(msg
-//         //             )
-//         //             )
-//         //             );
-
-//         //   },
-//         // e=category[index].data['a'],
-//         // onTap: SubCategory(category[index].data['a'],index),
-//         // subtitle: Text(category[index].data['short_desc']),
-//       ));
-//     },
-// ),
-//   ),
-//           ),
-//           isLoading
-//               ? Container(
-//                 child: Text("Loading"),
-//                   // width: MediaQuery.of(context).size.width,
-//                   // padding: EdgeInsets.all(5),
-//                   // color: Colors.yellowAccent,
-//                   // child: Text(
-//                   //   'Loading',
-//                   //   textAlign: TextAlign.center,
-//                   //   style: TextStyle(
-//                   //     fontWeight: FontWeight.bold,
-//                   //   ),
-//                   // ),
-//                 )
-//               : Container()
-
-//           //   Column(children:<Widget>
-//           //   [
-//           //     Expanded(child:category.length==0?
-//           //     Center(
-//           //       child:Text("data"),
-//           //     )
-//           //     :
-//           //     ListView.builder(
-//           //       itemCount: category.length,
-//           //       itemBuilder: (context,index){
-//           //         return ListTile(
-//           //           title: Text(category[index].data['a']),
-//           //         );
-//           //       },
-//           //     ),
-//           //     // isLoading?Text("Loading"):Container()
-//           //     ),
-//           //   ]
-//           // ),
-
-//           ]
-//           ),
-//         ),
-//       ),
-//     ),
-//     );
-//    }
-
-// }

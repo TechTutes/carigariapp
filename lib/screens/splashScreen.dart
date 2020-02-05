@@ -12,19 +12,6 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  // BuildContext context;
-  //  var status= StatusProvider.of(context);
-
-  // bool _islogin;
-  // startTime() async {
-  //   var _duration = new Duration(seconds: 3);
-  //   return new Timer(_duration, navigationPage);
-  // }
-
-  // void navigationPage() {
-  //   Navigator.of(context).pushReplacementNamed('HomeScreen');
-  // }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -34,9 +21,9 @@ class _SplashState extends State<Splash> {
         children: <Widget>[
           new SplashScreen(
             seconds: 3,
-            backgroundColor: 
-            // Colors.white,
-            Color.fromRGBO(255, 184, 102, .6),
+            backgroundColor:
+                // Colors.white,
+                Color.fromRGBO(255, 184, 102, .6),
             image: Image.asset('images/logo.png'),
             photoSize: SizeConfig.blockSizeVertical * 22.0,
             title: Text(
@@ -82,9 +69,6 @@ class _SplashState extends State<Splash> {
         //  height: SizeConfig.blockSizeVertical * 20,
         //  width: SizeConfig.blockSizeHorizontal * 50,
       ),
-      
     );
-        
-
   }
 }

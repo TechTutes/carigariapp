@@ -2,22 +2,14 @@ import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
 
-// import 'package:zoomable_image/zoomable_image.dart';
-
-
 import 'package:photo_view/photo_view.dart';
-// import '../Arrangements/variables.dart';
 
 class SubCategory extends StatefulWidget {
-  // SubCategory([int index]);
-
   @override
   _SubCategoryState createState() => _SubCategoryState();
 }
@@ -86,6 +78,7 @@ class _SubCategoryState extends State<SubCategory> {
       isLoading = false;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     // void Alert(){
@@ -187,15 +180,13 @@ class _SubCategoryState extends State<SubCategory> {
                 // Flexible(
                 // child:
 
-
-
-  ///paste it here
-Container(
+                ///paste it here
+                Container(
                   height: MediaQuery.of(context).size.height * 0.78,
                   width: MediaQuery.of(context).size.width * 0.99,
                   child: PhotoView(
-                      imageProvider:
-                          NetworkImage("https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+                      imageProvider: NetworkImage(
+                          "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
                       maxScale: 2.3,
                       minScale: 1.0,
                       backgroundDecoration: BoxDecoration(
@@ -203,8 +194,7 @@ Container(
                       )),
                 )
 
-
-//               
+//
                 // )
               ],
             );
@@ -297,7 +287,7 @@ Container(
                                 "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}")),
                         onTap: () => Alert(index, context),
                       ),
- SizedBox(
+                      SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -554,56 +544,6 @@ Container(
                             }
 
                             print(global.totalamount.toString());
-
-                            // Firestore.instance
-                            // .collection("selected")
-                            // .document("1")
-                            // .collection("cart")
-                            // // .add({
-                            // //   "a":index.toString(),
-                            // // }).catchError((err) =>print(err));
-                            // .document("cart")
-                            // // .collection("cart")
-                            // // .document(index.toString());
-                            // .setData({
-                            //       "name":"jp"
-
-                            // })
-                            // .then((result)=>
-                            // {
-
-                            // }) .catchError((err) =>print(err));
-                            // //  callSnackBar("Please check the details properly"));
-
-                            // await Future.delayed(const Duration(seconds: 1));
-                            // Alerting(context);
-                            // await Future.delayed(const Duration(seconds: 5));
-                            // Navigator.pushNamed(context,"HomeScreen");  jp
-
-                            // global.
-                            // print("clicked "+global.category[index].data['a']);
-                            // callSnackBar("Added "+global.category[index].data['a'] +" to the cart");
-                            // // global.cart=global.category[0].data['a'];
-                            // // global.CartData=
-                            // // CallForAdding();
-
-                            //  Firestore.instance
-                            //           .collection("cart")
-                            //           .document(global.category[index].data['a'].toString())
-                            //           .setData({
-                            //             // "name":nameInput.text,
-                            //             "name":global.category[index].data['a'].toString(),
-                            //             "price":global.category[index].data['price'].toString(),
-
-                            //           })
-                            //           .then((result) => {
-
-                            //           })
-                            //       .catchError((err) => callSnackBar("Please check the details properly"));
-
-                            // await Future.delayed(const Duration(seconds: 1));
-                            // Alerting(context);
-                            // Navigator.pushNamed(context,"HomeScreen");
                           },
                         ),
                       ),
@@ -768,7 +708,6 @@ Container(
                                 ),
                               ),
                               Divider(),
-                              
                               Text("\t\t\t[Delivery Charges:extra",
                                   style: TextStyle(
                                     color: Colors.black,
@@ -788,7 +727,7 @@ Container(
                           ),
                         ),
                       ),
-                     
+
                       isLoading
                           ? Container(
                               child: Text("Loading"),
@@ -839,45 +778,3 @@ Container(
         ));
   }
 }
-
-// class Fetch extends StatefulWidget {
-//   Fetch({Key key}) : super(key: key);
-//   @override
-//   _FetchState createState() => _FetchState();
-// }
-
-// class _FetchState extends State<Fetch> {
-//   Widget build(BuildContext context) {
-//     int index = 1;
-//     return new AlertDialog(
-//       shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.all(Radius.circular(20.0))),
-//       // title: Text(
-//       //     "Select your Choice"),
-//       titlePadding: EdgeInsets.all(10.0),
-
-//       actions: <Widget>[
-//         Container(
-//             child:
-//                 // PhotoView(
-//                 //   imageProvider: NetworkImage(global.category[index].data['image']),
-//                 // ),
-//                 Flexible(
-//           child: ZoomableImage(
-//             NetworkImage(
-//                 "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-//             backgroundColor: Colors.white,
-//           ),
-//         )),
-//         new FlatButton(
-//           child: Text("Save"),
-//           onPressed: () {
-//             // Null;
-//             Navigator.of(context).pop();
-//             // Navigator.pushNamed(context,"");
-//           },
-//         )
-//       ],
-//     );
-//   }
-// }

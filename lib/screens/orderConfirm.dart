@@ -9,6 +9,7 @@ import "package:flutter/material.dart";
 import '../Arrangements/variables.dart' as global;
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
+
 class OrderConfirm extends StatefulWidget {
   @override
   _OrderConfirmState createState() => _OrderConfirmState();
@@ -34,6 +35,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
     msgInput = new TextEditingController();
     super.initState();
   }
+
   String username = 'carigarifurniture@gmail.com';
   String password = 'jaisrishyam';
   var _dropforms = ['General', 'Feedback', 'Corporate', 'BulkOrder'];
@@ -103,8 +105,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
           "${global.value[i]}" +
           ", ";
     }
-    
- 
+
     print(cartitem);
     // // TODO: implement build
     // String dropdownValue='One';
@@ -195,101 +196,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                     ),
                   ),
 
-                  //               DropdownButton<String>(
-                  //                 value: dropdownValue,
-                  //                 onChanged: (String newValue)
-                  //                 {
-                  //                   setState(() {
-                  //                    if(newValue!=null)
-                  //                       dropdownValue=newValue;
-                  //                   });
-                  //                 },
-                  //                 items: <String>['General','Feedback','Corporate','BulkOrder']
-                  //                 .map<DropdownMenuItem<String>(
-                  //                 value: value,
-                  //                 child: Text(Value),
-                  //                 );
-                  // }).tolist());
-                  //           )
-
-                  // DropdownButton<String>(
-                  //       value: dropdownValue,
-                  //       icon: Icon(Icons.arrow_downward),
-                  //       iconSize: 24,
-                  //       elevation: 16,
-                  //       style: TextStyle(
-                  //         color: Colors.deepPurple
-                  //       ),
-                  //       underline: Container(
-                  //         height: 2,
-                  //         color: Colors.deepPurpleAccent,
-                  //       ),
-                  //       onChanged: (String newValue) {
-                  //         setState(() {
-                  //           dropdownValue = newValue;
-                  //         });
-                  //       },
-                  //       items: <String>['One', 'Two', 'Free', 'Four']
-                  //         .map<DropdownMenuItem<String>>((String value) {
-                  //           return DropdownMenuItem<String>(
-                  //             value: value,
-                  //             child: Text(value),
-                  //           );
-                  //         })
-                  //         .toList(),
-                  //     ),
-
-                  // Padding(
-                  //     padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical*1.5,bottom:SizeConfig.blockSizeVertical*1.5 ),
-                  //     child:DropdownButton(
-                  //                 items: _dropdownValues
-                  //                     .map(
-                  //                       (value) => DropdownMenuItem(
-                  //                           child: Text(value),
-                  //                           value: value,
-                  //                         )
-                  //                         )
-                  //                     .toList(),
-                  //                 onChanged: (String value) {
-                  //                  //
-                  //                 },
-                  //                 isExpanded: false,
-                  //                 hint: Text('Select the category '),
-                  //               ),
-                  // ),
-
-                  // Padding(
-                  //           padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical*1.5,bottom:SizeConfig.blockSizeVertical*1.5 ),
-                  //       child:DropdownButton<String>(
-                  //       items: _dropforms.map((String dropDownStringItem)
-                  //       {
-                  //          return DropdownMenuItem<String>(
-                  //             value: dropDownStringItem,
-                  //             child: Text(dropDownStringItem),
-
-                  //          );
-                  //       }).toList(),
-                  //       onChanged: (String newValueSelected){
-                  //         setState(() {
-                  //           this._dropformSelected =newValueSelected;
-                  //         });
-                  //       },
-                  //       value: _dropformSelected,
-                  //       ),
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(
-                  //       top: SizeConfig.blockSizeVertical * 1.5,
-                  //       bottom: SizeConfig.blockSizeVertical * 1.5),
-                  //   child: ExpandablePanel(
-                  //     header: Text("Products"),
-                  //     collapsed: Text("Click to List the Cart Items"),
-                  //     expanded: DisplaySelected(),
-                  //     // Text(article.body, softWrap: true, ),
-                  //     tapHeaderToExpand: true,
-                  //     hasIcon: true,
-                  //   ),
-                  // ),
+            
 
                   Padding(
                     padding: EdgeInsets.only(
@@ -331,24 +238,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                   SizeConfig.blockSizeVertical * 1.5))),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(
-                  //       top: SizeConfig.blockSizeVertical * 1.5,
-                  //       bottom: SizeConfig.blockSizeVertical * 1.5),
-                  //   child: TextField(
-                  //     // keyboardType: TextInputType.number,
-                  //     style: textStyle,
-                  //     //  controller: ,
-                  //     decoration: InputDecoration(
-                  //         labelStyle: textStyle,
-                  //         labelText: "State",
-                  //         hintText: "Enter your State",
-                  //         border: OutlineInputBorder(
-                  //             borderRadius: BorderRadius.circular(
-                  //                 SizeConfig.blockSizeVertical * 1.5))),
-                  //   ),
-                  // ),
-
+        
                   SizedBox(
                     height: SizeConfig.blockSizeVertical * 6,
                     width: SizeConfig.blockSizeHorizontal * 90,
@@ -373,9 +263,8 @@ class _OrderConfirmState extends State<OrderConfirm> {
                         //       return Center(child: CircularProgressIndicator(),);
                         //     });
                         // await loginAction();
-                       
+
                         if (_OrderConfirmKey.currentState.validate()) {
-                      
                           //  _scaffoldKey.currentState.showSnackBar(
                           // new SnackBar(duration: new Duration(seconds: 4), content:
                           // new Row(
@@ -428,61 +317,60 @@ class _OrderConfirmState extends State<OrderConfirm> {
                               .catchError((err) => print(err));
 
                           // callSnackBar("Please check the details properly"));
-                          
 
-  final smtpServer = gmail(username, password);
-  // Use the SmtpServer class to configure an SMTP server:
-  // final smtpServer = SmtpServer('smtp.domain.com');
-  // See the named arguments of SmtpServer for further configuration
-  // options.  
-  
-  // Create our message.
-  final message = Message()
-    ..from = Address(username, 'Your name')
-    ..recipients.add('carigarifurniture@gmail.com')
-    // ..ccRecipients.addAll(['vamshi777reddy@gmail.com'])
-    // ..bccRecipients.add(Address(''))
-    ..subject = 'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'
-    ..text = 'This mail is from user who ordered this product'
-    ..html = "<h1 style='color:blue;'>Carigari Ordered Products</h1>\n<p>Hey!  \n<h3 >Name :- ${nameInput.text}\n </h3><h3> Mobile NO:-  ${phoneNumberInput.text} \n </h3><h3>Email ID:- ${emailInput.text} \n </h3><h3> Shipping Address :- ${msgInput.text} \n </h3>   <h3> The Ordered Products With Quantity are </h3><h3 style='color:blue;'>  ${cartitem} \n </h3> <h3>Total Price for this order is ${global.totalamount}</h3></p>";
+                          final smtpServer = gmail(username, password);
+                          // Use the SmtpServer class to configure an SMTP server:
+                          // final smtpServer = SmtpServer('smtp.domain.com');
+                          // See the named arguments of SmtpServer for further configuration
+                          // options.
 
-  try {
-    final sendReport = await send(message, smtpServer);
-    print('Message sent: ' + sendReport.toString());
-  } on MailerException catch (e) {
-    print('Message not sent.');
-    for (var p in e.problems) {
-      print('Problem: ${p.code}: ${p.msg}');
-    }
-    print('Message not sent.');
-  }
-  // DONE
-  
-  
-  // Let's send another message using a slightly different syntax:
-  //
-  // Addresses without a name part can be set directly.
-  // For instance `..recipients.add('destination@example.com')`
-  // If you want to display a name part you have to create an
-  // Address object: `new Address('destination@example.com', 'Display name part')`
-  // Creating and adding an Address object without a name part
-  // `new Address('destination@example.com')` is equivalent to
-  // adding the mail address as `String`.
- 
-  // Sending multiple messages with the same connection
-  //
-  // Create a smtp client that will persist the connection
-  var connection = PersistentConnection(smtpServer);
-  
-  // Send the first message
-  await connection.send(message);
-  
-  // send the equivalent message
-  
-  // close the connection
-  await connection.close();
-  
+                          // Create our message.
+                          final message = Message()
+                            ..from = Address(username, 'Your name')
+                            ..recipients.add('carigarifurniture@gmail.com')
+                            // ..ccRecipients.addAll(['vamshi777reddy@gmail.com'])
+                            // ..bccRecipients.add(Address(''))
+                            ..subject =
+                                'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'
+                            ..text =
+                                'This mail is from user who ordered this product'
+                            ..html =
+                                "<h1 style='color:blue;'>Carigari Ordered Products</h1>\n<p>Hey!  \n<h3 >Name :- ${nameInput.text}\n </h3><h3> Mobile NO:-  ${phoneNumberInput.text} \n </h3><h3>Email ID:- ${emailInput.text} \n </h3><h3> Shipping Address :- ${msgInput.text} \n </h3>   <h3> The Ordered Products With Quantity are </h3><h3 style='color:blue;'>  ${cartitem} \n </h3> <h3>Total Price for this order is ${global.totalamount}</h3></p>";
 
+                          try {
+                            final sendReport = await send(message, smtpServer);
+                            print('Message sent: ' + sendReport.toString());
+                          } on MailerException catch (e) {
+                            print('Message not sent.');
+                            for (var p in e.problems) {
+                              print('Problem: ${p.code}: ${p.msg}');
+                            }
+                            print('Message not sent.');
+                          }
+                          // DONE
+
+                          // Let's send another message using a slightly different syntax:
+                          //
+                          // Addresses without a name part can be set directly.
+                          // For instance `..recipients.add('destination@example.com')`
+                          // If you want to display a name part you have to create an
+                          // Address object: `new Address('destination@example.com', 'Display name part')`
+                          // Creating and adding an Address object without a name part
+                          // `new Address('destination@example.com')` is equivalent to
+                          // adding the mail address as `String`.
+
+                          // Sending multiple messages with the same connection
+                          //
+                          // Create a smtp client that will persist the connection
+                          var connection = PersistentConnection(smtpServer);
+
+                          // Send the first message
+                          await connection.send(message);
+
+                          // send the equivalent message
+
+                          // close the connection
+                          await connection.close();
                         }
                       },
                     ),
