@@ -1,3 +1,4 @@
+import 'package:carigari/screens/home.dart';
 import 'package:carigari/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -47,7 +48,7 @@ class _SplashState extends State<Splash> {
               ),
             ),
             // loaderColor: Colors.green,
-            navigateAfterSeconds: HomeScreen(),
+            navigateAfterSeconds: Home(),
             //  SelectScreen(),
           ),
           new Column(

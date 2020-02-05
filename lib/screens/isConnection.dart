@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:carigari/screens/Data/ProfileEdit.dart';
 import 'package:carigari/screens/Data/about.dart';
 import 'package:carigari/screens/Data/notification.dart' as prefix0;
+import 'package:carigari/screens/home.dart';
 import 'package:carigari/screens/product.dart';
 import 'package:carigari/screens/subcategory.dart';
+import 'package:carigari/screens/update.dart';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:carigari/Screens/contactUS.dart';
@@ -90,6 +92,7 @@ class _IsConnection extends State<IsConnection> {
           'Splash':(BuildContext context)=> new Splash(),
           'IsConnection':(BuildContext context)=> new IsConnection(),
          'HomeScreen': (BuildContext context) => new HomeScreen(),
+         'Home': (BuildContext context) => new Home(),
         'ScreenSelection':(BuildContext context) => new SelectScreen(),
         // 'Details':(BuildContext context)=> new Details(),
         'ContactForm':(BuildContext context) => new ContactForm(),
@@ -103,7 +106,7 @@ class _IsConnection extends State<IsConnection> {
         'Privacy':(BuildContext context) => new Privacy(),
         'Subscription':(BuildContext context)=> new Subscription(),
         'Notification':(BuildContext context)=> new prefix0.Notification(),
-      
+      'Update':(BuildContext context)=> new Update(),
         'Logout': (BuildContext context) => new Logout(),
         'About':(BuildContext context)=> new About(),
         'ProfileEdit':(BuildContext context) => new ProfileEdit(),

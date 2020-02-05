@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
+import 'package:carigari/screens/update.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,10 +12,8 @@ import 'package:flutter/material.dart';
 import '../Arrangements/sizeModification.dart';
 import '../Arrangements/variables.dart' as global;
 import 'package:url_launcher/url_launcher.dart';
+
 import 'package:package_info/package_info.dart';
-
-
-
 
 // import 'package:provider/provider.dart';
 
@@ -25,11 +24,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   // List<DocumentSnapshot> category=[];
-  bool isLoading = false;
+  bool isLoading = false, isUpdate = false;
   List<DocumentSnapshot> carousel = [];
-    List<DocumentSnapshot> update = [];
-    double currentVersion;
-   
+  List<DocumentSnapshot> update = [];
+  // double
+  double currentVersion;
+  double newVersion;
 
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
@@ -54,33 +54,47 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     print("in init state");
-   
+ getCategoryList();
     super.initState();
-    getCategoryList();
+   
   }
-
 
   getCategoryList() async {
     setState(() {
       isLoading = true;
     });
     // if(global.category==null){
-print("inside categorylist");
+    print("inside categorylist");
     // }
     if (global.category.length > 0) {
       global.category.removeRange(0, global.category.length);
     }
 
-    QuerySnapshot qp, cs,up;
+    QuerySnapshot qp, cs, up;
     qp = await Firestore.instance.collection("categories").getDocuments();
     global.categories.isEmpty ? global.categories.addAll(qp.documents) : null;
     cs = await Firestore.instance.collection("Carousel").getDocuments();
     carousel.isEmpty ? carousel.addAll(cs.documents) : null;
     up = await Firestore.instance.collection("data").getDocuments();
     update.isEmpty ? update.addAll(up.documents) : null;
-     final PackageInfo info = await PackageInfo.fromPlatform();
- currentVersion = double.parse(info.version.trim().replaceAll(".", ""));  
-  
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
+    try {
+      // Using default duration to force fetching from remote server.
+
+      newVersion =
+          double.parse(update[6].data["version"].trim().replaceAll(".", ""));
+      ;
+
+      if (newVersion > currentVersion) {
+        isUpdate = true;
+
+        print("inside try if");
+      }
+    } catch (exception) {
+      print('Unable to fetch update version '
+          'used');
+    }
     // :SizedBox();
     // var dem=global.categories[10].data["name"];
     // print(dem["name"]);
@@ -119,7 +133,6 @@ print("inside categorylist");
 // }
   Widget CarouselImages() {
     print("inside carousell");
-
 
     return new Container(
         color: Colors.white,
@@ -161,7 +174,7 @@ print("inside categorylist");
                 return Container(
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(horizontal: 10.0),
-                    decoration: BoxDecoration(color: Colors.amber),
+                    decoration: BoxDecoration(color: Colors.grey),
                     child: GestureDetector(
                         child: Image.network(
                           i,
@@ -177,64 +190,12 @@ print("inside categorylist");
         ));
   }
 
+
+
   @override
   Widget build(BuildContext context) {
- 
     print("inside build of home screen");
-  void alertDialog(context){
-     AlertDialog(
-            title: new Text(
-              "New Update Available",
-              style: TextStyle(fontSize: SizeConfig.blockSizeVertical * 2.5),
-            ),
-            content: new Text(
-              "A new version of our App is in play Store, Please Update!!",
-              style: TextStyle(fontSize: 14.0),
-            ),
-            actions: <Widget>[
-              // usually buttons at the bottom of the dialog
-              new FlatButton(
-                child: new Text("Update"),
-                onPressed: ()async {
-              
-                                  //  var whatsappUrl ="whatsapp://send?phone=$phone";
-                                  await canLaunch(
-                                          "https://play.google.com/store/apps/details?id=YOUR-APP-ID")
-                                      ? launch(
-                                          "https://play.google.com/store/apps/details?id=YOUR-APP-ID")
-                                      : print(
-                                          "playstore can't be loaded");
-                             
-                     
-                  // Navigator.pop(context);
-                },
-              ),
-              new FlatButton(
-                child: new Text("Later"),
-                onPressed: () {
-                 Navigator.pop(context);
 
-                  // exit(0);
-                  // Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-    }
-  try {
-    // Using default duration to force fetching from remote server.
-    
-    double newVersion = double.parse(update[6].data["version"]
-        .trim()
-        .replaceAll(".", ""));
-    if (newVersion > currentVersion) {
-         alertDialog(context);
-     
-    }
-  }  catch (exception) {
-    print('Unable to fetch update version '
-        'used');
-  }
     void show() {
       // flutter defined function
       showDialog(
@@ -276,187 +237,189 @@ print("inside categorylist");
         },
       );
     }
-  
-    return new Scaffold(
-      key: _scaffoldkey,
-      appBar: new AppBar(
-        backgroundColor: Color.fromRGBO(191,32,37, 1.0),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Carigari'),
-            Image.asset(
-              'images/logo.png',
-              fit: BoxFit.fill,
-              height: SizeConfig.blockSizeVertical * 4.5,
-            ),
-          ],
-        ),
-      ),
-      drawer: theDrawer(context),
-      bottomNavigationBar: bottomnavigation(context, 0),
-      body: WillPopScope(
-        onWillPop: () {
-          // Navigator.pushNamed(context,''),
-          show();
-        },
-        child: Center(
-          child: Container(
-            color: Color.fromRGBO(255, 216, 180, .1),
-            child: Column(children: <Widget>[
-              CarouselImages(),
-              //  ShowImage("logo"),
 
-              //  Text("About\n",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5),),
-              //   InkWell(
-              //           child: new Text('About Carigari Furnitures',style:TextStyle(fontSize: 20.0,color: Colors.red, decoration: TextDecoration.underline)),
-              //       onTap: () async {
-              //   if (await canLaunch("http://www.carigarifurniture.com//")) {
-              //     await launch("http://www.carigarifurniture.com//");
-              //   }
-              //       }
-
-              //       // launch("https://in.linkedin.com/in/jaya-prakash-veldanda-756b48179"),
-              //     ),
-              //  CallForcategoryDetails(),
-              //   Text("\n\n"),
-              //      RaisedButton(
-              //     color: Colors.orange,
-              //   child: Text("Subscription"),
-              //   onPressed: ()
-              //   {
-              //     // show();
-              //     Navigator.pushNamed(context, 'Testing');
-
-              //   },
-              // ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 25,
-                width: MediaQuery.of(context).size.width / 1.5,
-                child: Text("Select by Category",
-                    style: TextStyle(
-                      color: Colors.brown,
-                      fontWeight: FontWeight.w400,
-                      fontSize: SizeConfig.blockSizeVertical * 2.9,
-                    )),
+    return  Scaffold(
+        key: _scaffoldkey,
+        appBar: new AppBar(
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Carigari'),
+              Image.asset(
+                'images/logo.png',
+                fit: BoxFit.fill,
+                height: SizeConfig.blockSizeVertical * 4.5,
               ),
-              Expanded(
-                child: global.categories.length == 0
-                    ? Center(
-                        child: Text('loading'),
-                      )
-                    : GridView.builder(
-                        padding: const EdgeInsets.all(10.0),
-                        itemCount: global.categories.length,
-                        itemBuilder: (ctx, i) {
-                          print("inside grid view of home screen");
-                          return Container(
-                            height: MediaQuery.of(context).size.height * 0.30,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              elevation: 4.0,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: GridTile(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, "Product",
-                                          arguments: i);
-                                      global.touch = i;
-                                      print(global.touch);
-                                      print("${global.category.length}");
+            ],
+          ),
+        ),
+        drawer: theDrawer(context),
+        bottomNavigationBar: bottomnavigation(context, 0),
+        body: 
+      WillPopScope(
+          onWillPop: () {
+            // Navigator.pushNamed(context,''),
+            show();
+          },
+          child:  Center( 
+            child:    Container(
+          color: Color.fromRGBO(255, 216, 180, .1),
+          child: Column(children: <Widget>[
+            CarouselImages(),
+            //  ShowImage("logo"),
 
-                                      print(
-                                          "${global.categories[global.touch].data['name']}");
-                                    },
-                                    child: Hero(
-                                      tag: global.categories[i],
-                                      child: Image.network(
-                                        "https://drive.google.com/thumbnail?id=${global.categories[i].data['image']}",
-                                        fit: BoxFit.fill,
-                                      ),
+            //  Text("About\n",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5),),
+            //   InkWell(
+            //           child: new Text('About Carigari Furnitures',style:TextStyle(fontSize: 20.0,color: Colors.red, decoration: TextDecoration.underline)),
+            //       onTap: () async {
+            //   if (await canLaunch("http://www.carigarifurniture.com//")) {
+            //     await launch("http://www.carigarifurniture.com//");
+            //   }
+            //       }
+
+            //       // launch("https://in.linkedin.com/in/jaya-prakash-veldanda-756b48179"),
+            //     ),
+            //  CallForcategoryDetails(),
+            //   Text("\n\n"),
+            //      RaisedButton(
+            //     color: Colors.orange,
+            //   child: Text("Subscription"),
+            //   onPressed: ()
+            //   {
+            //     // show();
+            //     Navigator.pushNamed(context, 'Testing');
+
+            //   },
+            // ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 25,
+              width: MediaQuery.of(context).size.width / 1.5,
+              child: Text("Select by Category",
+                  style: TextStyle(
+                    color: Colors.brown,
+                    fontWeight: FontWeight.w400,
+                    fontSize: SizeConfig.blockSizeVertical * 2.9,
+                  )),
+            ),
+            Expanded(
+              child: global.categories.length == 0
+                  ? Center(
+                      child: Text('loading'),
+                    )
+                  : GridView.builder(
+                      padding: const EdgeInsets.all(10.0),
+                      itemCount: global.categories.length,
+                      itemBuilder: (ctx, i) {
+                        print("inside grid view of home screen");
+                        return Container(
+                          height: MediaQuery.of(context).size.height * 0.30,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 4.0,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: GridTile(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, "Product",
+                                        arguments: i);
+                                    global.touch = i;
+                                    print(global.touch);
+                                    print("${global.category.length}");
+
+                                    print(
+                                        "${global.categories[global.touch].data['name']}");
+                                  },
+                                  child: Hero(
+                                    tag: global.categories[i],
+                                    child: Image.network(
+                                      "https://drive.google.com/thumbnail?id=${global.categories[i].data['image']}",
+                                      fit: BoxFit.fill,
                                     ),
                                   ),
-                                  footer: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(context, "Product",
-                                          arguments: i);
-                                      global.touch = i;
-                                      print(
-                                          "${global.categories[global.touch].data['name']}");
-                                      print("${global.category.length}");
-                                    },
-                                    child: GridTileBar(
-                                      backgroundColor: Colors.black38,
-                                      // leading: Consumer<Product>(
-                                      //   builder: (ctx, product, _) => IconButton(
-                                      //         icon: Icon(
-                                      //           product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                                      //         ),
-                                      //         color: Theme.of(context).accentColor,
-                                      //         onPressed: () {
-                                      //           product.toggleFavoriteStatus(
-                                      //             authData.token,
-                                      //             authData.userId,
-                                      //           );
-                                      //         },
-                                      //       ),
-                                      // ),
-                                      title: Text(
-                                        global.categories[i].data['name'],
-                                        // style:TextStyle(color: Colors.black),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      // trailing: IconButton(
-                                      //   icon: Icon(
-                                      //     Icons.shopping_cart,
-                                      //   ),
-                                      // onPressed: () {
-                                      //   cart.addItem(product.id, product.price, product.title);
-                                      //   Scaffold.of(context).hideCurrentSnackBar();
-                                      //   Scaffold.of(context).showSnackBar(
-                                      //     SnackBar(
-                                      //       content: Text(
-                                      //         'Added item to cart!',
-                                      //       ),
-                                      //       duration: Duration(seconds: 2),
-                                      //       action: SnackBarAction(
-                                      //         label: 'UNDO',
-                                      //         onPressed: () {
-                                      //           cart.removeSingleItem(product.id);
-                                      //         },
-                                      //       ),
-                                      //     ),
-                                      //   );
-                                      // },
-
-                                      // ),
+                                ),
+                                footer: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, "Product",
+                                        arguments: i);
+                                    global.touch = i;
+                                    print(
+                                        "${global.categories[global.touch].data['name']}");
+                                    print("${global.category.length}");
+                                  },
+                                  child: GridTileBar(
+                                    backgroundColor: Colors.black38,
+                                    // leading: Consumer<Product>(
+                                    //   builder: (ctx, product, _) => IconButton(
+                                    //         icon: Icon(
+                                    //           product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                                    //         ),
+                                    //         color: Theme.of(context).accentColor,
+                                    //         onPressed: () {
+                                    //           product.toggleFavoriteStatus(
+                                    //             authData.token,
+                                    //             authData.userId,
+                                    //           );
+                                    //         },
+                                    //       ),
+                                    // ),
+                                    title: Text(
+                                      global.categories[i].data['name'],
+                                      // style:TextStyle(color: Colors.black),
+                                      textAlign: TextAlign.center,
                                     ),
+                                    // trailing: IconButton(
+                                    //   icon: Icon(
+                                    //     Icons.shopping_cart,
+                                    //   ),
+                                    // onPressed: () {
+                                    //   cart.addItem(product.id, product.price, product.title);
+                                    //   Scaffold.of(context).hideCurrentSnackBar();
+                                    //   Scaffold.of(context).showSnackBar(
+                                    //     SnackBar(
+                                    //       content: Text(
+                                    //         'Added item to cart!',
+                                    //       ),
+                                    //       duration: Duration(seconds: 2),
+                                    //       action: SnackBarAction(
+                                    //         label: 'UNDO',
+                                    //         onPressed: () {
+                                    //           cart.removeSingleItem(product.id);
+                                    //         },
+                                    //       ),
+                                    //     ),
+                                    //   );
+                                    // },
+
+                                    // ),
                                   ),
                                 ),
                               ),
                             ),
-                          );
-                        },
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 92 / 100,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                        ),
+                          ),
+                        );
+                      },
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 92 / 100,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
                       ),
-              ),
-              isLoading
-                  ? Container(
-                      child: Text("Loading"),
-                    )
-                  : Container()
-            ]),
+                    ),
+            ),
+            isLoading
+                ? Container(
+                    child: Text("Loading"),
+                  )
+                : Container()
+          ]),
+        ))
           ),
-        ),
-      ),
+        
+      
     );
   }
 }
