@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart' as prefix0;
 import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
 import "package:flutter/material.dart";
+import 'package:carigari/screens/subcategory.dart'as s;
 import '../Arrangements/variables.dart' as global;
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
@@ -37,7 +40,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
   }
 
   String username = 'jatinkumar11954@gmail.com';
-  String password = '1199_jkm';
+                          
   var _dropforms = ['General', 'Feedback', 'Corporate', 'BulkOrder'];
   var _dropformSelected = "General";
   var date = new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now());
@@ -109,6 +112,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
     print(cartitem);
     // // TODO: implement build
     // String dropdownValue='One';
+     String arg=s.k;
 
     return new Scaffold(
         key: _scaffoldKey,
@@ -278,7 +282,8 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           //     .whenComplete(() =>
                           //     Navigator.of(context).pushNamed("HomeScreen")
                           // );
-                          callSnackBar("Order Placed Successfully!!!");
+                         
+                          callSnackBar("Placing Order ⏱⏱⏱");
 
                           Firestore.instance
                               .collection('Orders Placed')
@@ -303,6 +308,8 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                     global.totalamount = 0,
                                     cartitem = "empty",
                                     print(cartitem),
+                                                                        callSnackBar("Order Places Successfully 😃"),
+
                                     Navigator.pushReplacementNamed(
                                         context, "HomeScreen"),
 
@@ -318,7 +325,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
 
                           // callSnackBar("Please check the details properly"));
 
-                          final smtpServer = gmail(username, password);
+                          final smtpServer = gmail(username,arg);
                           // Use the SmtpServer class to configure an SMTP server:
                           // final smtpServer = SmtpServer('smtp.domain.com');
                           // See the named arguments of SmtpServer for further configuration

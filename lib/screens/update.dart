@@ -100,9 +100,9 @@ class _UpdateState extends State<Update> {
                   child: isLoading
                       ? Container(child: Text("Loading"))
                       : SizedBox(
-                          height: MediaQuery.of(context).size.height / 4.4,
+                          height: MediaQuery.of(context).size.height / 4.0,
                           child: Card(
-                            margin: EdgeInsets.all(25),
+                            margin: EdgeInsets.only(top:18,right:9,left:12),
                             elevation: 5.0,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,

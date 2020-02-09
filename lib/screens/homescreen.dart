@@ -174,10 +174,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       );
     }
-
-    return Scaffold(
-      key: _scaffoldkey,
-      appBar: new AppBar(
+final appbar= new AppBar(
         backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -190,7 +187,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-      ),
+      );
+    return Scaffold(
+      key: _scaffoldkey,
+      appBar:appbar,
       drawer: theDrawer(context),
       bottomNavigationBar: bottomnavigation(context, 0),
       body: WillPopScope(
@@ -210,7 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       color: Colors.brown,
                       fontWeight: FontWeight.w400,
-                      fontSize: SizeConfig.blockSizeVertical * 2.9,
+                      fontSize: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.038
+,
                     )),
               ),
               Expanded(

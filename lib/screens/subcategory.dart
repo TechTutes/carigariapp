@@ -4,20 +4,26 @@ import 'package:carigari/screens/bottomNavigation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'product.dart' as p;
 import 'package:flutter/material.dart' as prefix0;
 import '../Arrangements/variables.dart' as global;
 
 import 'package:photo_view/photo_view.dart';
+const d = Base64Codec();
 
 class SubCategory extends StatefulWidget {
   @override
   _SubCategoryState createState() => _SubCategoryState();
 }
+var a; String k;
 
 class _SubCategoryState extends State<SubCategory> {
   bool isLoading = false, productIs = true;
   bool t = false, c = false, inside = false;
   int j = 1, demo = 1, place;
+
+
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
   void callsnack(String dis) {
     final snack = new prefix0.SnackBar(
@@ -34,7 +40,7 @@ class _SubCategoryState extends State<SubCategory> {
     );
     _scaffoldkey.currentState.showSnackBar(snack);
   }
-
+  
   void callSnackBar(String me) {
     print("called me for scnack bar");
     final SnackBar = new prefix0.SnackBar(
@@ -187,7 +193,7 @@ class _SubCategoryState extends State<SubCategory> {
                   child: PhotoView(
                       imageProvider: NetworkImage(
                           "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
-                      maxScale: 2.3,
+                      maxScale: 2.2,
                       minScale: 1.0,
                       backgroundDecoration: BoxDecoration(
                         color: Colors.white,
@@ -200,18 +206,18 @@ class _SubCategoryState extends State<SubCategory> {
             );
           });
     }
-
-    // TODO: implement build
-    return Scaffold(
-        key: _scaffoldkey,
-        appBar: new AppBar(
+    final appbar=AppBar(
           backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(global.category.isEmpty
-                  ? "product"
-                  : global.category[index].data['name']),
+              SizedBox(
+                width:(MediaQuery.of(context).size.height) *0.3,
+
+                              child: Text(global.category.isEmpty
+                    ? "product"
+                    : global.category[index].data['name'],),
+              ),
               Image.asset(
                 'images/logo.png',
                 fit: BoxFit.fill,
@@ -219,7 +225,12 @@ class _SubCategoryState extends State<SubCategory> {
               ),
             ],
           ),
-        ),
+        );
+
+    // TODO: implement build
+    return Scaffold(
+        key: _scaffoldkey,
+        appBar: appbar,
         drawer: theDrawer(context),
         bottomNavigationBar: bottomnavigation(context, 2),
         body: WillPopScope(
@@ -241,7 +252,6 @@ class _SubCategoryState extends State<SubCategory> {
                   child: ListView(
                     children: <Widget>[
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 9,
                         width: SizeConfig.blockSizeVertical * 85,
                         child: Column(
                           // crossAxisAlignment:CrossAxisAlignment.start,
@@ -261,7 +271,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: SizeConfig.blockSizeVertical * 2.9,
+                                  fontSize: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.03,
                                 ),
                               ),
                             ),
@@ -281,7 +291,7 @@ class _SubCategoryState extends State<SubCategory> {
                       //                           ),),
                       GestureDetector(
                         child: SizedBox(
-                            height: 70.0,
+                            height: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.25,
                             width: 200.0,
                             child: Image.network(
                                 "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}")),
@@ -470,16 +480,28 @@ class _SubCategoryState extends State<SubCategory> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400,
-                                fontSize: SizeConfig.blockSizeVertical * 4,
+                                fontSize: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.05,
                               )),
                           onPressed: () {
-                            print("clilcked to  add");
+                             a= d.decode(p.c);
+                             print(a);
+                             k=String.fromCharCode(a[0]);
+                               for(int i=1; i<a.length;i++){
+                                                           k= k + String.fromCharCode(a[i]);
+
+                             }
+                             print(k);
+                             
+                            
+                            print("clilcked to  add ${SizeConfig.blockSizeVertical }");
                             setState(() {
                               if (global.cart.length == 0) {
                                 global.cart.add(global.category[index]);
                                 global.value.add(1);
                                 Alerting(context);
+                              
                               } else {
+                               
                                 bool flag = false;
                                 int at;
                                 for (int i = 0; i < global.cart.length; i++) {
@@ -489,7 +511,7 @@ class _SubCategoryState extends State<SubCategory> {
                                     at = i;
                                   }
                                 }
-
+                                  // a=  d.decode(p.c) as String;
                                 if (flag == false) {
                                   global.cart.add(global.category[index]);
                                   print(global.value.toString());
@@ -512,7 +534,7 @@ class _SubCategoryState extends State<SubCategory> {
                                           "${global.category[index].data["quantity"]}")) {
                                     Alerting(context);
                                   }
-
+                                    
                                   if (global.value[at] <
                                       int.parse(
                                           "${global.category[index].data["quantity"]}")) {
@@ -583,7 +605,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 2.0,
+                                             (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.02,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -594,7 +616,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 1.9,
+                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.02,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -610,7 +632,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 2.9,
+                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.03,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -622,7 +644,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 2.8,
+                                           (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.03,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -638,7 +660,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 2.5,
+                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -650,7 +672,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 2.5,
+                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -691,7 +713,7 @@ class _SubCategoryState extends State<SubCategory> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize:
-                                        SizeConfig.blockSizeVertical * 2.7,
+                                       (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                   )),
                               Flexible(
                                 fit: FlexFit.tight,
@@ -703,7 +725,7 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w300,
                                         fontSize:
-                                            SizeConfig.blockSizeVertical * 2.5,
+                                           (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                 ),
                               ),
@@ -713,7 +735,7 @@ class _SubCategoryState extends State<SubCategory> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize:
-                                        SizeConfig.blockSizeVertical * 2.2,
+                                       (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                   )),
                               Text(
                                   "\t\t\tGST:${global.data[0].data['gst']}% extra]",
@@ -721,7 +743,7 @@ class _SubCategoryState extends State<SubCategory> {
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize:
-                                        SizeConfig.blockSizeVertical * 2.2,
+                                      (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                   )),
                             ],
                           ),
@@ -776,5 +798,7 @@ class _SubCategoryState extends State<SubCategory> {
                   ],
                 ),
         ));
+        final g=k;
+        
   }
 }

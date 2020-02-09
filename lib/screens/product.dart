@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
@@ -14,12 +15,11 @@ class Product extends StatefulWidget {
   @override
   _ProductState createState() => _ProductState();
 }
-
 class _ProductState extends State<Product> {
   bool isLoading = false, productIs = true;
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
-  var msg;
+  var msg; 
   void callSnackBar(String me) {
     print("called me for scnack bar");
     final SnackBar = new prefix0.SnackBar(
@@ -60,7 +60,7 @@ class _ProductState extends State<Product> {
     global.category.isEmpty ? global.category.addAll(qp.documents) : null;
     g = await Firestore.instance.collection("data").getDocuments();
     global.data.isEmpty ? global.data.addAll(g.documents) : null;
-
+    c=global.data[0].data["product"];
     if (global.category.isEmpty) {
       setState(() {
         productIs = false;
@@ -73,12 +73,7 @@ class _ProductState extends State<Product> {
       isLoading = false;
     });
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-        key: _scaffoldkey,
-        appBar: new AppBar(
+final appbar=new AppBar(
           backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,7 +86,12 @@ class _ProductState extends State<Product> {
               ),
             ],
           ),
-        ),
+        );
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        key: _scaffoldkey,
+        appBar: appbar,
         drawer: theDrawer(context),
         bottomNavigationBar: bottomnavigation(context, 0),
         body: WillPopScope(
@@ -107,7 +107,8 @@ class _ProductState extends State<Product> {
                         style: TextStyle(
                           color: Colors.brown,
                           fontWeight: FontWeight.w600,
-                          fontSize: SizeConfig.blockSizeVertical * 3.5,
+                          fontSize: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.035
+,
                         )),
                   ),
                   Expanded(
@@ -269,3 +270,5 @@ class _ProductState extends State<Product> {
         ));
   }
 }
+var c;
+

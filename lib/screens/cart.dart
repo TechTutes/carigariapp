@@ -218,6 +218,7 @@ class _CartState extends State<Cart> {
                                     },
                                   ),
                                   leading: CircleAvatar(
+                                    backgroundColor:Colors. grey,
                                     backgroundImage: NetworkImage("https://drive.google.com/thumbnail?id=${global.cart[index].data['image']}" !=
                                             null
                                         ? "https://drive.google.com/thumbnail?id=${global.cart[index].data['image']}"
@@ -228,16 +229,19 @@ class _CartState extends State<Cart> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      Text(global.cart[index].data['name'],
-                                      textAlign: TextAlign.justify,
-                                          style: TextStyle(
-                                            
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize:
-                                                SizeConfig.blockSizeVertical *
-                                                    2.3,
-                                          )),
+                                      SizedBox(
+                                        height:(MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.05,
+                                        width:(MediaQuery.of(context).size.width - appbar.preferredSize.height) *0.58,
+                                                                              child: Text(global.cart[index].data['name'],
+                                        textAlign: TextAlign.justify,
+                                            style: TextStyle(
+                                              
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize:
+                                                  (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.024,
+                                            )),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                          top: SizeConfig.blockSizeVertical * 1.8,
