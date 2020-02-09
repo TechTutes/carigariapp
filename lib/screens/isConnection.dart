@@ -6,6 +6,7 @@ import 'package:carigari/screens/home.dart';
 import 'package:carigari/screens/product.dart';
 import 'package:carigari/screens/subcategory.dart';
 import 'package:carigari/screens/update.dart';
+import 'package:carigari/screens/uploading.dart';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:carigari/Screens/contactUS.dart';
@@ -77,7 +78,7 @@ class _IsConnection extends State<IsConnection> {
     } else {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: new Splash(),
+        home: new Ss(),
         routes: <String, WidgetBuilder>{
           'Splash': (BuildContext context) => new Splash(),
           'IsConnection': (BuildContext context) => new IsConnection(),
@@ -94,6 +95,7 @@ class _IsConnection extends State<IsConnection> {
           'SubCategory': (BuildContext context) => new SubCategory(),
           'Product': (BuildContext context) => new Product(),
           'OrderConfirm': (BuildContext context) => new OrderConfirm(),
+          'Ss': (BuildContext context) => new Ss(),
         },
       );
     }
