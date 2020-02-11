@@ -27,83 +27,83 @@ class _SsState extends State<Ss> {
   
     
     
-            "Dinning Table A066,80 cm dia.jpeg": "1GPQdjkFI3UxMhX7Zf3CBvrt7H0Mfp_H0"
-        ,
-            "Dinning Extendable 810-86 1+4.jpeg": "17uCz71N0fsYdL4ufSZN55pBOEG4j7y-e"
-       ,
-        "Dinning Table only 14#.jpeg": "1Ea1hM1j9IgRoZnoB6JjAhjyS3RHLPa3Y"
-       ,
-        "Dinning 8203-Z18 1+4,1+6.jpeg": "1_JAXnYMS51Cg_rleaEc2g3lnvRX5O7Io"
-       ,
-        "Dinning Y82-2-C65 1+4,1+6.jpeg": "1jHrvPxROH4_I3dYoY7iPmzlYZdn0Ts9v"
-       ,
-        "Dinning 9101-W-801,1+6,1+4.jpeg": "1xsuUD0tq-S47iPkDU3vLCemqvbDo_FqM"
-       ,
-        "Dinning 2.jpeg": "1LKPCvKjhPbGfTB_OsvcFdpf0nQSlUuIB"
-       ,
-        "Dinning 811-86 1+4.jpeg": "1XYZdzOkPaJIF-dg3H81sIr1MMJjwVsK8"
-        ,
-            "Dinning C-02 round glass 135 cm dia 1+6.jpeg": "1f9619JBAOOhY00oT8RAsuNgWWlmeLy0Z"
-       ,
-        "Dinning 3.jpeg": "1oH16bzgKeG7d2n_ONmBfpf3g_4sArHx9"
-       ,
-        "Dinning 4.jpeg": "1yj7fAJ9N3DRKBojpAY3rhPY11JbgHJ79"
-        ,
-            "Dinning 718B table and chairs.jpeg": "1GDKEr9WBZsglDmskIM0B6YNtM75rZp5z"
-        ,
-            "Dinning WhatsApp-Image-2020-01-19-at-11.26.png": "1WRSLz0V89gIehfadLjY3Ld3buHR83ro8"
-        ,
-            "Dinning K27-806-1+6,-1+4.png": "1nE6dzK9IPcsc8QvttYEswokg7MNoiKDK"
-        ,
-            "Dinning K26-816-1+4.png": "1CndM8VWvPZZGMJaxIQd3z6ymLGBZNKC6"
-        ,
-            "Dinning K15-C-1,1+6.png": "104nuiIvf3ZehqmXdcv7loKeWSWtqruYT"
-        ,
-            "Dinning A60-C67-1+6.png": "1jScyNwkuCDf0dX1QA7nFjgfaQVjDeJIQ"
-        ,
-            "Dinning A888-F847-1+6.png": "1hJXkQ2-4GB5ZW9GTHiEiC-RrJcdM_Nk9"
-        ,
-            "Dinning A58-C66-1+6.png": "1mrhKdMNUTAWkmWLhNbpNHC-B0a72x6l3"
-        ,
-            "Dinning A85-C66-1+6.png": "19xBrSWymcGgVLJrEJ3XKAJzbmROTGyIk"
-        ,
-            "Dinning BLACK-&-WHITE-MARBLE-1+6.png": "14hyMq3LsL4I3RqysY7BG-HSUES8fXpyV"
-        ,
-            "Dinning A90-C62 1+6.png": "1BPVLLGzTAGpzJw4zUSTh_C7n7fyCfTiR"
-        ,
-            "Dinning A999-F847-1+8,1+6.png": "1eMFTQxMVWiZ11Jko56ETkeSwcrQCQBl8"
-        ,
-            "Dinning A56-C621+6.png": "1RQRnlVtW8WCh-vR1NtCoMmbfJYJU5yMY"
-        ,
-            "Dinning 793-03-1000-1+6.png": "1Mxt7z94AH5gY2CjneY9DlxSU0JiL8ADa"
-        ,
-            "Dinning A40-C67 1+6.png": "10G6h8_r9nMEl99uEW2zO-ASpxOMrYZZQ"
-        ,
-            "Dinning 801-808-4FT-DIA-1+4.png": "1sxFeCfcuMqIchNMmTPPk57A6Eajx58yH"
-        ,
-            "Dinning 623-132 1+6 1.6 MT.png": "1p8lOYyeRd1NjPqCneNj40vCmnhRitawX"
-        ,
-            "Dinning 637-808 1+ 1.8 MT.png": "1-pVkr5gAzn3I-XCvoRZszIn-I7n_izgK"
-        ,
-            "Dinning 761-208-1+61.png": "1dPZccGWrbASZ0PeHBxsl_D1yFVvmJKmE"
-        ,
-            "Dinning 7521-206-1+6-1.png": "1gpyt1YcHOWnaH38YIIeKA4p4r1Ipxo0r"
-        ,
-            "Dinning 616-151-1+6-1.png": "1ciAtwlSaE4AWfZ6ek3chionwCTjcbt5r"
-        ,
-            "Dinning 753728-3-1000-1+6.png": "1eqNZnwE7hqFElq9zGF4HGzGPAOVCaKj6"
-        ,
-            "Dinning 651-601-1+6.png": "1ADj74qBFdi7E1URMZk8ykMoW6RMq4ACA"
-        ,
-            "Dinning 563-118-1+6,-1.png": "18XuKZlhSi0JjamkqROBGcucg2_50v8CI"
-        ,
-            "Dinning 242-T435.png": "1zHRv0xZA99fqxt9GuBLmMVbbEFEMRWtx"
-        ,
-            "Dinning 1905-138-1+6,-1.png": "1wG-zZLwXE3k1h-1xUw2LMPpaEXx728gZ"
-        ,
-            "Dinning 1819-048-1+6,-1.png": "1F6ir44zkAdQp6srm_mzr1qXOY2BMsbxg"
-        ,
-            "Dinning 1041=122=887-1+6.png": "1jK62ORAi0s8arZiovsDva623iWtwqA6w"
+      //       "Dinning Table A066,80 cm dia": "1GPQdjkFI3UxMhX7Zf3CBvrt7H0Mfp_H0"
+      //   ,
+      //       "Dinning Extendable 810-86 1+4": "17uCz71N0fsYdL4ufSZN55pBOEG4j7y-e"
+      //  ,
+      //   "Dinning Table only 14#": "1Ea1hM1j9IgRoZnoB6JjAhjyS3RHLPa3Y"
+      //  ,
+      //   "Dinning 8203-Z18 1+4,1+6": "1_JAXnYMS51Cg_rleaEc2g3lnvRX5O7Io"
+      //  ,
+      //   "Dinning Y82-2-C65 1+4,1+6": "1jHrvPxROH4_I3dYoY7iPmzlYZdn0Ts9v"
+      //  ,
+      //   "Dinning 9101-W-801,1+6,1+4": "1xsuUD0tq-S47iPkDU3vLCemqvbDo_FqM"
+      //  ,
+      //   "Dinning 2": "1LKPCvKjhPbGfTB_OsvcFdpf0nQSlUuIB"
+      //  ,
+      //   "Dinning 811-86 1+4": "1XYZdzOkPaJIF-dg3H81sIr1MMJjwVsK8"
+      //   ,
+      //       "Dinning C-02 round glass 135 cm dia 1+6": "1f9619JBAOOhY00oT8RAsuNgWWlmeLy0Z"
+      //  ,
+      //   "Dinning 3": "1oH16bzgKeG7d2n_ONmBfpf3g_4sArHx9"
+      //  ,
+      //   "Dinning 4": "1yj7fAJ9N3DRKBojpAY3rhPY11JbgHJ79"
+      //   ,
+      //       "Dinning 718B table and chairs": "1GDKEr9WBZsglDmskIM0B6YNtM75rZp5z"
+      //   ,
+      //       "Dinning WhatsApp-Image-2020-01-19-at-11.26": "1WRSLz0V89gIehfadLjY3Ld3buHR83ro8"
+      //   ,
+      //       "Dinning K27-806-1+6,-1+4": "1nE6dzK9IPcsc8QvttYEswokg7MNoiKDK"
+      //   ,
+      //       "Dinning K26-816-1+4": "1CndM8VWvPZZGMJaxIQd3z6ymLGBZNKC6"
+      //   ,
+      //       "Dinning K15-C-1,1+6": "104nuiIvf3ZehqmXdcv7loKeWSWtqruYT"
+      //   ,
+      //       "Dinning A60-C67-1+6": "1jScyNwkuCDf0dX1QA7nFjgfaQVjDeJIQ"
+      //   ,
+      //       "Dinning A888-F847-1+6": "1hJXkQ2-4GB5ZW9GTHiEiC-RrJcdM_Nk9"
+      //   ,
+      //       "Dinning A58-C66-1+6": "1mrhKdMNUTAWkmWLhNbpNHC-B0a72x6l3"
+      //   ,
+      //       "Dinning A85-C66-1+6": "19xBrSWymcGgVLJrEJ3XKAJzbmROTGyIk"
+      //   ,
+      //       "Dinning BLACK-&-WHITE-MARBLE-1+6": "14hyMq3LsL4I3RqysY7BG-HSUES8fXpyV"
+      //   ,
+      //       "Dinning A90-C62 1+6": "1BPVLLGzTAGpzJw4zUSTh_C7n7fyCfTiR"
+      //   ,
+      //       "Dinning A999-F847-1+8,1+6": "1eMFTQxMVWiZ11Jko56ETkeSwcrQCQBl8"
+      //   ,
+      //       "Dinning A56-C621+6": "1RQRnlVtW8WCh-vR1NtCoMmbfJYJU5yMY"
+      //   ,
+      //       "Dinning 793-03-1000-1+6": "1Mxt7z94AH5gY2CjneY9DlxSU0JiL8ADa"
+      //   ,
+      //       "Dinning A40-C67 1+6": "10G6h8_r9nMEl99uEW2zO-ASpxOMrYZZQ"
+      //   ,
+      //       "Dinning 801-808-4FT-DIA-1+4": "1sxFeCfcuMqIchNMmTPPk57A6Eajx58yH"
+      //   ,
+      //       "Dinning 623-132 1+6 1.6 MT": "1p8lOYyeRd1NjPqCneNj40vCmnhRitawX"
+      //   ,
+      //       "Dinning 637-808 1+ 1.8 MT": "1-pVkr5gAzn3I-XCvoRZszIn-I7n_izgK"
+      //   ,
+      //       "Dinning 761-208-1+61": "1dPZccGWrbASZ0PeHBxsl_D1yFVvmJKmE"
+      //   ,
+      //       "Dinning 7521-206-1+6-1": "1gpyt1YcHOWnaH38YIIeKA4p4r1Ipxo0r"
+      //   ,
+      //       "Dinning 616-151-1+6-1": "1ciAtwlSaE4AWfZ6ek3chionwCTjcbt5r"
+      //   ,
+      //       "Dinning 753728-3-1000-1+6": "1eqNZnwE7hqFElq9zGF4HGzGPAOVCaKj6"
+      //   ,
+      //       "Dinning 651-601-1+6": "1ADj74qBFdi7E1URMZk8ykMoW6RMq4ACA"
+      //   ,
+      //       "Dinning 563-118-1+6,-1": "18XuKZlhSi0JjamkqROBGcucg2_50v8CI"
+      //   ,
+      //       "Dinning 242-T435": "1zHRv0xZA99fqxt9GuBLmMVbbEFEMRWtx"
+      //   ,
+      //       "Dinning 1905-138-1+6,-1": "1wG-zZLwXE3k1h-1xUw2LMPpaEXx728gZ"
+      //   ,
+      //       "Dinning 1819-048-1+6,-1": "1F6ir44zkAdQp6srm_mzr1qXOY2BMsbxg"
+      //   ,
+      //       "Dinning 1041=122=887-1+6": "1jK62ORAi0s8arZiovsDva623iWtwqA6w"
     
 // {
         //     "UIJ": "1qJHS1JZ7jV5JjfAgRaVMkqiWYZ-bc3SN"
@@ -131,43 +131,43 @@ class _SsState extends State<Ss> {
 //     ]
 // }
 // // {
-//              "visitor-chair-203": "1_QmfhgJ-tvV9SNLinlJcvYSaX8pohuPc"
-//         ,
-//         "VISITOR CHAIR 06-8": "1_tu00FA1UJ7Zh3GnT0ywNtG6gYk0OucG"
-//         ,
-//         "off-chair-920": "1JFPItKybUvpkBBYSWZwbohy6gUFqvurS"
-//         ,
-//         "OFF CHAIR B46": "1I2_HBPYtOzWIUuW13YExQOh-2QT9a5QD"
-//         ,
-//         "OFF-TABLE-128": "1QO_5Zidsa4BP74TCWxzOkfCfMbrNOtmp"
-//         ,
-//         "Office b07": "14riZlKqBK15MSianQIymY88T-vO8XLnK"
-//         ,
-//         "Office b811": "1mEG0LvLcvQva3JjaFofLaxLcSofa_waN"
-//         ,
-//         "Office 8833": "1sovjCumQezZbGvAMKBO094fs7KH1reLz"
-//         ,
-//         "Office 8018": "1onCHNcTdlpzG8Z88AB6tvETG4MIrzRQx"
-//         ,
-//         "Office 97018": "1I9T8-W47BfXMJz0x-9SmVrB87eyqubRB"
-//         ,
-//         "Office 8418": "1eJfHwWD6Rhqm4JxHq6jnGIKMrI3742Gm"
-//         ,
-//         "Office 8318": "1ZYR76kGF_3DRskE750cVzbgP3RLNwiiS"
-//         ,
-//         "Office 7418": "1cc5pnX79AE2anDg8DO69UuGuVGo-5cDN"
-//         ,
-//         "Office 2253-18": "1Ye2FlWbKweY8g53KTfnG21VihqLPry_S"
-//         ,
-//         "Office 203018": "1KmWdYhQ_j9eprjTxNlOacraWmuTYQL8b"
-//         ,
-//         "Office 1843-18": "1FiNotHfyi9S2TImpZLV0-Y_6iraTLGjU"
-//         ,
-//         "Office 093": "1low7TqBDukE6TaYwC0adfHSp2LGZrbG0"
-//         ,
-//         "Office 03": "16WqWOS5AKotHGDXqSeZib6u1oSYgjiMI"
-//         ,
-//         "Office 01": "1lUtDYDLtmcNLFxB3mKXRgGxN9lmRcxai"
+             "visitor-chair-203": "1_QmfhgJ-tvV9SNLinlJcvYSaX8pohuPc"
+        ,
+        "VISITOR CHAIR 06-8": "1_tu00FA1UJ7Zh3GnT0ywNtG6gYk0OucG"
+        ,
+        "off-chair-920": "1JFPItKybUvpkBBYSWZwbohy6gUFqvurS"
+        ,
+        "OFF CHAIR B46": "1I2_HBPYtOzWIUuW13YExQOh-2QT9a5QD"
+        ,
+        "OFF-TABLE-128": "1QO_5Zidsa4BP74TCWxzOkfCfMbrNOtmp"
+        ,
+        "Office b07": "14riZlKqBK15MSianQIymY88T-vO8XLnK"
+        ,
+        "Office b811": "1mEG0LvLcvQva3JjaFofLaxLcSofa_waN"
+        ,
+        "Office 8833": "1sovjCumQezZbGvAMKBO094fs7KH1reLz"
+        ,
+        "Office 8018": "1onCHNcTdlpzG8Z88AB6tvETG4MIrzRQx"
+        ,
+        "Office 97018": "1I9T8-W47BfXMJz0x-9SmVrB87eyqubRB"
+        ,
+        "Office 8418": "1eJfHwWD6Rhqm4JxHq6jnGIKMrI3742Gm"
+        ,
+        "Office 8318": "1ZYR76kGF_3DRskE750cVzbgP3RLNwiiS"
+        ,
+        "Office 7418": "1cc5pnX79AE2anDg8DO69UuGuVGo-5cDN"
+        ,
+        "Office 2253-18": "1Ye2FlWbKweY8g53KTfnG21VihqLPry_S"
+        ,
+        "Office 203018": "1KmWdYhQ_j9eprjTxNlOacraWmuTYQL8b"
+        ,
+        "Office 1843-18": "1FiNotHfyi9S2TImpZLV0-Y_6iraTLGjU"
+        ,
+        "Office 093": "1low7TqBDukE6TaYwC0adfHSp2LGZrbG0"
+        ,
+        "Office 03": "16WqWOS5AKotHGDXqSeZib6u1oSYgjiMI"
+        ,
+        "Office 01": "1lUtDYDLtmcNLFxB3mKXRgGxN9lmRcxai"
         
 //     ]
 // }
@@ -261,7 +261,7 @@ class _SsState extends State<Ss> {
 };
 
      dic.forEach((k,v) async=>await  Firestore.instance
-                              .collection('Dinning Room Furniture')
+                              .collection('Executive Desks and chairs')
                               .document("$k")
                               .setData({
                                 "quantity" : q,
