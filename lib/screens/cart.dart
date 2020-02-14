@@ -221,7 +221,7 @@ class _CartState extends State<Cart> {
                                     backgroundColor:Colors. grey,
                                     backgroundImage: NetworkImage("https://drive.google.com/uc?id=${global.cart[index].data['image']}" !=
                                             null
-                                        ? "https://drive.google.com/uc/?id=${global.cart[index].data['image']}"
+                                        ? "https://drive.google.com/uc?id=${global.cart[index].data['image']}"
                                         : "https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new3.jpg"),
                                   ),
                                   contentPadding: EdgeInsets.all(5),

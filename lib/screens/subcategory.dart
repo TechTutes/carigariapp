@@ -197,9 +197,9 @@ class _SubCategoryState extends State<SubCategory> {
                       maxScale: 2.2,
                       filterQuality: FilterQuality.high,
                       minScale: 1.0,
-                      // backgroundDecoration: BoxDecoration(
-                      //   color: Colors.white,
-                      // )
+                      backgroundDecoration: BoxDecoration(
+                        color: Colors.white,
+                      )
                       ),
                 )
 

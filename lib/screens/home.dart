@@ -55,8 +55,9 @@ class _HomeState extends State<Home> {
     try {
       // Using default duration to force fetching from remote server.
 
-      newVersion =
-          update[7].data["version"] == null ? 100 :double.parse(update[7].data["version"].trim().replaceAll(".", ""));
+      newVersion = update[7].data["version"] == null
+          ? 100
+          : double.parse(update[7].data["version"].trim().replaceAll(".", ""));
       ;
 
       if (newVersion > currentVersion) {
@@ -81,36 +82,39 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    print("inside build of home screen");
+    print("inside build of home ");
 
     if (!isLoading) {
-      return MaterialApp(
-        home: isUpdate ? Update() : HomeScreen(),
-      );
+      print("loading is not true in home");
+       
+            return Scaffold(body:            isUpdate ? Update() : HomeScreen()
+);
+      
     } else {
-      return MaterialApp(
-          home: Scaffold(
-              appBar: new AppBar(
-                backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Carigari'),
-                    Image.asset(
-                      'images/logo.png',
-                      fit: BoxFit.fill,
-                      height: SizeConfig.blockSizeVertical * 4.5,
-                    ),
-                  ],
+      print("loading is true in home");
+
+      return Scaffold(
+          appBar: new AppBar(
+            backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Carigari'),
+                Image.asset(
+                  'images/logo.png',
+                  fit: BoxFit.fill,
+                  height: SizeConfig.blockSizeVertical * 4.5,
                 ),
-              ),
-              drawer: theDrawer(context),
-              bottomNavigationBar: bottomnavigation(context, 0),
-              body: WillPopScope(
-                  onWillPop: () {
-                    Navigator.pushReplacementNamed(context, 'HomeScreen');
-                  },
-                  child: Center(child: Container(child: Text("Loading"))))));
+              ],
+            ),
+          ),
+          drawer: theDrawer(context),
+          bottomNavigationBar: bottomnavigation(context, 0),
+          body: WillPopScope(
+              onWillPop: () {
+                Navigator.pushReplacementNamed(context, 'HomeScreen');
+              },
+              child: Center(child: Container(child: Text("Loading")))));
     }
   }
 }

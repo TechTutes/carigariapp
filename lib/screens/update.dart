@@ -77,8 +77,7 @@ class _UpdateState extends State<Update> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return  Scaffold(
             appBar: new AppBar(
               backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
               title: Row(
@@ -157,6 +156,6 @@ class _UpdateState extends State<Update> {
                             ),
                           ),
                         ),
-                ))));
+                )));
   }
 }

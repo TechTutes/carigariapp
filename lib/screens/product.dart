@@ -60,7 +60,7 @@ class _ProductState extends State<Product> {
     global.category.isEmpty ? global.category.addAll(qp.documents) : null;
     g = await Firestore.instance.collection("data").getDocuments();
     global.data.isEmpty ? global.data.addAll(g.documents) : null;
-    c=global.data[0].data["product"];
+    c=global.data[1].data["product"];
     if (global.category.isEmpty) {
       setState(() {
         productIs = false;
