@@ -82,7 +82,7 @@ class _NotificationState extends State<Notification> {
                            padding: EdgeInsets.only(left:SizeConfig.blockSizeHorizontal * 5),
                                                     child: SizedBox(
                              width:SizeConfig.blockSizeHorizontal * 95,
-                             child: Text(data.isEmpty?"No Nortifications available right now":"${data[2].data['content']}",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),)),
+                             child: Text(data.isEmpty?"No Nortifications available right now":"${data[3].data['content']}",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),)),
                          )
 
           ],

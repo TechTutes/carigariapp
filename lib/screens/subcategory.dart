@@ -165,10 +165,10 @@ class _SubCategoryState extends State<SubCategory> {
           barrierDismissible: false,
           builder: (BuildContext context) {
             return new AlertDialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              // shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
               // elevation: 200.0,
-              backgroundColor: Colors.white10,
+              // backgroundColor: Colors.white10,
               // title: Text("Please Enter SMS Code"),
               titlePadding: EdgeInsets.all(20.0),
               // content: Text(" Shop further Or Checkout",
@@ -188,16 +188,19 @@ class _SubCategoryState extends State<SubCategory> {
 
                 ///paste it here
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.78,
-                  width: MediaQuery.of(context).size.width * 0.99,
+                  height: (MediaQuery.of(context).size.height -50),
+                  width: MediaQuery.of(context).size.width *0.8,
                   child: PhotoView(
                       imageProvider: NetworkImage(
-                          "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+                          "https://drive.google.com/uc?id=${global.category[index].data['image']}"),
+                          tightMode: true,
                       maxScale: 2.2,
+                      filterQuality: FilterQuality.high,
                       minScale: 1.0,
-                      backgroundDecoration: BoxDecoration(
-                        color: Colors.white,
-                      )),
+                      // backgroundDecoration: BoxDecoration(
+                      //   color: Colors.white,
+                      // )
+                      ),
                 )
 
 //
@@ -291,11 +294,21 @@ class _SubCategoryState extends State<SubCategory> {
                       //                           ),),
                       GestureDetector(
                         child: SizedBox(
-                            height: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.25,
-                            width: 200.0,
-                            child: Image.network(
-                                "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}")),
-                        onTap: () => Alert(index, context),
+                            height: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.38,
+                            // width:
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            child: 
+                            Image.network( "https://drive.google.com/uc?id=${global.category[index].data['image']}")
+                      //       PhotoView(
+                      // imageProvider: NetworkImage(
+                      //     "https://drive.google.com/uc?id=${global.category[index].data['image']}"),
+                      // maxScale: 2.2,
+                      // filterQuality: FilterQuality.high,
+                      // minScale: 1.0,
+                      // backgroundDecoration: BoxDecoration(
+                      //   color: Colors.white,
+                      // )
+                      ), onTap: () => Alert(index, context),
                       ),
                       SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
@@ -738,7 +751,7 @@ class _SubCategoryState extends State<SubCategory> {
                                        (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                   )),
                               Text(
-                                  "\t\t\tGST:${global.data[0].data['gst']}% extra]",
+                                  "\t\t\tGST:${global.data[1].data['gst']}% extra]",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,

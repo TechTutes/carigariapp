@@ -128,7 +128,7 @@ final appbar=new AppBar(
                                     child: ListTile(
                                       leading: CircleAvatar(
                                         backgroundImage: NetworkImage(
-                                            "https://drive.google.com/thumbnail?id=${global.category[index].data['image']}"),
+                                            "https://drive.google.com/uc?id=${global.category[index].data['image']}"),
                                       ),
                                       // contentPadding: EdgeInsets.all(5),
                                       title: Text(
@@ -234,7 +234,7 @@ final appbar=new AppBar(
                       child: Text(
                         global.data.isEmpty
                             ? "\n\n\n\nThere are no products in this category."
-                            : "\n\n\n\n${global.data[5].data["not-available"]}",
+                            : "\n\n\n\n${global.data[6].data["not-available"]}",
                         style: TextStyle(
                             fontSize: SizeConfig.blockSizeVertical * 2.5,
                             color: Colors.green),

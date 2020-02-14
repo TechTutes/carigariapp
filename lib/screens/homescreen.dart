@@ -83,22 +83,22 @@ class _HomeScreenState extends State<HomeScreen> {
           items: [
             carousel.isEmpty
                 ? "http://carigarifurniture.com/product_images/w/133365e0_a1b8_4f6d_89b5_d71cf79c27ef__92495_thumb.jpg"
-                : "https://drive.google.com/thumbnail?id=${carousel[0].data["image1"]}",
+                : "https://drive.google.com/uc?id=${carousel[0].data["image1"]}",
             carousel.isEmpty
                 ? "http://carigarifurniture.com/product_images/h/img_6539__14221_thumb.jpg"
-                : "https://drive.google.com/thumbnail?id=${carousel[0].data["image2"]}",
+                : "https://drive.google.com/uc?id=${carousel[0].data["image2"]}",
 
             carousel.isEmpty
                 ? "http://carigarifurniture.com/product_images/w/cbb92cd2_d785_4288_a51a_88766576d6aa_1___10086_thumb.jpg"
-                : "https://drive.google.com/thumbnail?id=${carousel[0].data["image3"]}",
+                : "https://drive.google.com/uc?id=${carousel[0].data["image3"]}",
 
             carousel.isEmpty
                 ? "http://carigarifurniture.com/product_images/h/img_6539__14221_thumb.jpg"
-                : "https://drive.google.com/thumbnail?id=${carousel[0].data["image4"]}",
+                : "https://drive.google.com/uc?id=${carousel[0].data["image4"]}",
 
             carousel.isEmpty
                 ? "http://carigarifurniture.com/product_images/w/cbb92cd2_d785_4288_a51a_88766576d6aa_1___10086_thumb.jpg"
-                : "https://drive.google.com/thumbnail?id=${carousel[0].data["image5"]}"
+                : "https://drive.google.com/uc?id=${carousel[0].data["image5"]}"
 
             // 'https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new2.jpg',
             // 'https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new4.jpg',
@@ -248,7 +248,7 @@ final appbar= new AppBar(
                                     child: Hero(
                                       tag: global.categories[i],
                                       child: Image.network(
-                                        "https://drive.google.com/thumbnail?id=${global.categories[i].data['image']}",
+                                        "https://drive.google.com/uc?id=${global.categories[i].data['image']}",
                                         fit: BoxFit.fill,
                                       ),
                                     ),

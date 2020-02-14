@@ -42,10 +42,20 @@ class _PrivacyState extends State<Privacy> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          appBar: AppBar(
-            title: Text("Privacy Info"),
-            backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
+          appBar:  AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Privacy Info", style: TextStyle(color: Colors.white)),
+              Image.asset(
+                'images/logo.png',
+                fit: BoxFit.fill,
+                height: SizeConfig.blockSizeVertical * 4.5,
+              ),
+            ],
           ),
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
+        ),
           bottomNavigationBar: bottomnavigation(context, 1),
           drawer: theDrawer(context),
           body: isLoading
@@ -74,7 +84,7 @@ class _PrivacyState extends State<Privacy> {
                         child: SizedBox(
                             width: SizeConfig.blockSizeHorizontal * 95,
                             child: Text(
-                              "${data[4].data['content']}",
+                              "${data[5].data['content']}",
                               style: TextStyle(
                                   fontSize: SizeConfig.blockSizeVertical * 2.5,
                                   color: Colors.green),

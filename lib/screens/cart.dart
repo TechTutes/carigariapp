@@ -219,9 +219,9 @@ class _CartState extends State<Cart> {
                                   ),
                                   leading: CircleAvatar(
                                     backgroundColor:Colors. grey,
-                                    backgroundImage: NetworkImage("https://drive.google.com/thumbnail?id=${global.cart[index].data['image']}" !=
+                                    backgroundImage: NetworkImage("https://drive.google.com/uc?id=${global.cart[index].data['image']}" !=
                                             null
-                                        ? "https://drive.google.com/thumbnail?id=${global.cart[index].data['image']}"
+                                        ? "https://drive.google.com/uc/?id=${global.cart[index].data['image']}"
                                         : "https://www.woodenstreet.com/images/furniture-bangalore/noida/image-new3.jpg"),
                                   ),
                                   contentPadding: EdgeInsets.all(5),
@@ -230,10 +230,10 @@ class _CartState extends State<Cart> {
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       SizedBox(
-                                        height:(MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.05,
+                                        height:(MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.06,
                                         width:(MediaQuery.of(context).size.width - appbar.preferredSize.height) *0.58,
                                                                               child: Text(global.cart[index].data['name'],
-                                        textAlign: TextAlign.justify,
+                                        textAlign: TextAlign.left,
                                             style: TextStyle(
                                               
                                               color: Colors.black,

@@ -36,7 +36,7 @@ class _UpdateState extends State<Update> {
       isLoading = true;
     });
     // if(global.category==null){
-    print("inside categorylist");
+    print("inside update screen");
     // }
 
     QuerySnapshot up;
@@ -45,12 +45,15 @@ class _UpdateState extends State<Update> {
     update.isEmpty ? update.addAll(up.documents) : null;
     final PackageInfo info = await PackageInfo.fromPlatform();
     currentVersion = double.parse(info.version.trim().replaceAll(".", ""));
+          print(" this is update ${update[7].data["version"]}");
+
     try {
       // Using default duration to force fetching from remote server.
 
       newVersion =
-          double.parse(update[6].data["version"].trim().replaceAll(".", ""));
+          double.parse(update[7].data["version"].trim().replaceAll(".", ""));
       ;
+      print(" this is update ${update[7].data["version"]}");
 
       if (newVersion > currentVersion) {
         isUpdate = true;
@@ -64,7 +67,7 @@ class _UpdateState extends State<Update> {
     // :SizedBox();
     // var dem=global.categories[10].data["name"];
     // print(dem["name"]);
-    print("categories");
+    print("updates");
     // print("hai at end");
     // callTest();
     setState(() {

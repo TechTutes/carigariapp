@@ -56,7 +56,7 @@ class _HomeState extends State<Home> {
       // Using default duration to force fetching from remote server.
 
       newVersion =
-          double.parse(update[6].data["version"].trim().replaceAll(".", ""));
+          update[7].data["version"] == null ? 100 :double.parse(update[7].data["version"].trim().replaceAll(".", ""));
       ;
 
       if (newVersion > currentVersion) {

@@ -83,7 +83,7 @@ bool isLoading = false;
                            padding: EdgeInsets.only(left:SizeConfig.blockSizeHorizontal * 5),
                                                     child: SizedBox(
                              width:SizeConfig.blockSizeHorizontal * 95,
-                             child: Text(data.isEmpty?"we will provide information in short time":"${data[1].data['info']}",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),)),
+                             child: Text(data.isEmpty?"we will provide information in short time":"${data[2].data['info']}",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),)),
                          ) ],
         ),
         ),

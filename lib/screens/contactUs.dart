@@ -113,7 +113,7 @@ class _ContactUsState extends State<ContactUs> {
                                 width: SizeConfig.blockSizeHorizontal * 80,
                                 child: RaisedButton(
                                   onPressed: () =>
-                                      launch("tel:+91${phone[3].data["call"]}"),
+                                      launch("tel:+91${phone[4].data["call"]}"),
                                   child: Row(
                                     children: <Widget>[
                                       new Text("CALL US",
@@ -152,9 +152,9 @@ class _ContactUsState extends State<ContactUs> {
                                   onPressed: () async =>
                                       //  var whatsappUrl ="whatsapp://send?phone=$phone";
                                       await canLaunch(
-                                              "whatsapp://send?phone=091${phone[3].data["whatsapp"]}")
+                                              "whatsapp://send?phone=091${phone[4].data["whatsapp"]}")
                                           ? launch(
-                                              "whatsapp://send?phone=091${phone[3].data["whatsapp"]}")
+                                              "whatsapp://send?phone=091${phone[4].data["whatsapp"]}")
                                           : print(
                                               "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed"),
                                   child: Row(
