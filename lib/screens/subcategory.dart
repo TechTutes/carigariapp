@@ -168,7 +168,7 @@ class _SubCategoryState extends State<SubCategory> {
               // shape: RoundedRectangleBorder(
               //     borderRadius: BorderRadius.all(Radius.circular(20.0))),
               // elevation: 200.0,
-              // backgroundColor: Colors.white10,
+              backgroundColor: Colors.transparent,
               // title: Text("Please Enter SMS Code"),
               titlePadding: EdgeInsets.all(20.0),
               // content: Text(" Shop further Or Checkout",
@@ -188,17 +188,18 @@ class _SubCategoryState extends State<SubCategory> {
 
                 ///paste it here
                 Container(
-                  height: (MediaQuery.of(context).size.height -50),
-                  width: MediaQuery.of(context).size.width *0.8,
+                  height: (MediaQuery.of(context).size.height -50)*0.9,
+                  width: 200,
+                  // MediaQuery.of(context).size.width *0.8,
                   child: PhotoView(
                       imageProvider: NetworkImage(
                           "https://drive.google.com/uc?id=${global.category[index].data['image']}"),
-                          tightMode: true,
+                          // tightMode: true,
                       maxScale: 2.2,
                       filterQuality: FilterQuality.high,
-                      minScale: 1.0,
+                      minScale: 0.5,
                       backgroundDecoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.transparent,
                       )
                       ),
                 )

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart' as prefix0;
 import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
 import "package:flutter/material.dart";
-import 'package:carigari/screens/subcategory.dart'as s;
+import 'package:carigari/screens/subcategory.dart' as s;
 import '../Arrangements/variables.dart' as global;
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
@@ -40,7 +40,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
   }
 
   String username = 'jatinkumar11954@gmail.com';
-                          
+
   var _dropforms = ['General', 'Feedback', 'Corporate', 'BulkOrder'];
   var _dropformSelected = "General";
   var date = new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now());
@@ -49,7 +49,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
     // msg="There is no record with this user, please register first by clicking Register";
     final SnackBar = new prefix0.SnackBar(
       content: new Text(msg),
-      duration: new Duration(seconds: 3),
+      duration: new Duration(seconds: er),
       //   action: new SnackBarAction(label: "Register",
       //   onPressed: (){
       //     Navigator.pushNamed(context, "Register");
@@ -112,7 +112,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
     print(cartitem);
     // // TODO: implement build
     // String dropdownValue='One';
-     String arg=s.k;
+    String arg = s.k;
 
     return new Scaffold(
         key: _scaffoldKey,
@@ -199,9 +199,6 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                   SizeConfig.blockSizeVertical * 1.5))),
                     ),
                   ),
-
-            
-
                   Padding(
                     padding: EdgeInsets.only(
                         top: SizeConfig.blockSizeVertical * 1.5,
@@ -242,7 +239,6 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                   SizeConfig.blockSizeVertical * 1.5))),
                     ),
                   ),
-        
                   SizedBox(
                     height: SizeConfig.blockSizeVertical * 6,
                     width: SizeConfig.blockSizeHorizontal * 90,
@@ -282,50 +278,15 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           //     .whenComplete(() =>
                           //     Navigator.of(context).pushNamed("HomeScreen")
                           // );
-                         
-                          callSnackBar("Placing Order ⏱⏱⏱");
 
-                          Firestore.instance
-                              .collection('Orders Placed')
-                              .document(nameInput.text + " " + date)
-                              .setData({
-                                "date and time": date,
-                                "name": nameInput.text,
-                                "city": "Hyderabad",
-                                "address": msgInput.text,
-                                "email": emailInput.text,
-                                "mobile": phoneNumberInput.text,
-                                "cart": {
-                                  "items": cartitem,
-                                  "total price": global.totalamount
-                                },
-                              })
-                              .then((result) => {
-                                    global.cart
-                                        .removeRange(0, global.cart.length),
-                                    global.value
-                                        .removeRange(0, global.value.length),
-                                    global.totalamount = 0,
-                                    cartitem = "empty",
-                                    print(cartitem),
-                                                                        callSnackBar("Order Places Successfully 😃"),
-
-                                    Navigator.pushReplacementNamed(
-                                        context, "HomeScreen"),
-
-                                    nameInput.clear(),
-                                    cityInput.clear(),
-                                    phoneNumberInput.clear(),
-                                    emailInput.clear(),
-                                    msgInput.clear(),
-
-                                    // stateInput.clear(),
-                                  })
-                              .catchError((err) => print(err));
+                          callSnackBar("Placing Order ⏱⏱⏱", 4);
+                          callSnackBar("Order Placed Successfully 😃", 4);
+                          final smtpServer = gmail(username, arg);
+                          Message msg;
 
                           // callSnackBar("Please check the details properly"));
 
-                          final smtpServer = gmail(username,arg);
+                          // final smtpServer = gmail(username,arg);
                           // Use the SmtpServer class to configure an SMTP server:
                           // final smtpServer = SmtpServer('smtp.domain.com');
                           // See the named arguments of SmtpServer for further configuration
@@ -335,7 +296,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           final message = Message()
                             ..from = Address(username, 'Your name')
                             ..recipients.add('carigarifurniture@gmail.com')
-                            // ..ccRecipients.addAll(['vamshi777reddy@gmail.com'])
+                            ..ccRecipients.addAll(['${emailInput.text}'])
                             // ..bccRecipients.add(Address(''))
                             ..subject =
                                 'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'
@@ -354,6 +315,74 @@ class _OrderConfirmState extends State<OrderConfirm> {
                             }
                             print('Message not sent.');
                           }
+                          msg = Message()
+                            ..from = Address(username, 'Your name')
+                            ..recipients.add('${emailInput.text}')
+                            // ..ccRecipients.addAll([''])
+                            // ..bccRecipients.add(Address(''))
+                            ..subject =
+                                'Thank you ${nameInput.text} for placing an  order at 😀 :: ${date}'
+                            ..text =
+                                'This mail is from user who ordered this product'
+                            ..html =
+                                "<h1 style='color:blue;'>Carigari Ordered Products</h1>\n<p>Hey!  \n<h3 >Name :- ${nameInput.text}\n </h3><h3> Mobile NO:-  ${phoneNumberInput.text} \n </h3><h3>Email ID:- ${emailInput.text} \n </h3><h3> Shipping Address :- ${msgInput.text} \n </h3>   <h3> The Ordered Products With Quantity are </h3><h3 style='color:blue;'>  ${cartitem} \n </h3> <h3>Total Price for this order is ${global.totalamount}</h3></p><p><h3>Thank You. We wish you have a good day</h3></p>";
+
+                          try {
+                            final sendReport = await send(msg, smtpServer);
+                            print('Message sent: ' + sendReport.toString());
+                          } on MailerException catch (e) {
+                            callSnackBar("please enter valid email address");
+                            print('Message not sent.');
+                            for (var p in e.problems) {
+                              print('Problem: ${p.code}: ${p.msg}');
+                            }
+                            print('Message not sent.');
+                          }
+                          ;
+                          Firestore.instance
+                              .collection('Orders Placed')
+                              .document(nameInput.text + " " + date)
+                              .setData({
+                                "date and time": date,
+                                "name": nameInput.text,
+                                "city": "Hyderabad",
+                                "address": msgInput.text,
+                                "email": emailInput.text,
+                                "mobile": phoneNumberInput.text,
+                                "cart": {
+                                  "items": cartitem,
+                                  "total price": global.totalamount
+                                },
+                              })
+                              .then((result) => {
+                                    global.totalamount = 0,
+                                    cartitem = "empty",
+                                    print(cartitem),
+                                    // Use the SmtpServer class to configure an SMTP server:
+                                    // final smtpServer = SmtpServer('smtp.domain.com');
+                                    // See the named arguments of SmtpServer for further configuration
+                                    // options.
+
+                                    // Create our message.
+
+                                    // callSnackBar("Order Placed Successfully 😃",2),
+
+                                    global.cart
+                                        .removeRange(0, global.cart.length),
+                                    global.value
+                                        .removeRange(0, global.value.length),
+
+                                    nameInput.clear(),
+                                    cityInput.clear(),
+                                    phoneNumberInput.clear(),
+                                    emailInput.clear(),
+                                    msgInput.clear(),
+                                    Navigator.pushReplacementNamed(
+                                        context, "HomeScreen"),
+                                    // stateInput.clear(),
+                                  })
+                              .catchError((err) => print(err));
+
                           // DONE
 
                           // Let's send another message using a slightly different syntax:
@@ -370,6 +399,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           //
                           // Create a smtp client that will persist the connection
                           var connection = PersistentConnection(smtpServer);
+                          var cnctn = PersistentConnection(smtpServer);
 
                           // Send the first message
                           await connection.send(message);
@@ -378,6 +408,12 @@ class _OrderConfirmState extends State<OrderConfirm> {
 
                           // close the connection
                           await connection.close();
+                          await cnctn.send(msg);
+
+                          // send the equivalent message
+
+                          // close the connection
+                          await cnctn.close();
                         }
                       },
                     ),
