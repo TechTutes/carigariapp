@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Container(
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(horizontal: 10.0),
-                    decoration: BoxDecoration(color: Colors.grey),
+                    decoration: BoxDecoration(color: Colors.yellowAccent),
                     child: GestureDetector(
                         child: Image.network(
                           i,

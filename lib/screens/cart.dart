@@ -61,7 +61,8 @@ class _CartState extends State<Cart> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Cart Items"),
+                Text("Cart Items",style:TextStyle(fontFamily:"CharterBT",fontSize:22),),
+                                          
                 Image.asset(
                   'images/logo.png',
                   fit: BoxFit.fill,
@@ -93,13 +94,15 @@ class _CartState extends State<Cart> {
                       children: <Widget>[
                         Text(
                           'Total',
-                          style: TextStyle(fontSize: 20),
+                          style:TextStyle(fontFamily:"CharterBT",
+                                           fontSize: 20),
                         ),
                         Spacer(),
                         Chip(
                           label: Text(
                             ' ₹  ${global.totalamount}',
-                            style: TextStyle(
+                            style: TextStyle(fontFamily:"CharterBT",
+                                          
                               fontSize: SizeConfig.blockSizeVertical * 2.2,
                               color: Theme.of(context)
                                   .primaryTextTheme
@@ -110,9 +113,13 @@ class _CartState extends State<Cart> {
                           backgroundColor: Theme.of(context).primaryColor,
                         ),
                         FlatButton(
-                          child: Text(
-                              global.cart.isEmpty ? "SHOP NOW" : 'ORDER NOW',
-                              style: TextStyle(
+                          child: 
+                              global.cart.isEmpty ?Text( "SHOP NOW" ,style: TextStyle(fontFamily:"CharterBT",
+                                          
+                                fontSize: SizeConfig.blockSizeVertical * 2.2,
+                              )) :Text( 'ORDER NOW',
+                              style: TextStyle(fontFamily:"CharterBT",
+                                          
                                 fontSize: SizeConfig.blockSizeVertical * 2.2,
                               )),
                           onPressed: () {
@@ -234,7 +241,8 @@ class _CartState extends State<Cart> {
                                         width:(MediaQuery.of(context).size.width - appbar.preferredSize.height) *0.58,
                                                                               child: Text(global.cart[index].data['name'],
                                         textAlign: TextAlign.left,
-                                            style: TextStyle(
+                                            style: TextStyle(fontFamily:"CharterBT",
+                                          
                                               
                                               color: Colors.black,
                                               fontWeight: FontWeight.w500,
@@ -247,7 +255,8 @@ class _CartState extends State<Cart> {
                                          top: SizeConfig.blockSizeVertical * 1.8,
                                         ),
                                         child: Text('${global.value[index]} x',
-                                            style: TextStyle(
+                                            style: TextStyle(fontFamily:"CharterBT",
+                                          
                                                 fontSize: SizeConfig
                                                         .blockSizeVertical *
                                                     1.9,
@@ -291,7 +300,8 @@ class _CartState extends State<Cart> {
                             //   side: BorderSide(color: Colors.pink)
                             //   ),
                             child: Text("Shop Now",
-                                style: TextStyle(
+                                style: TextStyle(fontFamily:"CharterBT",
+                                          
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                   fontSize: ((SizeConfig.screenHeight) - (appbar.preferredSize.height)) * 0.035,
@@ -311,7 +321,8 @@ class _CartState extends State<Cart> {
                             //   side: BorderSide(color: Colors.pink)
                             //   ),
                             child: Text("Order Now",
-                                style: TextStyle(
+                                style: TextStyle(fontFamily:"CharterBT",
+                                          
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                   fontSize: ((SizeConfig.screenHeight) - (appbar.preferredSize.height)) * 0.035,
@@ -322,7 +333,7 @@ class _CartState extends State<Cart> {
                       ),
                 SizedBox(
                   height: SizeConfig.blockSizeVertical * 2,
-                ) // Text("\n\n\n Wil be updated soon!!!",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
+                ) // Text("\n\n\n Wil be updated soon!!!",style: TextStyle(fontFamily:"CharterBT",
               ],
             )),
           ),

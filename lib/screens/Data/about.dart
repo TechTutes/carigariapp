@@ -47,7 +47,8 @@ class _AboutState extends State<About> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("About Us", style: TextStyle(color: Colors.white)),
+          Text("About Us", style: TextStyle(
+                                            fontFamily: "CharterBT",color: Colors.white)),
           Image.asset(
             'images/logo.png',
             fit: BoxFit.fill,
@@ -66,7 +67,8 @@ class _AboutState extends State<About> {
         onWillPop: () {
           Navigator.pushNamed(context, 'HomeScreen');
         },
-        //  child: Text("\n\n\n  About plan will be started soon",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
+        //  child: Text("\n\n\n  About plan will be started soon",style: TextStyle(
+                                            // fontFamily: "CharterBT",fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
         child: isLoading
             ? ListView(
                 children: <Widget>[
@@ -77,7 +79,7 @@ class _AboutState extends State<About> {
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [
-                      //     Text("Call ConversionGuru", style: TextStyle( fontSize: 16)),
+                      //     Text("Call ConversionGuru", style: TextStyle(
                       //     InkWell(
 
                       //       onTap: () {
@@ -91,7 +93,7 @@ class _AboutState extends State<About> {
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [
-                      //     Text("Live Chat", style: TextStyle( fontSize: 16)),
+                      //     Text("Live Chat", style: TextStyle(
                       //     InkWell(
 
                       //       onTap: () async {
@@ -107,12 +109,14 @@ class _AboutState extends State<About> {
                           child: Text(
                         "About\n",
                         style: TextStyle(
+                                            fontFamily: "CharterBT",
                             fontSize: SizeConfig.blockSizeVertical * 2.5),
                       )),
                       Center(
                         child: InkWell(
                             child: new Text(' Carigari Furnitures',
                                 style: TextStyle(
+                                            fontFamily: "CharterBT",
                                     fontSize: 20.0,
                                     color: Colors.red,
                                     decoration: TextDecoration.underline)),
@@ -145,6 +149,7 @@ class _AboutState extends State<About> {
                                 children: <Widget>[
                                   Text("About Us:",
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                           fontSize: ((SizeConfig.screenHeight) -
                                                   (appbar
                                                       .preferredSize.height)) *
@@ -163,6 +168,7 @@ class _AboutState extends State<About> {
                                                   ? "FURNITURE is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
                                                   : "${phone[0].data["about1"]}",
                                               style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
@@ -176,6 +182,7 @@ class _AboutState extends State<About> {
               "${phone[0].data["about2"]}",
               textAlign: TextAlign.justify,
                                               style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
@@ -188,6 +195,7 @@ class _AboutState extends State<About> {
                                                   // :
                                                    "${phone[0].data["about3"]}",
                                               style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
@@ -200,99 +208,13 @@ class _AboutState extends State<About> {
                                                   // :
                                                    "${phone[0].data["about4"]}",
                                               style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
                                                               .height)) *
                                                       0.025)),
-                                          // Text("OPP.J.N.T.U. COLLEGE,",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text("BESIDES HYDERABAD HOUSE,",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text("Carigari Furnitures,",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text("MASAB TANK,",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text("HYDERABAD - 500 004. ,A.P.",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // SizedBox(height: 5.0),
-                                          // Text("Tel Cum Fax 040-30628610.",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text(
-                                          //     "Mobile : 9246363415  9885444435.",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // SizedBox(height: 8.0),
-                                          // Text("E-mail :",
-                                          //     style: TextStyle(fontSize: 24)),
-                                          // Text(
-                                          //     "   carigarifurniture@yahoo.co.in",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text(
-                                          //     "   carigarifurniture@gmail.com",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
-                                          // Text(
-                                          //     "   arvind@carigarifurniture.com",
-                                          //     style: TextStyle(
-                                          //         fontSize: ((SizeConfig
-                                          //                     .screenHeight) -
-                                          //                 (appbar
-                                          //                     .preferredSize
-                                          //                     .height)) *
-                                          //             0.025)),
+                                    
                                         ],
                                       ))
                                 ],

@@ -1,31 +1,17 @@
 
 import 'package:carigari/Arrangements/sizeModification.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:url_launcher/url_launcher.dart';
+ bool isLoading = false;
+  List<DocumentSnapshot> phone = [];
 
-// Widget theDrawer(BuildContext context)
-// {
-//   var status= StatusProvider.of(context);
-//   return _theDrawer(context,status);
-// }
-void loggingOut(BuildContext context) {
-  // ca
-  FirebaseAuth.instance
-      .signOut()
-      // Navigator.pushNamed(context, "ScreenSelection");
-      .then((result) =>
-          //  Navigator.pushReplacementNamed(context, "Splash")
-
-          Navigator.pushReplacementNamed(context, "ScreenSelection"))
-      .catchError((err) => print(err));
-  // exit(0);
-  Navigator.of(context).pop();
-}
 
 Widget theDrawer(BuildContext context) {
+  
   // void callSnackBar(String msg,[int er])
   // {
   //   final SnackBar=new prefix0.SnackBar(
@@ -172,19 +158,21 @@ Widget theDrawer(BuildContext context) {
             Icons.call,
             color: Colors.red,
           ),
-          title: new Text('Contact Us'),
+          title: new Text('Contact Us',style:TextStyle(fontSize:22),),
+                                          
           onTap: () {
             Navigator.pushNamed(context, "ContactUs");
           },
         ),
         new ListTile(
-          title: new Text('Live Chat'),
+          title: new Text('Live Chat',style:TextStyle(fontSize:22),),
+                                          
           leading: new Icon(Icons.chat_bubble_outline),
           onTap: () {
             print("whats app");
             //  var whatsappUrl ="whatsapp://send?phone=$phone";
-            canLaunch("whatsapp://send?phone=+0919010590693") != null
-                ? launch("whatsapp://send?phone=+0919010590693")
+            canLaunch("whatsapp://send?phone=+0919885444435") != null
+                ? launch("whatsapp://send?phone=+0919885444435")
                 : print(
                     "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
             // need to work if it wont work
@@ -192,35 +180,39 @@ Widget theDrawer(BuildContext context) {
         ),
         new ListTile(
           leading: new Icon(Icons.edit),
-          title: new Text('Contact Form'),
+          title: new Text('Contact Form',style:TextStyle(fontSize:22),),
+                                          
           onTap: () {
             Navigator.pushNamed(context, 'ContactForm');
           },
         ),
         new ListTile(
           leading: new Icon(Icons.code),
-          title: new Text('About'),
+          title: new Text('About Us',style:TextStyle(fontSize:22),),
+                                          
           onTap: () {
             Navigator.pushNamed(context, 'About');
           },
         ),
         new ListTile(
           leading: new Icon(Icons.add_alert),
-          title: new Text('Notifications'),
+          title: new Text('Notifications',style:TextStyle(fontSize:22),),
+                                          
           onTap: () {
             Navigator.pushNamed(context, 'Notification');
           },
         ),
-        // new Divider(color:Colors.red,),
+        // // new Divider(color:Colors.red,),
+        // new ListTile(
+        //   leading: new Icon(Icons.live_help),
+        //   title: new Text('Help'),
+        //   onTap: () {
+        //     Navigator.pushNamed(context, 'Help');
+        //   },
+        // ),
         new ListTile(
-          leading: new Icon(Icons.live_help),
-          title: new Text('Help'),
-          onTap: () {
-            Navigator.pushNamed(context, 'Help');
-          },
-        ),
-        new ListTile(
-          title: new Text('Privacy Policy'),
+          title: new Text('Privacy Policy',style:TextStyle(fontSize:22),),
+                                          
           onTap: () {
             Navigator.pushNamed(context, 'Privacy');
           },

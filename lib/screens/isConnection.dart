@@ -12,7 +12,6 @@ import 'package:carigari/Screens/contactUS.dart';
 import 'package:carigari/screens/Data/contactForm.dart';
 
 import 'package:carigari/screens/cart.dart';
-import 'package:carigari/screens/help.dart';
 import 'package:carigari/screens/privacy.dart';
 import './splashScreen.dart';
 import 'package:flutter/material.dart';
@@ -76,6 +75,9 @@ class _IsConnection extends State<IsConnection> {
       );
     } else {
       return MaterialApp(
+        theme: ThemeData( textTheme: Theme.of(context).textTheme.apply(
+                fontFamily: 'CharterBT',
+               )),
         debugShowCheckedModeBanner: false,
         home: new Splash(),
         routes: <String, WidgetBuilder>{
@@ -86,7 +88,6 @@ class _IsConnection extends State<IsConnection> {
           'ContactForm': (BuildContext context) => new ContactForm(),
           'ContactUs': (BuildContext context) => new ContactUs(),
           'Cart': (BuildContext context) => new Cart(),
-          'Help': (BuildContext context) => new Help(),
           'Privacy': (BuildContext context) => new Privacy(),
           'Notification': (BuildContext context) => new prefix0.Notification(),
           'Update': (BuildContext context) => new Update(),

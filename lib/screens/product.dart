@@ -141,7 +141,7 @@ final appbar=new AppBar(
                                                     2.9,
                                           )),
                                       subtitle: Text(
-                                          "Price Starts from ₹ ${global.category[index].data['price']}"),
+                                          " ₹ ${global.category[index].data['price']}"),
                                       // dense: true,
                                       onTap: () {
                                         // Navigator.pushNamed(context,"ContactUs");

@@ -12,7 +12,7 @@ class ContactUs extends StatefulWidget {
 }
 
 class _ContactUsState extends State<ContactUs> {
-  bool isLoading = false;
+  bool isLoading = false;var ph,whstp;
   List<DocumentSnapshot> phone = [];
 
   void initState() {
@@ -32,8 +32,10 @@ class _ContactUsState extends State<ContactUs> {
 
     qs = await Firestore.instance.collection("data").getDocuments();
     phone.isEmpty ? phone.addAll(qs.documents) : null;
+   ph= (phone[4].data["call"] ==null)?9885444435 : phone[4].data["call"];
+     whstp= (phone[4].data["whatsapp"] ==null)?9885444435 : phone[4].data["whatsapp"];
 
-    print("${phone[3].data["call"]}");
+    // print("${phone[4].data["call"]}");
 
     setState(() {
       isLoading = true;
@@ -46,7 +48,8 @@ class _ContactUsState extends State<ContactUs> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Contact Us", style: TextStyle(color: Colors.white)),
+          Text("Contact Us", style: TextStyle(
+                                            fontFamily: "CharterBT",color: Colors.white)),
           Image.asset(
             'images/logo.png',
             fit: BoxFit.fill,
@@ -56,9 +59,7 @@ class _ContactUsState extends State<ContactUs> {
       ),
       backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
     );
-    return new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: new Scaffold(
+    return  new Scaffold(
         appBar: appbar,
         bottomNavigationBar: bottomnavigation(context, 1),
         drawer: theDrawer(context),
@@ -76,7 +77,7 @@ class _ContactUsState extends State<ContactUs> {
                           // Row(
                           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           //   children: [
-                          //     Text("Call ConversionGuru", style: TextStyle( fontSize: 16)),
+                          //     Text("Call ConversionGuru", style: TextStyle(
                           //     InkWell(
 
                           //       onTap: () {
@@ -90,7 +91,7 @@ class _ContactUsState extends State<ContactUs> {
                           // Row(
                           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           //   children: [
-                          //     Text("Live Chat", style: TextStyle( fontSize: 16)),
+                          //     Text("Live Chat", style: TextStyle(
                           //     InkWell(
 
                           //       onTap: () async {
@@ -113,11 +114,12 @@ class _ContactUsState extends State<ContactUs> {
                                 width: SizeConfig.blockSizeHorizontal * 80,
                                 child: RaisedButton(
                                   onPressed: () =>
-                                      launch("tel:+91${phone[4].data["call"]}"),
+                                      launch("tel:+91${ph}"),
                                   child: Row(
                                     children: <Widget>[
                                       new Text("CALL US",
                                           style: TextStyle(
+                                            fontFamily: "CharterBT",
                                             color: Colors.white,
                                             fontWeight: FontWeight.w400,
                                             fontSize: ((SizeConfig.screenHeight) -
@@ -152,16 +154,18 @@ class _ContactUsState extends State<ContactUs> {
                                   onPressed: () async =>
                                       //  var whatsappUrl ="whatsapp://send?phone=$phone";
                                       await canLaunch(
-                                              "whatsapp://send?phone=091${phone[4].data["whatsapp"]}")
+                                              "whatsapp://send?phone=091${whstp}")
                                           ? launch(
-                                              "whatsapp://send?phone=091${phone[4].data["whatsapp"]}")
+                                              "whatsapp://send?phone=091${whstp}")
                                           : print(
                                               "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed"),
                                   child: Row(
                                     children: <Widget>[
                                       new Text("Live chat (whatsApp)",
                                           style: TextStyle(
+                                            fontFamily: "CharterBT",
                                             color: Colors.white,
+
                                             fontWeight: FontWeight.w400,
                                             fontSize: ((SizeConfig.screenHeight) -
                                                     (appbar
@@ -197,6 +201,8 @@ class _ContactUsState extends State<ContactUs> {
                                     children: <Widget>[
                                       Text("Address:",
                                           style: TextStyle(
+                                            fontFamily: "CharterBT",
+                                            
                                               fontSize:
                                                   ((SizeConfig.screenHeight) -
                                                           (appbar.preferredSize
@@ -212,8 +218,18 @@ class _ContactUsState extends State<ContactUs> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[
+                                               Text("CARIGARI,",
+                                                  style: TextStyle(
+                                            fontFamily: "CharterBT",
+                                                      fontSize: ((SizeConfig
+                                                                  .screenHeight) -
+                                                              (appbar
+                                                                  .preferredSize
+                                                                  .height)) *
+                                                          0.025)),
                                               Text("10-1-17, DANA CHAMBERS,",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
@@ -222,38 +238,41 @@ class _ContactUsState extends State<ContactUs> {
                                                           0.025)),
                                               Text("OPP.J.N.T.U. COLLEGE,",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
                                                                   .preferredSize
                                                                   .height)) *
                                                           0.025)),
-                                              Text("BESIDES HYDERABAD HOUSE,",
-                                                  style: TextStyle(
-                                                      fontSize: ((SizeConfig
-                                                                  .screenHeight) -
-                                                              (appbar
-                                                                  .preferredSize
-                                                                  .height)) *
-                                                          0.025)),
-                                              Text("Carigari Furnitures,",
-                                                  style: TextStyle(
-                                                      fontSize: ((SizeConfig
-                                                                  .screenHeight) -
-                                                              (appbar
-                                                                  .preferredSize
-                                                                  .height)) *
-                                                          0.025)),
+                                              // Text("BESIDES HYDERABAD HOUSE,",
+                                              //     style: TextStyle(
+                                              //         fontSize: ((SizeConfig
+                                              //                     .screenHeight) -
+                                              //                 (appbar
+                                              //                     .preferredSize
+                                              //                     .height)) *
+                                              //             0.025)),
+                                              // Text("Carigari Furnitures,",
+                                              //     style: TextStyle(
+                                              //         fontSize: ((SizeConfig
+                                              //                     .screenHeight) -
+                                              //                 (appbar
+                                              //                     .preferredSize
+                                              //                     .height)) *
+                                              //             0.025)),
                                               Text("MASAB TANK,",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
                                                                   .preferredSize
                                                                   .height)) *
                                                           0.025)),
-                                              Text("HYDERABAD - 500 004. ,A.P.",
+                                              Text("HYDERABAD - 500 028. ,T.S.",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
@@ -261,17 +280,18 @@ class _ContactUsState extends State<ContactUs> {
                                                                   .height)) *
                                                           0.025)),
                                               SizedBox(height: 5.0),
-                                              Text("Tel Cum Fax 040-30628610.",
-                                                  style: TextStyle(
-                                                      fontSize: ((SizeConfig
-                                                                  .screenHeight) -
-                                                              (appbar
-                                                                  .preferredSize
-                                                                  .height)) *
-                                                          0.025)),
+                                              // Text("Tel Cum Fax 040-30628610.",
+                                              //     style: TextStyle(
+                                              //         fontSize: ((SizeConfig
+                                              //                     .screenHeight) -
+                                              //                 (appbar
+                                              //                     .preferredSize
+                                              //                     .height)) *
+                                              //             0.025)),
                                               Text(
-                                                  "Mobile : 9246363415  9885444435.",
+                                                  "TEL NO : ${phone[4].data["contactus"]}.",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
@@ -280,10 +300,12 @@ class _ContactUsState extends State<ContactUs> {
                                                           0.025)),
                                               SizedBox(height: 8.0),
                                               Text("E-mail :",
-                                                  style: TextStyle(fontSize: 24)),
+                                                  style: TextStyle(
+                                            fontFamily: "CharterBT",fontSize: 24)),
                                               Text(
                                                   "   carigarifurniture@yahoo.co.in",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
@@ -293,6 +315,7 @@ class _ContactUsState extends State<ContactUs> {
                                               Text(
                                                   "   carigarifurniture@gmail.com",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
@@ -302,6 +325,7 @@ class _ContactUsState extends State<ContactUs> {
                                               Text(
                                                   "   arvind@carigarifurniture.com",
                                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
                                                                   .screenHeight) -
                                                               (appbar
@@ -325,7 +349,7 @@ class _ContactUsState extends State<ContactUs> {
                       child: Text("Loading"),
                     )),
             )),
-      ),
+    
     );
   }
 }

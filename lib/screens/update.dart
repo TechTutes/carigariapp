@@ -123,9 +123,9 @@ class _UpdateState extends State<Update> {
                                       onPressed: () async {
                                         //  var whatsappUrl ="whatsapp://send?phone=$phone";
                                         await canLaunch(
-                                                "https://play.google.com/store/apps/details?id=YOUR-APP-ID")
+                                                "https://play.google.com/store/apps/details?id=conversionguru.in.carigari")
                                             ? launch(
-                                                "https://play.google.com/store/apps/details?id=YOUR-APP-ID")
+                                                "https://play.google.com/store/apps/details?id=conversionguru.in.carigari")
                                             : print(
                                                 "playstore can't be loaded");
 

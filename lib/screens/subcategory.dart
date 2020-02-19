@@ -125,6 +125,7 @@ class _SubCategoryState extends State<SubCategory> {
               titlePadding: EdgeInsets.all(20.0),
               content: Text(" Shop further Or Checkout",
                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                     color: Colors.black,
                     fontWeight: FontWeight.w600,
                     fontSize: SizeConfig.blockSizeVertical * 2.9,
@@ -135,6 +136,7 @@ class _SubCategoryState extends State<SubCategory> {
                 new FlatButton(
                   child: Text("Shop ",
                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                         color: Colors.blue,
                         fontWeight: FontWeight.w600,
                         fontSize: SizeConfig.blockSizeVertical * 2.9,
@@ -146,6 +148,7 @@ class _SubCategoryState extends State<SubCategory> {
                 new FlatButton(
                   child: Text("Checkout",
                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                         color: Colors.pink,
                         fontWeight: FontWeight.w600,
                         fontSize: SizeConfig.blockSizeVertical * 2.9,
@@ -220,7 +223,8 @@ class _SubCategoryState extends State<SubCategory> {
 
                               child: Text(global.category.isEmpty
                     ? "product"
-                    : global.category[index].data['name'],),
+                    : global.category[index].data['name'],style:TextStyle(
+                                            fontFamily: "CharterBT",)),
               ),
               Image.asset(
                 'images/logo.png',
@@ -263,6 +267,7 @@ class _SubCategoryState extends State<SubCategory> {
                             // Text(
                             //   "\t\t\tProduct Description for ",
                             //   style: TextStyle(
+                                            // fontFamily: "CharterBT",
                             //     color: Colors.black,
                             //     fontWeight: FontWeight.w600,
                             //     fontSize: 7,
@@ -273,6 +278,7 @@ class _SubCategoryState extends State<SubCategory> {
                               child: Text(
                                 global.category[index].data['name'],
                                 style: TextStyle(
+                                            fontFamily: "CharterBT",
                                   color: Colors.black,
                                   fontWeight: FontWeight.w600,
                                   fontSize: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.03,
@@ -398,7 +404,7 @@ class _SubCategoryState extends State<SubCategory> {
                                     height:
                                         MediaQuery.of(context).size.height / 20,
                                     child: Text(inside
-                                        ? "${global.value[place]}"
+                                        ? " ${global.value[place]} "
                                         : "1"),
                                   )),
                               IconButton(
@@ -492,6 +498,7 @@ class _SubCategoryState extends State<SubCategory> {
                           color: Colors.brown[400],
                           child: Text("Add to cart",
                               style: TextStyle(
+                                            fontFamily: "CharterBT",
                                 color: Colors.white,
                                 fontWeight: FontWeight.w400,
                                 fontSize: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.05,
@@ -616,6 +623,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 DataCell(
                                   Text("Model Name",
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
@@ -627,6 +635,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 DataCell(
                                   Text(global.category[index].data['name'],
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
@@ -643,6 +652,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 DataCell(
                                   Text("Price",
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
@@ -655,6 +665,7 @@ class _SubCategoryState extends State<SubCategory> {
                                   Text(
                                       "₹ ${global.category[index].data['price']}",
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
@@ -671,6 +682,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 DataCell(
                                   Text("Quantity Available",
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
@@ -683,6 +695,7 @@ class _SubCategoryState extends State<SubCategory> {
                                   Text(
                                       "${global.category[index].data["quantity"]}",
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
@@ -724,6 +737,7 @@ class _SubCategoryState extends State<SubCategory> {
                             children: <Widget>[
                               Text("Description:",
                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize:
@@ -736,6 +750,7 @@ class _SubCategoryState extends State<SubCategory> {
                                       "\t\t\t\t${global.category[index].data['desc']}",
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
+                                            fontFamily: "CharterBT",
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w300,
                                         fontSize:
@@ -746,6 +761,7 @@ class _SubCategoryState extends State<SubCategory> {
                               Divider(),
                               Text("\t\t\t[Delivery Charges:extra",
                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize:
@@ -754,6 +770,7 @@ class _SubCategoryState extends State<SubCategory> {
                               Text(
                                   "\t\t\tGST:${global.data[1].data['gst']}% extra]",
                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400,
                                     fontSize:
@@ -781,6 +798,7 @@ class _SubCategoryState extends State<SubCategory> {
                       child: Text(
                         "\n\n\n\t\t\t There are no products in this category.\n\n\n\t\t\tThank You",
                         style: TextStyle(
+                                            fontFamily: "CharterBT",
                             fontSize: SizeConfig.blockSizeVertical * 2.5,
                             color: Colors.green),
                       ),
@@ -795,6 +813,7 @@ class _SubCategoryState extends State<SubCategory> {
                               color: Colors.brown[400],
                               child: Text("Continue Shopping",
                                   style: TextStyle(
+                                            fontFamily: "CharterBT",
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,
                                     fontSize: SizeConfig.blockSizeVertical * 4,
