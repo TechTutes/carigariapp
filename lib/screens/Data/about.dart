@@ -47,8 +47,8 @@ class _AboutState extends State<About> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("About Us", style: TextStyle(
-                                            fontFamily: "CharterBT",color: Colors.white)),
+          Text("About Us",
+              style: TextStyle(fontFamily: "CharterBT", color: Colors.white)),
           Image.asset(
             'images/logo.png',
             fit: BoxFit.fill,
@@ -68,7 +68,7 @@ class _AboutState extends State<About> {
           Navigator.pushNamed(context, 'HomeScreen');
         },
         //  child: Text("\n\n\n  About plan will be started soon",style: TextStyle(
-                                            // fontFamily: "CharterBT",fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
+        // fontFamily: "CharterBT",fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
         child: isLoading
             ? ListView(
                 children: <Widget>[
@@ -109,14 +109,14 @@ class _AboutState extends State<About> {
                           child: Text(
                         "About\n",
                         style: TextStyle(
-                                            fontFamily: "CharterBT",
+                            fontFamily: "CharterBT",
                             fontSize: SizeConfig.blockSizeVertical * 2.5),
                       )),
                       Center(
                         child: InkWell(
-                            child: new Text(' Carigari Furnitures',
+                            child: new Text('Carigari - Furnitures',
                                 style: TextStyle(
-                                            fontFamily: "CharterBT",
+                                    fontFamily: "CharterBT",
                                     fontSize: 20.0,
                                     color: Colors.red,
                                     decoration: TextDecoration.underline)),
@@ -145,15 +145,16 @@ class _AboutState extends State<About> {
                                   bottom: SizeConfig.blockSizeVertical * 2.5),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
                                   Text("About Us:",
                                       style: TextStyle(
-                                            fontFamily: "CharterBT",
+                                          fontFamily: "CharterBT",
                                           fontSize: ((SizeConfig.screenHeight) -
                                                   (appbar
                                                       .preferredSize.height)) *
                                               0.03)),
+                                  SizedBox(height: 10),
                                   Padding(
                                       padding: EdgeInsets.only(
                                         left: SizeConfig.blockSizeVertical * 1,
@@ -167,54 +168,54 @@ class _AboutState extends State<About> {
                                               phone[0].data["about1"] == null
                                                   ? "FURNITURE is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
                                                   : "${phone[0].data["about1"]}",
+                                              textAlign: TextAlign.justify,
                                               style: TextStyle(
-                                            fontFamily: "CharterBT",
+                                                  fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
                                                               .height)) *
                                                       0.025)),
-                                          SizedBox(height: 12),
                                           Text(
                                               phone[0].data["about2"] == null
                                                   ? "CARIGARI is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
-                                                  :
-              "${phone[0].data["about2"]}",
-              textAlign: TextAlign.justify,
+                                                  : "${phone[0].data["about2"]}",
+                                              textAlign: TextAlign.justify,
                                               style: TextStyle(
-                                            fontFamily: "CharterBT",
+                                                  fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
                                                               .height)) *
                                                       0.025)),
-                                                        SizedBox(height: 10),
+                                          SizedBox(height: 25),
                                           Text(
                                               // phone[0].data["about2"] == null
-                                                  // ? "CARIGARI is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
-                                                  // :
-                                                   "${phone[0].data["about3"]}",
+                                              // ? "CARIGARI is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
+                                              // :
+                                              "${phone[0].data["about3"]}",
+                                              textAlign: TextAlign.justify,
                                               style: TextStyle(
-                                            fontFamily: "CharterBT",
+                                                  fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
                                                               .height)) *
                                                       0.025)),
-                                                        SizedBox(height: 10),
+                                          SizedBox(height: 25),
                                           Text(
                                               // phone[0].data["about2"] == null
-                                                  // ? "CARIGARI is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
-                                                  // :
-                                                   "${phone[0].data["about4"]}",
+                                              // ? "CARIGARI is a landmark funiture store in the city of Hyderabad. We were born in the spring of 2001 (Feb 11, 2001) and during this period of 9 years we have created a unique identity for ourselves.   We are wholesalers and deal in 100% imported furniture from Malaysia and China. We procure the latest and the best designs with an  eye on what suits the Indian tastes. Our team of design experts study the lifestyle patterns and habits very carefully and then try to ensure that they are kept in mind during the furniture selection process overseas. This is our key strength. We are known for importing classical and contemporary range of furniture designs. "
+                                              // :
+                                              "${phone[0].data["about4"]}",
+                                              textAlign: TextAlign.justify,
                                               style: TextStyle(
-                                            fontFamily: "CharterBT",
+                                                  fontFamily: "CharterBT",
                                                   fontSize: ((SizeConfig
                                                               .screenHeight) -
                                                           (appbar.preferredSize
                                                               .height)) *
                                                       0.025)),
-                                    
                                         ],
                                       ))
                                 ],

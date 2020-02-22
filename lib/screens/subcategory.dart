@@ -165,7 +165,7 @@ class _SubCategoryState extends State<SubCategory> {
     Alert(int index, BuildContext context) {
       return showDialog(
           context: context,
-          barrierDismissible: false,
+          barrierDismissible: true,
           builder: (BuildContext context) {
             return new AlertDialog(
               // shape: RoundedRectangleBorder(
@@ -627,19 +627,19 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                             (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.02,
+                                             (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
                                 ),
                                 DataCell(
-                                  Text(global.category[index].data['name'],
+                                  Text(": ${global.category[index].data['name']}",
                                       style: TextStyle(
                                             fontFamily: "CharterBT",
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.02,
+                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -656,20 +656,20 @@ class _SubCategoryState extends State<SubCategory> {
                                         color: Colors.black,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.03,
+                                            (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
                                 ),
                                 DataCell(
                                   Text(
-                                      "₹ ${global.category[index].data['price']}",
+                                      ": ₹ ${global.category[index].data['price']}",
                                       style: TextStyle(
                                             fontFamily: "CharterBT",
                                         color: Colors.pink,
                                         fontWeight: FontWeight.w400,
                                         fontSize:
-                                           (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.03,
+                                           (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                       )),
                                   showEditIcon: false,
                                   placeholder: false,
@@ -693,7 +693,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 ),
                                 DataCell(
                                   Text(
-                                      "${global.category[index].data["quantity"]}",
+                                      ": ${global.category[index].data["quantity"]}",
                                       style: TextStyle(
                                             fontFamily: "CharterBT",
                                         color: Colors.black,
@@ -735,7 +735,7 @@ class _SubCategoryState extends State<SubCategory> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text("Description:",
+                              Text("Description",
                                   style: TextStyle(
                                             fontFamily: "CharterBT",
                                     color: Colors.black,
@@ -759,7 +759,7 @@ class _SubCategoryState extends State<SubCategory> {
                                 ),
                               ),
                               Divider(),
-                              Text("\t\t\t[Delivery Charges:extra",
+                              Text("\t\t\t* Delivery Charges extra",
                                   style: TextStyle(
                                             fontFamily: "CharterBT",
                                     color: Colors.black,
@@ -768,7 +768,7 @@ class _SubCategoryState extends State<SubCategory> {
                                        (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.025,
                                   )),
                               Text(
-                                  "\t\t\tGST:${global.data[1].data['gst']}% extra]",
+                                  "\t\t\t* GST:${global.data[1].data['gst']}% extra",
                                   style: TextStyle(
                                             fontFamily: "CharterBT",
                                     color: Colors.black,

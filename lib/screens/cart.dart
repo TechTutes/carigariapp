@@ -114,11 +114,11 @@ class _CartState extends State<Cart> {
                         ),
                         FlatButton(
                           child: 
-                              global.cart.isEmpty ?Text( "SHOP NOW" ,style: TextStyle(fontFamily:"CharterBT",
+                              global.cart.isEmpty ?Text( "SHOP NOW" ,style: TextStyle(
                                           
                                 fontSize: SizeConfig.blockSizeVertical * 2.2,
                               )) :Text( 'ORDER NOW',
-                              style: TextStyle(fontFamily:"CharterBT",
+                              style: TextStyle(
                                           
                                 fontSize: SizeConfig.blockSizeVertical * 2.2,
                               )),
@@ -300,7 +300,7 @@ class _CartState extends State<Cart> {
                             //   side: BorderSide(color: Colors.pink)
                             //   ),
                             child: Text("Shop Now",
-                                style: TextStyle(fontFamily:"CharterBT",
+                                style: TextStyle(
                                           
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
@@ -321,7 +321,7 @@ class _CartState extends State<Cart> {
                             //   side: BorderSide(color: Colors.pink)
                             //   ),
                             child: Text("Order Now",
-                                style: TextStyle(fontFamily:"CharterBT",
+                                style: TextStyle(
                                           
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,

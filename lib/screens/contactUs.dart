@@ -197,11 +197,13 @@ class _ContactUsState extends State<ContactUs> {
                                   bottom:SizeConfig.blockSizeVertical * 2.5),
                                                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Text("Address:",
                                           style: TextStyle(
                                             fontFamily: "CharterBT",
+                                             decoration: TextDecoration.underline,
+                                            
                                             
                                               fontSize:
                                                   ((SizeConfig.screenHeight) -
@@ -216,8 +218,10 @@ class _ContactUsState extends State<ContactUs> {
                                           ),
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
+                                                                                                        SizedBox(height:10),
+
                                                Text("CARIGARI,",
                                                   style: TextStyle(
                                             fontFamily: "CharterBT",
@@ -236,7 +240,7 @@ class _ContactUsState extends State<ContactUs> {
                                                                   .preferredSize
                                                                   .height)) *
                                                           0.025)),
-                                              Text("OPP.J.N.T.U. COLLEGE,",
+                                              Text("OPP.  J.N.T.U. COLLEGE,",
                                                   style: TextStyle(
                                             fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
@@ -270,7 +274,7 @@ class _ContactUsState extends State<ContactUs> {
                                                                   .preferredSize
                                                                   .height)) *
                                                           0.025)),
-                                              Text("HYDERABAD - 500 028. ,T.S.",
+                                              Text("HYDERABAD - 500 028,",
                                                   style: TextStyle(
                                             fontFamily: "CharterBT",
                                                       fontSize: ((SizeConfig
@@ -279,15 +283,15 @@ class _ContactUsState extends State<ContactUs> {
                                                                   .preferredSize
                                                                   .height)) *
                                                           0.025)),
-                                              SizedBox(height: 5.0),
-                                              // Text("Tel Cum Fax 040-30628610.",
-                                              //     style: TextStyle(
-                                              //         fontSize: ((SizeConfig
-                                              //                     .screenHeight) -
-                                              //                 (appbar
-                                              //                     .preferredSize
-                                              //                     .height)) *
-                                              //             0.025)),
+                                              Text("TELANGANA",
+                                                  style: TextStyle( fontFamily: "CharterBT",
+                                                      fontSize: ((SizeConfig
+                                                                  .screenHeight) -
+                                                              (appbar
+                                                                  .preferredSize
+                                                                  .height)) *
+                                                          0.025)),
+                                                          SizedBox(height:10),
                                               Text(
                                                   "TEL NO : ${phone[4].data["contactus"]}.",
                                                   style: TextStyle(
@@ -322,16 +326,16 @@ class _ContactUsState extends State<ContactUs> {
                                                                   .preferredSize
                                                                   .height)) *
                                                           0.025)),
-                                              Text(
-                                                  "   arvind@carigarifurniture.com",
-                                                  style: TextStyle(
-                                            fontFamily: "CharterBT",
-                                                      fontSize: ((SizeConfig
-                                                                  .screenHeight) -
-                                                              (appbar
-                                                                  .preferredSize
-                                                                  .height)) *
-                                                          0.025)),
+                                            //   Text(
+                                            //       "   arvind@carigarifurniture.com",
+                                            //       style: TextStyle(
+                                            // fontFamily: "CharterBT",
+                                            //           fontSize: ((SizeConfig
+                                            //                       .screenHeight) -
+                                            //                   (appbar
+                                            //                       .preferredSize
+                                            //                       .height)) *
+                                            //               0.025)),
                                             ],
                                           ))
                                     ],
