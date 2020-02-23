@@ -55,6 +55,7 @@ class _ProductState extends State<Product> {
     QuerySnapshot qp, g;
     qp = await Firestore.instance
         .collection("${global.categories[global.touch].data['name']}")
+        .orderBy("price",descending: true)
         .getDocuments();
 
     global.category.isEmpty ? global.category.addAll(qp.documents) : null;

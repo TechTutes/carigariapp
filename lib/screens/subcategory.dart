@@ -75,6 +75,7 @@ class _SubCategoryState extends State<SubCategory> {
     QuerySnapshot qp;
     qp = await Firestore.instance
         .collection("${global.categories[global.touch].data['name']}")
+        
         .getDocuments();
 
     // print("${global.category[0].data['name']}");
