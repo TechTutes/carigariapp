@@ -8,7 +8,7 @@ Widget bottomnavigation(BuildContext context, int index) {
     backgroundColor:
     // Colors.cyan[200],
      Color.fromRGBO(191,32,37, 1.0),
-    elevation: 4.0,
+    elevation: 4.1,
     onTap: (index) {
       switch (index) {
         case 0:
