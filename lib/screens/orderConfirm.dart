@@ -279,7 +279,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           //     Navigator.of(context).pushNamed("HomeScreen")
                           // );
 
-                          callSnackBar("Placing Order ⏱⏱⏱", 4);
+                          callSnackBar("Placing Order ⏱⏱⏱", 7);
                           callSnackBar("Order Placed Successfully 😃", 4);
                           final smtpServer = gmail(username, arg);
                           Message msg;
@@ -296,7 +296,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           final message = Message()
                             ..from = Address(username, 'Your name')
                             ..recipients.add('carigarifurniture@gmail.com')
-                            ..ccRecipients.addAll(['${emailInput.text}'])
+                            // ..ccRecipients.addAll(['${emailInput.text}'])
                             // ..bccRecipients.add(Address(''))
                             ..subject =
                                 'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'

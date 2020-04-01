@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../Arrangements/variables.dart' as global;
-import 'subcategory.dart' as local;
 
 class Cart extends StatefulWidget {
   @override

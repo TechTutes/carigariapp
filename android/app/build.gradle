@@ -41,7 +41,7 @@ android {
         applicationId "conversionguru.in.carigari"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode flutterVersionCode.toInteger()
+        versionCode 2
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true

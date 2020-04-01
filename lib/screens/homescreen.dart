@@ -17,11 +17,13 @@ class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => new _HomeScreenState();
 }
-
+List<DocumentSnapshot> numbr = [];
 class _HomeScreenState extends State<HomeScreen> {
   // List<DocumentSnapshot> category=[];
   bool isLoading = false, isUpdate = false;
   List<DocumentSnapshot> carousel = [];
+    
+
 
   final GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
 
@@ -64,6 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
     global.categories.isEmpty ? global.categories.addAll(qp.documents) : null;
     cs = await Firestore.instance.collection("Carousel").getDocuments();
     carousel.isEmpty ? carousel.addAll(cs.documents) : null;
+    up = await Firestore.instance.collection("data").getDocuments();
+    numbr.isEmpty ? numbr.addAll(up.documents) : null;
+
 
     setState(() {
       isLoading = false;

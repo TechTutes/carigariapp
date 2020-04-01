@@ -166,7 +166,7 @@ class _SubCategoryState extends State<SubCategory> {
     Alert(int index, BuildContext context) {
       return showDialog(
           context: context,
-          barrierDismissible: true,
+          barrierDismissible:true,
           builder: (BuildContext context) {
             return new AlertDialog(
               // shape: RoundedRectangleBorder(
@@ -177,22 +177,13 @@ class _SubCategoryState extends State<SubCategory> {
               titlePadding: EdgeInsets.all(20.0),
               // content: Text(" Shop further Or Checkout",
               //     style: TextStyle(
-              //       color: Colors.black,
-              //       fontWeight: FontWeight.w600,
-              //       fontSize: SizeConfig.blockSizeVertical * 2.9,
-              //     )),
-              // contentPadding: EdgeInsets.all(10.0),
+          
 
               actions: <Widget>[
-                // PhotoView(
-                //   imageProvider: NetworkImage(global.category[index].data['image']),
-                // ),
-                // Flexible(
-                // child:
-
-                ///paste it here
+            
                 Container(
-                  height: (MediaQuery.of(context).size.height -50)*0.9,
+                  height:
+                   (MediaQuery.of(context).size.height -50)*0.5,
                   width: 200,
                   // MediaQuery.of(context).size.width *0.8,
                   child: PhotoView(
@@ -305,8 +296,9 @@ class _SubCategoryState extends State<SubCategory> {
                             height: (MediaQuery.of(context).size.height - appbar.preferredSize.height) *0.38,
                             // width:
                             width: MediaQuery.of(context).size.width * 0.8,
-                            child: 
-                            Image.network( "https://drive.google.com/uc?id=${global.category[index].data['image']}")
+                            child: Hero(
+                                      tag: global.category[index].data['image'],
+                          child:  Image.network( "https://drive.google.com/uc?id=${global.category[index].data['image']}"))
                       //       PhotoView(
                       // imageProvider: NetworkImage(
                       //     "https://drive.google.com/uc?id=${global.category[index].data['image']}"),

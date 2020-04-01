@@ -102,7 +102,7 @@ class _UpdateState extends State<Update> {
                   child: isLoading
                       ? Container(child: Text("Loading"))
                       : SizedBox(
-                          height: MediaQuery.of(context).size.height / 4.0,
+                          height: MediaQuery.of(context).size.height / 3.5,
                           child: Card(
                             margin: EdgeInsets.only(top:18,right:9,left:12),
                             elevation: 5.0,
@@ -112,14 +112,14 @@ class _UpdateState extends State<Update> {
                               children: <Widget>[
                                 const ListTile(
                                   leading: Icon(Icons.notifications_active),
-                                  title: Text('New Update Available'),
+                                  title: Text('New Update Available',style:TextStyle(fontSize: 19)),
                                   subtitle: Text(
-                                      'A new version of our App is in play Store, Please Update!!'),
+                                      'A new version of our App is in play Store, Please Update!!',style:TextStyle(fontSize: 17)),
                                 ),
                                 ButtonBar(
                                   children: <Widget>[
                                     FlatButton(
-                                      child: const Text("Update"),
+                                      child: const Text("Update",style:TextStyle(fontSize: 19)),
                                       onPressed: () async {
                                         //  var whatsappUrl ="whatsapp://send?phone=$phone";
                                         await canLaunch(
@@ -133,7 +133,7 @@ class _UpdateState extends State<Update> {
                                       },
                                     ),
                                     FlatButton(
-                                      child: const Text("Later"),
+                                      child: const Text("Later",style:TextStyle(fontSize:19.0)),
                                       onPressed: () {
                                         //  setState(() {
                                         //  isUpdate = false;

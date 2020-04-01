@@ -44,7 +44,6 @@ class _NotificationState extends State<Notification> {
   } @override
   Widget build(BuildContext context) {
    
-    // TODO: implement build
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

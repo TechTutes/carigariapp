@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:url_launcher/url_launcher.dart';
+import '../screens/homescreen.dart'as nu;
  bool isLoading = false;
   List<DocumentSnapshot> phone = [];
 
@@ -78,81 +79,11 @@ Widget theDrawer(BuildContext context) {
     );
   }
 
-// String status;
-  // bool _isLogin=false;
-  // // print(_isLogin);
-  // FirebaseAuth.instance
-  //       .currentUser()
-  //       .then((currentUser) => {
-  //             if (currentUser != null)
-  //               {
-  //                 _isLogin=true,
-  //                 // status="Login",
-  //                 print("jp user yes ra in drawer"),
-  //                 print(_isLogin),
 
-  //               }
-  //             // else
-  //             //   {
-  //             //     _isLogin=false,
-  //             //     // status="Logout",
-  //             //     print("jp no user ra in drawer"),
-  //             //     // Navigator.pushNamed(context, "Homescreen"),
-  //             //   }
-  //           })
-  //       .catchError((err) => print(err));
-  // // var status= StatusProvider.of(context);
-  // theDrawer({this._isLogin});
-  // if(param1==null)
-  // {
-  //   param1=false;
-  // }
-  // bool _islogin=param1;
-
-  //  TextStyle newStyle = TextStyle(
-  //   fontSize: 15,
-  //   fontWeight: FontWeight.normal
-  // );
-
-  //  _islogin;
   return Drawer(
     child: new ListView(
       children: <Widget>[
-        //  Text(checkLogin()),
-        //  FlatButton(),
-        // new DrawerHeader(
-
-        //   child: Column(
-        //     children: <Widget>[
-        //       // new Container(
-        //       //   height: 120,
-        //        Text("LOGIN",style: TextStyle(),),
-        // decoration: BoxDecoration(
-        // color: Colors.blue,
-        // ),
-        //       //  color: Colors.white, fontWeight: FontWeight.normal
-        //       // ),
-        //     ],
-        //   ),
-        // ),
-        // Widget:CheckLoginStatus,
-        //   new ListTile(
-        //    // title: new Text("Login/Register",style: newStyle),
-        //    title: new Text("Login/Register"),
-        //    leading: Icon(Icons.lock,color: Colors.black,),
-        //    onTap: () {
-        //      Navigator.pushNamed(context, 'Login');
-        //    },
-        //  ),
-        //  new ListTile(
-        //    leading: Icon(Icons.account_box,color:Colors.green),
-        //    title: new Text("My Account"),
-        //    // title: new Text('My Account',style:TextStyle(color:Colors.black),),
-        //    onTap: () {
-        //      Navigator.pushNamed(context,'AccountInfo');
-        //    },
-        //  ),
-        // new Divider(),
+      
         new ListTile(
           leading: new Icon(
             Icons.call,
@@ -171,8 +102,8 @@ Widget theDrawer(BuildContext context) {
           onTap: () {
             print("whats app");
             //  var whatsappUrl ="whatsapp://send?phone=$phone";
-            canLaunch("whatsapp://send?phone=+0919885444435") != null
-                ? launch("whatsapp://send?phone=+0919885444435")
+            canLaunch("whatsapp://send?phone=+091${nu.numbr[4].data["whatsapp"]}") != null
+                ? launch("whatsapp://send?phone=+091${nu.numbr[4].data["whatsapp"]}")
                 : print(
                     "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
             // need to work if it wont work
