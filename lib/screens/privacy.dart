@@ -1,39 +1,98 @@
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Privacy extends StatefulWidget
-{
+class Privacy extends StatefulWidget {
   @override
   _PrivacyState createState() => _PrivacyState();
 }
 
 class _PrivacyState extends State<Privacy> {
+  List<DocumentSnapshot> data = [];
+  bool isLoading = false;
+  void initState() {
+    print("in init state");
+    super.initState();
+    geList();
+  }
+
+  geList() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    QuerySnapshot qp;
+    qp = await Firestore.instance.collection("data").getDocuments();
+
+    data.isEmpty ? data.addAll(qp.documents) : null;
+
+    print("category");
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Privacy Info"),
-          backgroundColor:Colors.orange[300],
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar:  AppBar(
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Privacy Info", style: TextStyle(color: Colors.white)),
+              Image.asset(
+                'images/logo.png',
+                fit: BoxFit.fill,
+                height: SizeConfig.blockSizeVertical * 4.5,
+              ),
+            ],
+          ),
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
         ),
-        bottomNavigationBar: bottomnavigation(context,1),
-        drawer: theDrawer(context),
-        body:WillPopScope(
-          onWillPop: (){
-            Navigator.pushNamed(context, 'HomeScreen');
-          },
-        child:Column(
-          children: <Widget>[
-            Text("\n\n\n Privacy details need to be updated based on client",style: TextStyle(fontSize:SizeConfig.blockSizeVertical * 2.5,color: Colors.green),),
-          ],
-        ),
-        ),
-      )
-    );
+          bottomNavigationBar: bottomnavigation(context, 1),
+          drawer: theDrawer(context),
+          body: isLoading
+              ? Center(
+                  child: SizedBox(
+                  child: Text("Loading"),
+                ))
+              : WillPopScope(
+                  onWillPop: () {
+                    Navigator.pushReplacementNamed(context, 'HomeScreen');
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      data.isEmpty
+                          ? Center(
+                              child: Text(
+                              "Details will be updated soon",
+                              style: TextStyle(
+                                  fontSize: SizeConfig.blockSizeVertical * 2.5,
+                                  color: Colors.green),
+                            ))
+                          : SizedBox(height: SizeConfig.blockSizeVertical * 5),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: SizeConfig.blockSizeHorizontal * 5),
+                        child: SizedBox(
+                            width: SizeConfig.blockSizeHorizontal * 95,
+                            child: Text(
+                              "${data[5].data['content']}",
+                              style: TextStyle(
+                                  fontSize: SizeConfig.blockSizeVertical * 2.5,
+                                  color: Colors.green),
+                            )),
+                      )
+                    ],
+                  ),
+                ),
+        ));
   }
 }

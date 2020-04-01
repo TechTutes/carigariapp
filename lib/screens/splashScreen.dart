@@ -1,13 +1,10 @@
-import 'dart:io';
+import 'package:carigari/screens/home.dart';
 import 'package:carigari/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../Arrangements/sizeModification.dart';
-import './selectScreen.dart';
-import 'dart:async';
 
 class Splash extends StatefulWidget {
   @override
@@ -15,19 +12,6 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  // BuildContext context;
-  //  var status= StatusProvider.of(context);
-
-  // bool _islogin;
-  // startTime() async {
-  //   var _duration = new Duration(seconds: 3);
-  //   return new Timer(_duration, navigationPage);
-  // }
-
-  // void navigationPage() {
-  //   Navigator.of(context).pushReplacementNamed('HomeScreen');
-  // }
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -36,12 +20,14 @@ class _SplashState extends State<Splash> {
         fit: StackFit.expand,
         children: <Widget>[
           new SplashScreen(
-            seconds: 4,
-            backgroundColor: Color.fromRGBO(255, 184, 102, .6),
+            seconds: 3,
+            backgroundColor:
+                // Colors.white,
+                Color.fromRGBO(255, 184, 102, .6),
             image: Image.asset('images/logo.png'),
-            photoSize: SizeConfig.blockSizeVertical * 18.0,
+            photoSize: SizeConfig.blockSizeVertical * 22.0,
             title: Text(
-              "Welcome to the World",
+              "Welcome to our World",
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: SizeConfig.blockSizeVertical * 3.0,
@@ -49,7 +35,7 @@ class _SplashState extends State<Splash> {
               ),
             ),
             // loaderColor: Colors.green,
-            navigateAfterSeconds: new HomeScreen(),
+            navigateAfterSeconds: Home(),
             //  SelectScreen(),
           ),
           new Column(

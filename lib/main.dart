@@ -4,6 +4,8 @@
 import 'package:carigari/screens/isConnection.dart' as prefix0;
 // import 'package:carigari/screens/test.dart';
 import 'package:flutter/material.dart';
+
+
 // import './screens/homescreen.dart';
 // import './Screens/isConnection.dart';
 // import './screens/Data/CheckingData.dart';as
@@ -15,8 +17,12 @@ import 'package:flutter/material.dart';
 // // import 'package:firebase_core/firebase_core.dart';
 
 void main() {
+// SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitUp]);
+ 
+
   // runApp(new myapp());
   runApp(new prefix0.IsConnection());
+
 }
 
 // class myapp extends StatelessWidget

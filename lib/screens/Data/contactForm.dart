@@ -60,7 +60,6 @@ class _ContactFormState extends State<ContactForm> {
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.title;
     
-    // // TODO: implement build
     // String dropdownValue='One';
         
         return new Scaffold(
@@ -68,8 +67,22 @@ class _ContactFormState extends State<ContactForm> {
           
           // resizeToAvoidBottomPadding: false,
                   appBar: AppBar(
-                    title: Text("Contact Form"),
-                     backgroundColor: Colors.cyan[300],
+                    title: 
+                     Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                 
+               Text("Contact Form"),
+                   Image.asset(
+                 'images/logo.png',
+                  fit: BoxFit.fill,
+                  height:SizeConfig.blockSizeVertical * 4.5,
+                  
+              ),
+            ],
+
+          ),
+                     backgroundColor: Color.fromRGBO(191,32,37, 1.0),
                   ),
                   drawer: theDrawer(context),
                   bottomNavigationBar: bottomnavigation(context,1),

@@ -1,13 +1,17 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carigari/Arrangements/Drawer.dart';
 import 'package:carigari/screens/bottomNavigation.dart';
 import 'package:carigari/Arrangements/sizeModification.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart' as prefix0;
-
+import 'package:intl/intl.dart';
 import 'package:flutter/widgets.dart';
 import "package:flutter/material.dart";
+import 'package:carigari/screens/subcategory.dart' as s;
 import '../Arrangements/variables.dart' as global;
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 
 class OrderConfirm extends StatefulWidget {
   @override
@@ -21,7 +25,7 @@ class _OrderConfirmState extends State<OrderConfirm> {
   TextEditingController cityInput;
   TextEditingController phoneNumberInput;
   TextEditingController emailInput;
-  TextEditingController stateInput;
+  // TextEditingController stateInput;
   TextEditingController msgInput;
 
   @override
@@ -30,19 +34,22 @@ class _OrderConfirmState extends State<OrderConfirm> {
     emailInput = new TextEditingController();
     cityInput = new TextEditingController();
     phoneNumberInput = new TextEditingController();
-    stateInput = new TextEditingController();
+    // stateInput = new TextEditingController();
     msgInput = new TextEditingController();
     super.initState();
   }
 
+  String username = 'jatinkumar11954@gmail.com';
+
   var _dropforms = ['General', 'Feedback', 'Corporate', 'BulkOrder'];
   var _dropformSelected = "General";
+  var date = new DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now());
 
   void callSnackBar(String msg, [int er]) {
     // msg="There is no record with this user, please register first by clicking Register";
     final SnackBar = new prefix0.SnackBar(
       content: new Text(msg),
-      duration: new Duration(seconds: 3),
+      duration: new Duration(seconds: er),
       //   action: new SnackBarAction(label: "Register",
       //   onPressed: (){
       //     Navigator.pushNamed(context, "Register");
@@ -90,9 +97,22 @@ class _OrderConfirmState extends State<OrderConfirm> {
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.title;
+    String cartitem = "${global.cart[0].data["name"]}" +
+        " : quantity -" +
+        "${global.value[0]}" +
+        ", ";
+    for (int i = 1; i < global.cart.length; i++) {
+      cartitem = cartitem +
+          "${global.cart[i].data["name"]}" +
+          " : quantity -" +
+          "${global.value[i]}" +
+          ", ";
+    }
 
+    print(cartitem);
     // // TODO: implement build
     // String dropdownValue='One';
+    String arg = s.k;
 
     return new Scaffold(
         key: _scaffoldKey,
@@ -100,26 +120,23 @@ class _OrderConfirmState extends State<OrderConfirm> {
         // resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 
-               Text("Order Placing"),
-                   Image.asset(
-                 'images/logo.png',
-                  fit: BoxFit.fill,
-                  height:SizeConfig.blockSizeVertical * 4.5,
-                  
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Order Placing", style: TextStyle(color: Colors.white)),
+              Image.asset(
+                'images/logo.png',
+                fit: BoxFit.fill,
+                height: SizeConfig.blockSizeVertical * 4.5,
               ),
             ],
-
-          ), 
-          backgroundColor: Colors.brown,
+          ),
+          backgroundColor: Color.fromRGBO(191, 32, 37, 1.0),
         ),
         drawer: theDrawer(context),
         bottomNavigationBar: bottomnavigation(context, 1),
         body: WillPopScope(
           onWillPop: () {
-            Navigator.pushNamed(context, 'HomeScreen');
+            Navigator.pushReplacementNamed(context, 'HomeScreen');
           },
           child: Container(
             margin: EdgeInsets.all(SizeConfig.blockSizeVertical * 1.5),
@@ -182,103 +199,6 @@ class _OrderConfirmState extends State<OrderConfirm> {
                                   SizeConfig.blockSizeVertical * 1.5))),
                     ),
                   ),
-
-                  //               DropdownButton<String>(
-                  //                 value: dropdownValue,
-                  //                 onChanged: (String newValue)
-                  //                 {
-                  //                   setState(() {
-                  //                    if(newValue!=null)
-                  //                       dropdownValue=newValue;
-                  //                   });
-                  //                 },
-                  //                 items: <String>['General','Feedback','Corporate','BulkOrder']
-                  //                 .map<DropdownMenuItem<String>(
-                  //                 value: value,
-                  //                 child: Text(Value),
-                  //                 );
-                  // }).tolist());
-                  //           )
-
-                  // DropdownButton<String>(
-                  //       value: dropdownValue,
-                  //       icon: Icon(Icons.arrow_downward),
-                  //       iconSize: 24,
-                  //       elevation: 16,
-                  //       style: TextStyle(
-                  //         color: Colors.deepPurple
-                  //       ),
-                  //       underline: Container(
-                  //         height: 2,
-                  //         color: Colors.deepPurpleAccent,
-                  //       ),
-                  //       onChanged: (String newValue) {
-                  //         setState(() {
-                  //           dropdownValue = newValue;
-                  //         });
-                  //       },
-                  //       items: <String>['One', 'Two', 'Free', 'Four']
-                  //         .map<DropdownMenuItem<String>>((String value) {
-                  //           return DropdownMenuItem<String>(
-                  //             value: value,
-                  //             child: Text(value),
-                  //           );
-                  //         })
-                  //         .toList(),
-                  //     ),
-
-                  // Padding(
-                  //     padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical*1.5,bottom:SizeConfig.blockSizeVertical*1.5 ),
-                  //     child:DropdownButton(
-                  //                 items: _dropdownValues
-                  //                     .map(
-                  //                       (value) => DropdownMenuItem(
-                  //                           child: Text(value),
-                  //                           value: value,
-                  //                         )
-                  //                         )
-                  //                     .toList(),
-                  //                 onChanged: (String value) {
-                  //                  //
-                  //                 },
-                  //                 isExpanded: false,
-                  //                 hint: Text('Select the category '),
-                  //               ),
-                  // ),
-
-                  // Padding(
-                  //           padding: EdgeInsets.only(top: SizeConfig.blockSizeVertical*1.5,bottom:SizeConfig.blockSizeVertical*1.5 ),
-                  //       child:DropdownButton<String>(
-                  //       items: _dropforms.map((String dropDownStringItem)
-                  //       {
-                  //          return DropdownMenuItem<String>(
-                  //             value: dropDownStringItem,
-                  //             child: Text(dropDownStringItem),
-
-                  //          );
-                  //       }).toList(),
-                  //       onChanged: (String newValueSelected){
-                  //         setState(() {
-                  //           this._dropformSelected =newValueSelected;
-                  //         });
-                  //       },
-                  //       value: _dropformSelected,
-                  //       ),
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.only(
-                  //       top: SizeConfig.blockSizeVertical * 1.5,
-                  //       bottom: SizeConfig.blockSizeVertical * 1.5),
-                  //   child: ExpandablePanel(
-                  //     header: Text("Products"),
-                  //     collapsed: Text("Click to List the Cart Items"),
-                  //     expanded: DisplaySelected(),
-                  //     // Text(article.body, softWrap: true, ),
-                  //     tapHeaderToExpand: true,
-                  //     hasIcon: true,
-                  //   ),
-                  // ),
-
                   Padding(
                     padding: EdgeInsets.only(
                         top: SizeConfig.blockSizeVertical * 1.5,
@@ -304,51 +224,38 @@ class _OrderConfirmState extends State<OrderConfirm> {
                         bottom: SizeConfig.blockSizeVertical * 1.5),
                     child: TextFormField(
                       // keyboardType: TextInputType.number,
+                      readOnly: true,
                       style: textStyle,
                       controller: cityInput,
-                      validator: nameValidator,
+                      // validator: nameValidator,
+
                       decoration: InputDecoration(
                           labelStyle: textStyle,
                           labelText: "City",
-                          hintText: "Enter your City",
+                          enabled: false,
+                          hintText: "Hyderabad",
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
                                   SizeConfig.blockSizeVertical * 1.5))),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: SizeConfig.blockSizeVertical * 1.5,
-                        bottom: SizeConfig.blockSizeVertical * 1.5),
-                    child: TextField(
-                      // keyboardType: TextInputType.number,
-                      style: textStyle,
-                      //  controller: ,
-                      decoration: InputDecoration(
-                          labelStyle: textStyle,
-                          labelText: "State",
-                          hintText: "Enter your State",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  SizeConfig.blockSizeVertical * 1.5))),
-                    ),
-                  ),
-
                   SizedBox(
-         height:SizeConfig.blockSizeVertical * 6,
-         width:SizeConfig.blockSizeHorizontal * 90,
-                child: RaisedButton(
-                  elevation:5.0,
-                    color: Colors.brown[400],
-                    // shape: RoundedRectangleBorder(
-                    //   borderRadius:new BorderRadius.circular(18.0),
-                    //   side: BorderSide(color: Colors.pink)
-                    //   ),
-                    child: Text("Place Order",style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontSize: SizeConfig.blockSizeVertical * 3.5,)),
-                      
+                    height: SizeConfig.blockSizeVertical * 6,
+                    width: SizeConfig.blockSizeHorizontal * 90,
+                    child: RaisedButton(
+                      elevation: 5.0,
+                      color: Colors.brown[400],
+                      // shape: RoundedRectangleBorder(
+                      //   borderRadius:new BorderRadius.circular(18.0),
+                      //   side: BorderSide(color: Colors.pink)
+                      //   ),
+                      child: Text("Place Order",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: SizeConfig.blockSizeVertical * 3.5,
+                          )),
+
                       onPressed: () async {
                         // showDialog(
                         //     context: context,
@@ -371,34 +278,142 @@ class _OrderConfirmState extends State<OrderConfirm> {
                           //     .whenComplete(() =>
                           //     Navigator.of(context).pushNamed("HomeScreen")
                           // );
-                          callSnackBar("Order Placed Successfully!!!");
 
+                          callSnackBar("Placing Order ⏱⏱⏱", 7);
+                          callSnackBar("Order Placed Successfully 😃", 4);
+                          final smtpServer = gmail(username, arg);
+                          Message msg;
+
+                          // callSnackBar("Please check the details properly"));
+
+                          // final smtpServer = gmail(username,arg);
+                          // Use the SmtpServer class to configure an SMTP server:
+                          // final smtpServer = SmtpServer('smtp.domain.com');
+                          // See the named arguments of SmtpServer for further configuration
+                          // options.
+
+                          // Create our message.
+                          final message = Message()
+                            ..from = Address(username, 'Your name')
+                            ..recipients.add('carigarifurniture@gmail.com')
+                            // ..ccRecipients.addAll(['${emailInput.text}'])
+                            // ..bccRecipients.add(Address(''))
+                            ..subject =
+                                'Mail from the ${nameInput.text} who has placed order at 😀 :: ${date}'
+                            ..text =
+                                'This mail is from user who ordered this product'
+                            ..html =
+                                "<h1 style='color:blue;'>Carigari Ordered Products</h1>\n<p>Hey!  \n<h3 >Name :- ${nameInput.text}\n </h3><h3> Mobile NO:-  ${phoneNumberInput.text} \n </h3><h3>Email ID:- ${emailInput.text} \n </h3><h3> Shipping Address :- ${msgInput.text} \n </h3>   <h3> The Ordered Products With Quantity are </h3><h3 style='color:blue;'>  ${cartitem} \n </h3> <h3>Total Price for this order is ${global.totalamount}</h3></p>";
+
+                          try {
+                            final sendReport = await send(message, smtpServer);
+                            print('Message sent: ' + sendReport.toString());
+                          } on MailerException catch (e) {
+                            print('Message not sent.');
+                            for (var p in e.problems) {
+                              print('Problem: ${p.code}: ${p.msg}');
+                            }
+                            print('Message not sent.');
+                          }
+                          msg = Message()
+                            ..from = Address(username, 'Your name')
+                            ..recipients.add('${emailInput.text}')
+                            // ..ccRecipients.addAll([''])
+                            // ..bccRecipients.add(Address(''))
+                            ..subject =
+                                'Thank you ${nameInput.text} for placing an  order at 😀 :: ${date}'
+                            ..text =
+                                'This mail is from user who ordered this product'
+                            ..html =
+                                "<h1 style='color:blue;'>Carigari Ordered Products</h1>\n<p>Hey!  \n<h3 >Name :- ${nameInput.text}\n </h3><h3> Mobile NO:-  ${phoneNumberInput.text} \n </h3><h3>Email ID:- ${emailInput.text} \n </h3><h3> Shipping Address :- ${msgInput.text} \n </h3>   <h3> The Ordered Products With Quantity are </h3><h3 style='color:blue;'>  ${cartitem} \n </h3> <h3>Total Price for this order is ${global.totalamount}</h3></p><p><h3>Thank You. We wish you have a good day</h3></p>";
+
+                          try {
+                            final sendReport = await send(msg, smtpServer);
+                            print('Message sent: ' + sendReport.toString());
+                          } on MailerException catch (e) {
+                            callSnackBar("please enter valid email address");
+                            print('Message not sent.');
+                            for (var p in e.problems) {
+                              print('Problem: ${p.code}: ${p.msg}');
+                            }
+                            print('Message not sent.');
+                          }
+                          ;
                           Firestore.instance
                               .collection('Orders Placed')
-                              .document(nameInput.text)
+                              .document(nameInput.text + " " + date)
                               .setData({
+                                "date and time": date,
                                 "name": nameInput.text,
-                                // "uid": currentUser.uid,
-                                "city": cityInput.text,
-                                "message": msgInput.text,
+                                "city": "Hyderabad",
+                                "address": msgInput.text,
                                 "email": emailInput.text,
                                 "mobile": phoneNumberInput.text,
-                                "price": global.selected.toString(),
+                                "cart": {
+                                  "items": cartitem,
+                                  "total price": global.totalamount
+                                },
                               })
                               .then((result) => {
-                                    global.selected = [],
-                                    global.cart = [],
-                                    print(global.selected),
-                                    Navigator.pushNamed(context, "HomeScreen"),
+                                    global.totalamount = 0,
+                                    cartitem = "empty",
+                                    print(cartitem),
+                                    // Use the SmtpServer class to configure an SMTP server:
+                                    // final smtpServer = SmtpServer('smtp.domain.com');
+                                    // See the named arguments of SmtpServer for further configuration
+                                    // options.
+
+                                    // Create our message.
+
+                                    // callSnackBar("Order Placed Successfully 😃",2),
+
+                                    global.cart
+                                        .removeRange(0, global.cart.length),
+                                    global.value
+                                        .removeRange(0, global.value.length),
+
                                     nameInput.clear(),
                                     cityInput.clear(),
                                     phoneNumberInput.clear(),
                                     emailInput.clear(),
                                     msgInput.clear(),
-                                    stateInput.clear(),
+                                    Navigator.pushReplacementNamed(
+                                        context, "HomeScreen"),
+                                    // stateInput.clear(),
                                   })
                               .catchError((err) => print(err));
-                          // callSnackBar("Please check the details properly"));
+
+                          // DONE
+
+                          // Let's send another message using a slightly different syntax:
+                          //
+                          // Addresses without a name part can be set directly.
+                          // For instance `..recipients.add('destination@example.com')`
+                          // If you want to display a name part you have to create an
+                          // Address object: `new Address('destination@example.com', 'Display name part')`
+                          // Creating and adding an Address object without a name part
+                          // `new Address('destination@example.com')` is equivalent to
+                          // adding the mail address as `String`.
+
+                          // Sending multiple messages with the same connection
+                          //
+                          // Create a smtp client that will persist the connection
+                          var connection = PersistentConnection(smtpServer);
+                          var cnctn = PersistentConnection(smtpServer);
+
+                          // Send the first message
+                          await connection.send(message);
+
+                          // send the equivalent message
+
+                          // close the connection
+                          await connection.close();
+                          await cnctn.send(msg);
+
+                          // send the equivalent message
+
+                          // close the connection
+                          await cnctn.close();
                         }
                       },
                     ),

@@ -5,13 +5,15 @@ import '../Arrangements/sizeModification.dart';
 
 Widget bottomnavigation(BuildContext context, int index) {
   return BottomNavigationBar(
-    backgroundColor: Color.fromRGBO(255, 184, 102, .6),
-    elevation: 25.0,
+    backgroundColor:
+    // Colors.cyan[200],
+     Color.fromRGBO(191,32,37, 1.0),
+    elevation: 4.1,
     onTap: (index) {
       switch (index) {
         case 0:
           {
-            Navigator.pushNamed(context, 'HomeScreen');
+            Navigator.pushReplacementNamed(context, 'HomeScreen');
             break;
           }
         case 1:
@@ -35,7 +37,7 @@ Widget bottomnavigation(BuildContext context, int index) {
       BottomNavigationBarItem(
         icon: Icon(
           Icons.home,
-          color: Colors.black45,
+          color: Colors.black54,
         ),
         title: Text('Home',
             style: TextStyle(
@@ -43,18 +45,18 @@ Widget bottomnavigation(BuildContext context, int index) {
                 fontWeight: FontWeight.w800)),
         activeIcon: Icon(
           Icons.home,
-          color: Colors.black87,
+          color: Colors.white,
         ),
       ),
       BottomNavigationBarItem(
       
           icon: Icon(
             Icons.contacts,
-             color:Colors.black45,
+             color:Colors.black54,
           ),
            activeIcon:Icon(
             Icons.contacts,
-            color: Colors.black87,
+            color: Colors.white,
             //  color:Colors.black45,
           ),
           title: Text('Contact us',
@@ -65,11 +67,11 @@ Widget bottomnavigation(BuildContext context, int index) {
       BottomNavigationBarItem(
           icon: Icon(
             Icons.shopping_cart,
-            color: Colors.black45,
+            color: Colors.black87,
           ),
            activeIcon:Icon(
            Icons.shopping_cart,
-            color: Colors.black87,
+            color: Colors.white,
             //  color:Colors.black45,
           ),
           title: Text('Cart',
@@ -77,6 +79,9 @@ Widget bottomnavigation(BuildContext context, int index) {
                 fontSize: SizeConfig.blockSizeVertical * 1.8,
                 fontWeight: FontWeight.w800))),
     ],
-    fixedColor: Color.fromRGBO(127, 68, 0, .9),
+    // unselectedLabelStyle: TextStyle(color: Colors.white),
+    fixedColor: 
+    Colors.white,
+    // Color.fromRGBO(127, 68, 0, .9),
   );
 }
